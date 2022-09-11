@@ -26,10 +26,10 @@
                 <input class="form-control" style="width:10rem" id="exampleInputEmail1" aria-describedby="emailHelp" name="search" placeholder="search..">
               </div>
         </div>
-        <div class="col-6 float-end">
-            <button class="btn aksi-btn text-white mx-2 float-end">Pilih Semua</button>
-            <a  href="/list-approved" class="btn aksi-btn2 text-white mx-2 float-end {{ Route::is('list-approved') ? 'active' : '' }}">Approved</a>
-            <button class="btn aksi-btn3  text-white  mx-2 float-end" wire:click="Approve()">Approve Tagihan  ({{ count($checkedTagih) }})</button>
+        <div class="col-4 float-end">
+            <a href="/rekap_subkon"  class="btn aksi-btn text-white mx-2 float-end {{ Route::is('rekap_subkon') ? 'active' : ''}}">Add Item</a>
+        </div>
+
         </div>
 
 
@@ -37,7 +37,6 @@
   {{-- table heading --}}
     <thead>
       <tr class="text-center">
-        <th scope="col">Pilih</th>
         <th scope="col" >
           <span>
             Tanggal Pengerjaan
@@ -108,7 +107,6 @@
 
       {{-- Search filter --}}
       {{-- <tr class="align-center">
-        <td></td>
         <td>
            <input type="text" class="form-control" wire:model="searchColumnsKode" style="width : 10rem"/>
         </td>
@@ -169,9 +167,6 @@
     <tbody>
       @foreach ($items as $d=>$item)
               <tr class="items-align-center">
-                <th scope="row">
-                        <input class="form-check-input mt-0" type="checkbox" value="{{ $item->id}}" wire:model="checkedTagih">
-                </th>
                 <td>{{ $item -> tgl_terima_fppp }}</td>
                 <td>{{ $item -> tgl_tagih }}</td>
                 <td>jenis pekerjaan</td>

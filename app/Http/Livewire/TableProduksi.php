@@ -15,6 +15,10 @@ class TableProduksi extends Component
     public $sortDirection = 'desc';
     public $selectedStatus ='';
     public $searchColumnsKode, $searchColumnsNama, $searchColumnsPriceMin, $searchColumnsPriceMax, $searchColumnsCategoryId;
+    public $status_id ;
+    protected $listeners =[
+        'statusChanged'=>'update'
+    ];
 
     public function sortBy($columnName)
     {
@@ -26,6 +30,7 @@ class TableProduksi extends Component
         return $this->sortBy = $columnName;
     }
 
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 =======
     public function statusChangedConfirmation($id)
@@ -38,6 +43,12 @@ class TableProduksi extends Component
             else {
                 $this -> dispatchBrowserEvent('show-status-confirmation');
             }
+=======
+    public function statusChangedConfirmation($id)
+    {
+        $this -> status_id = $id;
+        $this -> dispatchBrowserEvent('show-status-confirmation');
+>>>>>>> main
     }
 
 
@@ -48,7 +59,10 @@ class TableProduksi extends Component
         // $this->dispatchBrowserEvent('statusChanged');
     }
 
+<<<<<<< HEAD
 >>>>>>> Stashed changes
+=======
+>>>>>>> main
     public function render()
     {
         $columns = ['Kode Barang','Nama Barang'];
@@ -58,14 +72,14 @@ class TableProduksi extends Component
                     ->where('order_status',"=", 1)
                     ->orderBy($this->sortBy, $this->sortDirection)
                     ->paginate();
-        return view('livewire.table-produksi',[
+        return view('produksi.index',[
             'title' => 'Produksi',
             'ket' => 'Tabel ',
             'items' => $items,
             'status' => $status,
             'icon' => 'precision_manufacturing',
             'columns'=>$columns
-        ]);
+        ])->extends('layouts.main')->section('container') ;
     }
 
     public function Approve($id){

@@ -3,11 +3,11 @@
 namespace App\Http\Livewire;
 
 use Carbon\Carbon;
-use App\Models\Resub;
+use App\Models\History;
 use Livewire\Component;
 use Illuminate\Support\Facades\Redirect;
 
-class RekapSubkon extends Component
+class ListApproved extends Component
 {
     public $sortBy = 'created_at';
     public $sortDirection = 'desc';
@@ -28,12 +28,12 @@ class RekapSubkon extends Component
     public function render()
     {
         $columns = ['Kode Barang','Nama Barang'];
-        $items = Resub::query()
+        $items = History::query()
                     ->orderBy($this->sortBy, $this->sortDirection)
-                    ->where('status_tagih',0)
+                    ->where('status_tagih',1)
                     ->paginate();
 
-        return view('livewire.rekap-subkon',[
+        return view('livewire.list-approved',[
             'title' => 'Tagihan Subcon',
             'ket' => 'Tabel ',
             'items' => $items,
@@ -43,7 +43,7 @@ class RekapSubkon extends Component
     }
 
     public function Approve(){
-        Resub::query()
+        History::query()
             ->whereIn('id', $this->checkedTagih)
             ->update([
                     'tgl_tagih' => Carbon::now(),
@@ -53,4 +53,3 @@ class RekapSubkon extends Component
             return Redirect::back();
     }
 }
- 

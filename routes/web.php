@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Livewire\TableProduksi;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,9 +18,10 @@ Route::get('/', function () {
     return view('dashboard.dashboard');
 }) -> name('dashboard');
 
-Route::get('/produksi', function () {
-    return view('produksi.index');
-}) -> name('produksi');
+Route::get('/produksi', App\Http\Livewire\TableProduksi::class)->name('produksi');
+// Route::get('/produksi', function () {
+//     return view('produksi.index');
+// }) -> name('produksi');
 
 Route::get('/pengiriman', function () {
     return view('pengiriman.index');
@@ -28,3 +30,7 @@ Route::get('/pengiriman', function () {
 Route::get('/rekap_subkon', function () {
     return view('rekapsubkon.index');
 }) -> name('rekap_subkon');
+
+Route::get('/list-approved', function () {
+    return view('listapproved.index');
+}) -> name('list-approved');
