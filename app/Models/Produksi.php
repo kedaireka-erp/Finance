@@ -39,4 +39,12 @@ class Produksi extends Model
     {
         return $this->created_at->format('M, d Y');
     }
+
+    public function getStatusDisableAttribute()
+    {
+        return [
+            'ACCEPT' => 'disabled',
+            'PENDING' => ''
+        ][$this->acc_produksi]?? '#4891FF';;
+    }
 }

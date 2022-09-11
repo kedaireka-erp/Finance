@@ -117,7 +117,7 @@
                     <td>{{ $item -> applicator_name }}</td>
                     <td>{{ $item -> project_name }}</td>
                     <td class="p-4 text-center">
-                      <button class="status  p-2 btn btn-outline-light"  wire:click.prevent = "statusChangedConfirmation({{ $item->id }})" style="background-color: {{ $item -> status_color }}; color:{{ $item-> status_text_color }};font-size:13px">{{ $item -> acc_produksi }}</button>
+                      <button class="status  p-2 btn btn-outline-light"  wire:click.prevent = "statusChangedConfirmation({{ $item->id }})" {{$item-> status_disable}} style="background-color: {{ $item -> status_color }}; color:{{ $item-> status_text_color }};font-size:13px">{{ $item -> acc_produksi }}</button>
                     </td>
                   </tr>
           @endforeach
