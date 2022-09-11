@@ -7,22 +7,14 @@
   });
 
 </script>
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-=======
-=======
->>>>>>> main
 
 {{-- sweetalert --}}
 <script>
   window.addEventListener('show-status-confirmation', event =>{
     Swal.fire({
       title: 'Are you sure?',
-<<<<<<< HEAD
       text: ('The status will be changed into ACCEPT'),
-=======
       text: "The status will be changed into ACCEPT",
->>>>>>> main
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#4891FF',
@@ -35,7 +27,6 @@
     })
   })
   
-<<<<<<< HEAD
   window.addEventListener('show-status-confirmation1', event =>{
     Swal.fire({
       title: 'Are you sure?',

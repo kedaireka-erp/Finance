@@ -29,10 +29,6 @@ class TableProduksi extends Component
         }
         return $this->sortBy = $columnName;
     }
-
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-=======
     public function statusChangedConfirmation($id)
     {
         $this -> status_id = $id;
@@ -43,12 +39,6 @@ class TableProduksi extends Component
             else {
                 $this -> dispatchBrowserEvent('show-status-confirmation');
             }
-=======
-    public function statusChangedConfirmation($id)
-    {
-        $this -> status_id = $id;
-        $this -> dispatchBrowserEvent('show-status-confirmation');
->>>>>>> main
     }
 
 
@@ -58,11 +48,7 @@ class TableProduksi extends Component
         ->update(['acc_produksi' => 'ACCEPT']);
         // $this->dispatchBrowserEvent('statusChanged');
     }
-
-<<<<<<< HEAD
->>>>>>> Stashed changes
-=======
->>>>>>> main
+    
     public function render()
     {
         $columns = ['Kode Barang','Nama Barang'];
