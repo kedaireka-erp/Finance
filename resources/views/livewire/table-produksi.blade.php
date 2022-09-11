@@ -137,7 +137,7 @@
                 <td>{{ $item -> applicator_name }}</td>
                 <td>{{ $item -> project_name }}</td>
                 <td class="p-4 text-center">
-                  <button class="status  p-2 btn btn-outline-light" style="background-color: {{ $item -> status_color }}; color:{{ $item-> status_text_color }}">{{ $item -> acc_produksi }}</button>
+                  <button class="status  p-2 btn btn-outline-light" wire:click="Approve({{$item->id}})" style="background-color: {{ $item -> status_color }}; color:{{ $item-> status_text_color }}">{{ $item -> acc_produksi }}</button>
                 </td>
               </tr>
       @endforeach
