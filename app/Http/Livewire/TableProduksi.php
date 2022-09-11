@@ -26,6 +26,29 @@ class TableProduksi extends Component
         return $this->sortBy = $columnName;
     }
 
+<<<<<<< Updated upstream
+=======
+    public function statusChangedConfirmation($id)
+    {
+        $this -> status_id = $id;
+        $pop = Produksi::find($id);
+            if($pop['acc_produksi']=='ACCEPT') {
+                $this -> dispatchBrowserEvent('show-status-confirmation1');
+            }
+            else {
+                $this -> dispatchBrowserEvent('show-status-confirmation');
+            }
+    }
+
+
+    public function update(){
+        Produksi::query()
+        ->whereIn('id', [$this->status_id])
+        ->update(['acc_produksi' => 'ACCEPT']);
+        // $this->dispatchBrowserEvent('statusChanged');
+    }
+
+>>>>>>> Stashed changes
     public function render()
     {
         $columns = ['Kode Barang','Nama Barang'];
