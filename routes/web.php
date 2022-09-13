@@ -28,3 +28,7 @@ Route::get('/pengiriman', function () {
 Route::get('/rekap_subkon', function () {
     return view('rekapsubkon.index');
 }) -> name('rekap_subkon');
+
+Route::get('/list-approved', function () {
+    return view('listapproved.index');
+}) -> name('list-approved');
