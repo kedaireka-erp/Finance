@@ -53,3 +53,4 @@ class RekapSubkon extends Component
             return Redirect::back();
     }
 }
+ 

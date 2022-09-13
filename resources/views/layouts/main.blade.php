@@ -1,5 +1,5 @@
 
-
+<x-style></x-style>
 
   <div class="d-flex">
     
@@ -16,5 +16,5 @@
       <x-footer></x-footer>
     </div>  
 </div>
-
+<x-script></x-script>
 
