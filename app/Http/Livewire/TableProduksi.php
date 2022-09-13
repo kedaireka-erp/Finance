@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use Schema;
 use Livewire\Component;
 use App\Models\Produksi;
 use Illuminate\Support\Facades\Redirect;
@@ -60,6 +61,15 @@ class TableProduksi extends Component
             'icon' => 'precision_manufacturing',
             'columns'=>$columns
         ])->extends('layouts.main')->section('container') ;
+    }
+
+    public function Approve($id){
+        $info = Produksi::find($id)
+            ->update([
+                    'acc_produksi' => 'ACCEPT',
+        ]);
+
+            return Redirect::back();
     }
 }
 
