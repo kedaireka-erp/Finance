@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Livewire\TableProduksi;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,9 +18,10 @@ Route::get('/', function () {
     return view('dashboard.dashboard');
 }) -> name('dashboard');
 
-Route::get('/produksi', function () {
-    return view('produksi.index');
-}) -> name('produksi');
+Route::get('/produksi', App\Http\Livewire\TableProduksi::class)->name('produksi');
+// Route::get('/produksi', function () {
+//     return view('produksi.index');
+// }) -> name('produksi');
 
 Route::get('/pengiriman', function () {
     return view('pengiriman.index');
