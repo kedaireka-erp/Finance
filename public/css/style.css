@@ -1,0 +1,104 @@
+
+.sidebar-item li a, .dropdown-item{
+    color : #5C5858 !important;
+}
+
+.nav .active{
+    color: #4891FF !important;
+}
+
+#logo{
+    background-color: #4891FF !important;
+    box-shadow: 0px 10px 10px rgba(72, 145, 255, 0.3);
+}
+#burger-menu{
+    font-size: 32px;
+    color: #4891FF;
+    cursor: pointer;
+}
+.s{
+    width: 270px;
+    height: 100vh;
+    position: sticky;
+    top: 0;
+    transition: all .3s linear 0s;
+}
+.close{
+    width:4.5rem;
+    transition: all .3s linear 0s;
+}
+.close .text{
+    display: none;
+}
+.close .sidebar-item{
+    padding: 1rem 0 0 0 !important;
+}
+.close #logo{
+    margin: 1rem 0.5rem 1rem 0.5rem !important;
+}
+.close .nav-link{
+    margin : 0 0.5rem 0 0.5rem;
+}
+/* #sidebar-closed{
+    width: 4.5rem;
+}  */
+.sidebar-item li a:hover{
+    color: #4891FF !important;
+}
+.judul,h5,h6{
+    color: #4891FF;
+    font-weight: 600;
+}
+.card{
+    box-shadow: 5px 10px 20px rgba(140, 140, 140, 0.1);
+}
+
+.card-blue{
+    background-color: #4891FF;
+}
+
+.card-green{
+    background-color: #32d463;
+}
+
+.card-red{
+    background-color: #e73a62;
+}
+
+.card-orange{
+    background-color: #f3b243;
+}
+
+.nt{
+    background-color: #c9defd;
+}
+.table thead{
+    color: #4891FF;
+    background-color: #DFEAFF;
+}
+.table tbody, .info, .datum{
+    color: #5C5858;
+}
+.table td, .table th{
+    vertical-align: middle;
+}
+.no-use{
+    color: #B5CAEA;
+}
+.selection{
+    color :#4891FF !important;
+    border-color: #4891FF !important;
+    width: 10rem !important;
+}
+.form-date{
+    width: 10rem !important;
+    color: #4891FF !important;
+}
+.aksi-btn{
+    background: #4891FF !important;
+    box-shadow: 0px 5px 10px rgba(72, 145, 255, 0.45);
+}
+.aksi-btn2{
+    background: #0ECB38 !important;
+    box-shadow: 0px 5px 10px rgba(14, 203, 56, 0.45);
+}
