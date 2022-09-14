@@ -3,7 +3,7 @@
 namespace App\Http\Livewire;
 
 use Carbon\Carbon;
-use App\Models\Resub;
+use App\Models\History;
 use Livewire\Component;
 use Illuminate\Support\Facades\Redirect;
 
@@ -28,9 +28,9 @@ class ListApproved extends Component
     public function render()
     {
         $columns = ['Kode Barang','Nama Barang'];
-        $items = Resub::query()
+        $items = History::query()
                     ->orderBy($this->sortBy, $this->sortDirection)
-                    ->where('status_tagih',0)
+                    ->where('status_tagih',1)
                     ->paginate();
 
         return view('livewire.list-approved',[
@@ -43,7 +43,7 @@ class ListApproved extends Component
     }
 
     public function Approve(){
-        Resub::query()
+        History::query()
             ->whereIn('id', $this->checkedTagih)
             ->update([
                     'tgl_tagih' => Carbon::now(),
