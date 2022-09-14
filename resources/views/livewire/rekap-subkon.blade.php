@@ -26,10 +26,10 @@
                 <input class="form-control" style="width:10rem" id="exampleInputEmail1" aria-describedby="emailHelp" name="search" placeholder="search..">
               </div>
         </div>
-        <div class="col-4 float-end">
+        <div class="col-6 float-end">
             <button class="btn aksi-btn text-white mx-2 float-end">Pilih Semua</button>
             <a  href="/list-approved" class="btn aksi-btn2 text-white mx-2 float-end {{ Route::is('list-approved') ? 'active' : '' }}">Approved</a>
-            <button class="btn aksi-btn3  text-white float-start" wire:click="Approve()">Approve Tagihan  ({{ count($checkedTagih) }})</button>
+            <button class="btn aksi-btn3  text-white  mx-2 float-end" wire:click="Approve()">Approve Tagihan  ({{ count($checkedTagih) }})</button>
         </div>
 
 
