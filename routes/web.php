@@ -18,14 +18,21 @@ Route::get('/', function () {
     return view('dashboard.dashboard');
 }) -> name('dashboard');
 
-Route::get('/produksi', App\Http\Livewire\TableProduksi::class)->name('produksi');
+// BAGIAN PRODUKSI 
+Route::get('produksi', App\Http\Livewire\TableProduksi::class)->name('produksi');
 // Route::get('/produksi', function () {
 //     return view('produksi.index');
 // }) -> name('produksi');
 
-Route::get('/pengiriman', function () {
-    return view('pengiriman.index');
-}) -> name('pengiriman');
+// BAGIAN PENGIRIMAN
+Route::get('pengiriman', App\Http\Livewire\TablePengiriman::class)->name('pengiriman');
+// Route::get('/pengiriman', function () {
+//     return view('pengiriman.index');
+// }) -> name('pengiriman');
+
+Route::get('pengiriman/edit/{id}', [App\Http\Livewire\TablePengiriman::class,'edit'])->name('pengiriman.edit');
+Route::post('pengiriman/update/{id}',[App\Http\Livewire\TablePengiriman::class,'update'])->name('pengiriman.update');
+
 
 Route::get('/rekap_subkon', function () {
     return view('rekapsubkon.index');

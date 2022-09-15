@@ -53,7 +53,7 @@
     box-shadow: 5px 10px 20px rgba(140, 140, 140, 0.1);
 }
 
-.card-blue{
+.card-blue, .bg-luar-ini{
     background-color: #4891FF;
 }
 
@@ -81,14 +81,18 @@
 }
 .table td, .table th{
     vertical-align: middle;
+    text-align: center;
 }
 .no-use{
     color: #B5CAEA;
 }
-.selection{
+.selection, .slect{
     color :#4891FF !important;
     border-color: #4891FF !important;
     width: 10rem !important;
+}
+.slect, .bg-ini{
+    background-color: #DFEAFF !important ;
 }
 .form-date{
     width: 10rem !important;
@@ -105,4 +109,8 @@
 .aksi-btn3{
     background: #0ECB38 !important;
     box-shadow: 0px 5px 10px rgba(14, 203, 56, 0.45);
+}
+.kembali-btn{
+    background: #f3b243 !important;
+    box-shadow: 0px 10px 20px rgba(243, 178, 67, 0.25);
 }

@@ -2,15 +2,18 @@
 
 namespace App\Models;
 
+use Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class Pengiriman extends Model
 {
     use HasFactory;
 
     protected $table = 'wos';
-    protected $fillable =['tgl_terima_fppp','fppp_id','tujuan','acc_pengiriman'];
+    protected $fillable =['tgl_terima_fppp','fppp_id','tujuan','acc_pengiriman','note'];
+    // public $date = ['tgl_pack'];
 
 
 
@@ -33,12 +36,12 @@ class Pengiriman extends Model
         return [
             'ACCEPT' => '#0ECB38',
             'PENDING' => '#F54A69',
-            'ACCEPT WITH NOTE' => '#FFEAC1'
+            'ACCEPT WITH NOTE' => '#D88E00'
         ][$this->acc_pengiriman]?? '#4891FF';
     }
 
     public function getDateForHumansAttribute()
     {
-        return $this->created_at->format('M, d Y');
+        return Carbon::parse($this->tgl_pack)->format('M, d Y');
     }
 }
