@@ -33,11 +33,13 @@ Route::get('pengiriman', App\Http\Livewire\TablePengiriman::class)->name('pengir
 Route::get('pengiriman/edit/{id}', [App\Http\Livewire\TablePengiriman::class,'edit'])->name('pengiriman.edit');
 Route::post('pengiriman/update/{id}',[App\Http\Livewire\TablePengiriman::class,'update'])->name('pengiriman.update');
 
+// BAGIAN Rekap-Subkon 
+Route::get('rekap_subkon', App\Http\Livewire\RekapSubkon::class)->name('rekap_subkon');
+// Route::get('/rekap_subkon', function () {
+//     return view('rekapsubkon.index');
+// }) -> name('rekap_subkon');
 
-Route::get('/rekap_subkon', function () {
-    return view('rekapsubkon.index');
-}) -> name('rekap_subkon');
-
+// BAGIAN Approved Rekap-Subkon 
 Route::get('/list-approved', function () {
     return view('listapproved.index');
 }) -> name('list-approved');

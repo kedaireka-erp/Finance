@@ -29,11 +29,16 @@ class TableProduksi extends Component
         }
         return $this->sortBy = $columnName;
     }
-
     public function statusChangedConfirmation($id)
     {
         $this -> status_id = $id;
-        $this -> dispatchBrowserEvent('show-status-confirmation');
+        $pop = Produksi::find($id);
+            if($pop['acc_produksi']=='ACCEPT') {
+                $this -> dispatchBrowserEvent('show-status-confirmation1');
+            }
+            else {
+                $this -> dispatchBrowserEvent('show-status-confirmation');
+            }
     }
 
 
@@ -43,7 +48,7 @@ class TableProduksi extends Component
         ->update(['acc_produksi' => 'ACCEPT']);
         // $this->dispatchBrowserEvent('statusChanged');
     }
-
+    
     public function render()
     {
         $columns = ['Kode Barang','Nama Barang'];
