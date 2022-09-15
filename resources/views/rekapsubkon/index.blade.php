@@ -11,7 +11,7 @@
         <span class="my-2 mx-2 fs-7" style="color: #5C5858">
           Cari Berdasarkan
         </span>
-        <div class="col-5">
+        <div class="col">
               <div class="input-group mx-2 mb-4">
                 <select class="selection form-select" id="itemType" name="item_type" aria-label=".form-select-sm example">
                   <option value= "0">Choose Columns</option>
@@ -20,7 +20,7 @@
                   @endforeach
 
                 </select>
-                <input class="form-control" style="width:10rem" id="exampleInputEmail1" aria-describedby="emailHelp" name="search" placeholder="search..">
+                <input class="form-control" style="width:20rem" id="exampleInputEmail1" aria-describedby="emailHelp" name="search" placeholder="search..">
               </div>
         </div>
         <div class="col-6 float-end">
