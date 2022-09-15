@@ -44,10 +44,8 @@
   })
 
 </script>
->>>>>>> Stashed changes
-=======
-</script>
->>>>>>> main
+
 @livewireScripts
+
 </body>
 </html>
