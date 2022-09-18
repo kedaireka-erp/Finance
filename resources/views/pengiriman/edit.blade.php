@@ -1,8 +1,10 @@
 @extends('layouts.main')
 @section('container')
     
+{{-- <form action="{{ url('pengiriman/update/'.$id) }}" method="post"> --}}
 <form action="{{ url('pengiriman/update/'.$id) }}" method="post">
     @csrf
+    @foreach ($item as $i)
       <div class="container-fluid flex-grow-1">
         <h2 class="my-4 judul">Pengiriman</h3>
         <div class="card border-light mb-3">
@@ -37,7 +39,7 @@
                     </div>
                   </div>
 
-                  @foreach ($item as $i)
+                 
                   <div class = "col">
                     
                     <div class="row py-2">
@@ -86,7 +88,7 @@
                         </span>
                         <select class="form-select m-2 slect" aria-label="Default select example" name="status_select">
                             @foreach ($status as $status)
-                            <option value='{{ $status }}' {{ $i -> acc_pengiriman == $status ? "selected":"" }} >{{ $status }}</option>
+                            <option id="status" value='{{ $status }}' {{ $i -> acc_pengiriman == $status ? "selected":"" }} >{{ $status }}</option>
                             @endforeach
                           {{-- <option value=1>ACCEPT</option>
                           <option value=2>PENDING</option>
@@ -118,20 +120,26 @@
             </div>
           </div>
         </div>
-        @endforeach
+       
         <div class="row">
             <div class="d-flex justify-content-between">
                 <div>
                     <a href="/pengiriman" class="kembali-btn btn text-white btn-lg" style="width: 10rem">Kembali</a>        
                 </div>
                 <div>
-                      <button type="submit" class="aksi-btn btn btn-primary btn-lg" style="width: 10rem">Selesai</button>        
+                    @if ($i -> acc_pengiriman == 'ACCEPT')
+                      <button id="btn-selesai" type="submit" class="aksi-btn btn btn-primary btn-lg disabled" style="width: 10rem">Selesai</button>  
+                    @else
+                      <button id="btn-selesai" type="submit" class="aksi-btn btn btn-primary btn-lg" style="width: 10rem">Selesai</button> 
+                    @endif
+                              
                 </div>
             </div>
             
         </div>
 
       </div>
+      @endforeach
 </form>
-      
+  <x-pengiriman_script></x-pengiriman_script>
       @endsection  

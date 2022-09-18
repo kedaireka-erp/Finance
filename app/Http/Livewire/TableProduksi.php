@@ -17,7 +17,8 @@ class TableProduksi extends Component
     public $searchColumnsKode, $searchColumnsNama, $searchColumnsPriceMin, $searchColumnsPriceMax, $searchColumnsCategoryId;
     public $status_id ;
     protected $listeners =[
-        'statusChanged'=>'update'
+        'statusChanged'=>'update',
+        'statusUndo'=>'update_undo'
     ];
 
     public function sortBy($columnName)
@@ -48,6 +49,13 @@ class TableProduksi extends Component
         ->update(['acc_produksi' => 'ACCEPT']);
         // $this->dispatchBrowserEvent('statusChanged');
     }
+
+    public function update_undo(){
+        Produksi::query()
+        ->whereIn('id', [$this->status_id])
+        ->update(['acc_produksi' => 'PENDING']);
+        // $this->dispatchBrowserEvent('statusChanged');
+    }
     
     public function render()
     {
@@ -68,14 +76,6 @@ class TableProduksi extends Component
         ])->extends('layouts.main')->section('container') ;
     }
 
-    public function Approve($id){
-        $info = Produksi::find($id)
-            ->update([
-                    'acc_produksi' => 'ACCEPT',
-        ]);
-
-            return Redirect::back();
-    }
 }
 
 // ->when($this->searchColumnsKode != "", function($q){

@@ -14,7 +14,7 @@
             Cari Berdasarkan
           </span>
           <div class="col">
-                <div class="input-group mx-2 mb-4">
+                <div class="input-group mx-2 mb-4" style="width:max-content">
                   <select class="selection form-select" id="itemType" name="item_type" aria-label=".form-select-sm example">
                     <option value= "0">Choose Columns</option>
                     @foreach ($columns as $columns_id => $columns_name)
