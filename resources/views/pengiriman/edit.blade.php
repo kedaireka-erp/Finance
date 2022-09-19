@@ -141,5 +141,4 @@
       </div>
       @endforeach
 </form>
-  <x-pengiriman_script></x-pengiriman_script>
       @endsection  

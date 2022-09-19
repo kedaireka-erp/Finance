@@ -13,9 +13,13 @@ class TableProduksi extends Component
 
     public $sortBy = 'created_at';
     public $sortDirection = 'desc';
-    public $selectedStatus ='';
-    public $searchColumnsKode, $searchColumnsNama, $searchColumnsPriceMin, $searchColumnsPriceMax, $searchColumnsCategoryId;
+    // public $searchColumnsKode, $searchColumnsNama, $searchColumnsPriceMin, $searchColumnsPriceMax, $searchColumnsCategoryId;
     public $status_id ;
+    public $selectedStatus =null;
+    public $date_from =null;
+    public $date_to =null;
+    public $col_selected = null;
+    public $search = null;
     protected $listeners =[
         'statusChanged'=>'update',
         'statusUndo'=>'update_undo'
@@ -59,11 +63,27 @@ class TableProduksi extends Component
     
     public function render()
     {
-        $columns = ['Kode Barang','Nama Barang'];
-        $status = Produksi::groupBy('acc_produksi')
-                    ->pluck('acc_produksi');
+        $columns = [
+            'quotation_no'=>'No Quotation',
+            'fppp_no' => 'No FPPP',
+            'applicator_name ' => 'Aplikator',
+            'project_name' => 'Nama Projek'
+        ];
+        $status = ['ACCEPT','PENDING'];
         $items = Produksi::query()
                     ->where('order_status',"=", 1)
+                    ->when($this->col_selected,function($q){
+                        $q->where($this->col_selected,"ilike","% $this->search %");
+                    })
+                    ->when($this->selectedStatus,function($query){
+                        $query->where('acc_produksi',$this->selectedStatus);
+                    })
+                    ->when($this->date_from,function($q){
+                        $q->where('created_at','>=',$this -> date_from);
+                    })
+                    ->when($this->date_to,function($q){
+                        $q->where('created_at','<=',$this -> date_to);
+                    })
                     ->orderBy($this->sortBy, $this->sortDirection)
                     ->paginate();
         return view('produksi.index',[

@@ -15,15 +15,47 @@
           </span>
           <div class="col">
                 <div class="input-group mx-2 mb-4" style="width:max-content">
-                  <select class="selection form-select" id="itemType" name="item_type" aria-label=".form-select-sm example">
+                  <select wire:model="col_selected" class="selection form-select" id="itemType" name="item_type" aria-label=".form-select-sm example">
                     <option value= "0">Choose Columns</option>
                     @foreach ($columns as $columns_id => $columns_name)
                      <option value="{{ $columns_id }}">{{ $columns_name }}</option>
                     @endforeach
                     
                   </select>
-                  <input class="form-control" style="width:20rem" id="exampleInputEmail1" aria-describedby="emailHelp" name="search" placeholder="search..">
+                  <input wire:model="search" class="form-control" style="width:20rem" id="exampleInputEmail1" aria-describedby="emailHelp" name="search" placeholder="search..">
                 </div>
+                {{ $col_selected }}
+                {{ $search}}
+          </div>
+          <div class="col">
+            <div class="input-group mx-auto mb-4" style="width:max-content">
+              <select class="selection form-select" wire:model="selectedStatus" id="itemType" name="item_type" aria-label=".form-select-sm example">
+                <option value= "0">ALL</option>
+                @foreach ($status as $status)
+                 <option value="{{ $status }}">{{ $status }}</option>
+                @endforeach
+                
+              </select>
+            </div>
+          </div>
+          <div class="col">
+            <div class="row">
+              <div class="d-flex">
+                <label class="mx-2 py-2">From</label>
+                <input wire:model="date_from" type="date" class="form-date form-control d-inline"  
+                  wire:model="searchColumnsDateMin" />
+                <label class="mx-2 py-2">to</label>
+                <input wire:model="date_to" type="date" class="form-date form-control d-inline" 
+                 wire:model="searchColumnsDateMax" />
+              </div>
+            </div>
+            @if (($date_from  > $date_to) && (!empty($date_to)) )
+            <div class="row">
+              <span class="info-filter">Masukkan tanggal dengan benar </span>
+            </div>
+              
+                
+            @endif
           </div>
         </div>
   
