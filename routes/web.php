@@ -20,18 +20,15 @@ Route::get('/', function () {
 
 // BAGIAN PRODUKSI 
 Route::get('produksi', App\Http\Livewire\TableProduksi::class)->name('produksi');
-// Route::get('/produksi', function () {
-//     return view('produksi.index');
-// }) -> name('produksi');
+
 
 // BAGIAN PENGIRIMAN
 Route::get('pengiriman', App\Http\Livewire\TablePengiriman::class)->name('pengiriman');
-// Route::get('/pengiriman', function () {
-//     return view('pengiriman.index');
-// }) -> name('pengiriman');
-
 Route::get('pengiriman/edit/{id}', [App\Http\Livewire\TablePengiriman::class,'edit'])->name('pengiriman.edit');
 Route::post('pengiriman/update/{id}',[App\Http\Livewire\TablePengiriman::class,'update'])->name('pengiriman.update');
+
+// BAGIAN History Pengiriman
+Route::get('history-kirim',App\Http\Livewire\HistoryPengiriman::class)->name('history-kirim');
 
 // BAGIAN Rekap-Subkon 
 Route::get('rekap_subkon', App\Http\Livewire\RekapSubkon::class)->name('rekap_subkon');

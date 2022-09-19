@@ -124,13 +124,19 @@
         <div class="row">
             <div class="d-flex justify-content-between">
                 <div>
-                    <a href="/pengiriman" class="kembali-btn btn text-white btn-lg" style="width: 10rem">Kembali</a>        
+                  @if(request()->get('status') == 'history')
+                    <a href="/pengiriman?status=history" class="kembali-btn btn text-white btn-lg" style="width: 10rem">Kembali</a>        
+                  @else
+                  <a href="/pengiriman" class="kembali-btn btn text-white btn-lg" style="width: 10rem">Kembali</a>
+                  @endif
                 </div>
                 <div>
-                    @if ($i -> acc_pengiriman == 'ACCEPT')
-                      <button id="btn-selesai" type="submit" class="aksi-btn btn btn-primary btn-lg disabled" style="width: 10rem">Selesai</button>  
+                    @if (($i -> acc_pengiriman == 'ACCEPT') && (request()->get('status') == 'history'))
+                      <button id="btn-selesai" type="submit" class="aksi-btn btn btn-primary btn-lg" style="width: 10rem">Selesai</button>   
+                    @elseif($i -> acc_pengiriman == 'ACCEPT')
+                      <button id="btn-selesai" type="submit" class="aksi-btn btn btn-primary btn-lg disabled" style="width: 10rem">Selesai</button>
                     @else
-                      <button id="btn-selesai" type="submit" class="aksi-btn btn btn-primary btn-lg" style="width: 10rem">Selesai</button> 
+                    <button id="btn-selesai" type="submit" class="aksi-btn btn btn-primary btn-lg" style="width: 10rem">Selesai</button>
                     @endif
                               
                 </div>
