@@ -3,10 +3,22 @@
   <h3 class="my-4 judul"> {{ $title }} </h3>
   <div class="card border-light mb-3">
     <div class="card-body table-responsive">
-      <h5 class="my-4 mx-2"> 
-        <i class="material-icons-round bi me-2">{{ $icon }}</i>
-        {{ $ket }}{{ $title }} 
-      </h5>
+      <div class="row">
+        <div class="col">
+          <h5 class="my-4 mx-2"> 
+            <i class="material-icons-round bi me-2">{{ $icon }}</i>
+            {{ $ket }}{{ $title }} 
+          </h5>
+        </div>
+        <div class="col">
+            <a href="{{ route('history-kirim') }}" class="nav-link float-end my-4 mx-2" >History</a>
+          
+          
+        </div>
+        
+
+      </div>
+      
 
       <div class="row my-4">
         <span class="my-2 mx-2 fs-7" style="color: #5C5858"> 
@@ -191,7 +203,7 @@
                 </td>
                 <td>
                     <a href="{{ route('pengiriman.edit', $item->id) }}" class="aksi-btn btn py-2 px-4 text-white">Lihat</a>
-                </td>
+                  </td>
               </tr>
       @endforeach
     </tbody>

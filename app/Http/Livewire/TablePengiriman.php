@@ -28,6 +28,7 @@ class TablePengiriman extends Component
         return $this->sortBy = $columnName;
     }
 
+
     public function render()
     {
         $columns = [
@@ -39,7 +40,7 @@ class TablePengiriman extends Component
             'qty_pack' => 'Item Jadi'
         ];
         $status = ['ACCEPT','PENDING','ACCEPT WITH NOTE'];
-        $items = Pengiriman::select(['wos.id','wos.tgl_pack','wos.tujuan', 'wos.tujuan', 'wos.qty_pack', 'wos.acc_pengiriman', 'fppps.quotation_no', 'fppps.fppp_no', 'fppps.applicator_name', 'fppps.project_name'])
+            $items = Pengiriman::select(['wos.id','wos.tgl_pack','wos.tujuan', 'wos.tujuan', 'wos.qty_pack', 'wos.acc_pengiriman', 'fppps.quotation_no', 'fppps.fppp_no', 'fppps.applicator_name', 'fppps.project_name'])
                     ->join('fppps', 'wos.fppp_id','=','fppps.id')
                     ->whereNotNull('finish_qc')
                     ->when($this->col_selected,function($q){
@@ -64,14 +65,18 @@ class TablePengiriman extends Component
             'status' => $status,
             'icon' => 'local_shipping',
             'columns'=>$columns
-        ])->extends('layouts.main')->section('container');
+        ])->extends('layouts.main')->section('container');;
     }
 
-    public function edit($id){
+    
+    public function edit(Request $request, $id){
         $item = Pengiriman::select(['wos.id as id ','wos.tgl_pack','wos.tujuan', 'wos.tujuan', 'wos.qty_pack', 'wos.acc_pengiriman','wos.note', 'fppps.quotation_no', 'fppps.fppp_no', 'fppps.applicator_name', 'fppps.project_name'])
                     ->join('fppps', 'wos.fppp_id','=','fppps.id')
                     ->where('wos.id','=',$id)
                     ->get();
+        if($request -> get('status') == 'history'){
+            $item = $item;
+        }
         $id_update = $id; 
         $status = ['ACCEPT','PENDING','ACCEPT WITH NOTE'];
         return view('pengiriman.edit',[

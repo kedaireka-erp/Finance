@@ -19,7 +19,7 @@
             </a>
           </li>
           <li>
-            <a href="/pengiriman" class="d-flex nav-link p-3 align-items-center {{ Route::is('pengiriman') ? 'active' : '' }}">
+            <a href="/pengiriman" class="d-flex nav-link p-3 align-items-center {{ (Route::is('pengiriman')) || (Route::is('history-kirim'))  ? 'active' : '' }}">
               <i class="material-icons-round bi me-4">local_shipping</i>
               <span class="text">Pengiriman</span>
             </a>
