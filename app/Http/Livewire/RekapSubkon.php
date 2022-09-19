@@ -33,13 +33,13 @@ class RekapSubkon extends Component
                     ->where('status_tagih',0)
                     ->paginate();
 
-        return view('livewire.rekap-subkon',[
+        return view('rekapsubkon.index',[
             'title' => 'Tagihan Subcon',
             'ket' => 'Tabel ',
             'items' => $items,
             'icon' => 'groups',
             'columns'=>$columns
-        ]);
+        ])->extends('layouts.main')->section('container') ;
     }
 
     public function Approve(){
@@ -53,3 +53,4 @@ class RekapSubkon extends Component
             return Redirect::back();
     }
 }
+ 

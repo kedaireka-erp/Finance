@@ -1,13 +1,23 @@
 
-
 <div class="container-fluid flex-grow-1">
     <h3 class="my-4 judul"> {{ $title }} </h3>
     <div class="card border-light mb-3">
       <div class="card-body table-responsive">
-        <h5 class="my-4 mx-2"> 
-          <i class="material-icons-round bi me-2">{{ $icon }}</i>
-          {{ $ket }}{{ $title }} 
-        </h5>
+        <div class="row">
+          <div class="col">
+            <h5 class="my-4 mx-2"> 
+              <i class="material-icons-round bi me-2">{{ $icon }}</i>
+              {{ $ket }}{{ $title }} 
+            </h5>
+          </div>
+          <div class="col">
+              <a href="/pengiriman" class="nav-link float-end my-4 mx-2" >Back</a>
+            
+          </div>
+          
+  
+        </div>
+        
   
         <div class="row my-4">
           <span class="my-2 mx-2 fs-7" style="color: #5C5858"> 
@@ -47,15 +57,16 @@
                  wire:model="searchColumnsDateMax" />
               </div>
             </div>
-            @if (($date_from  > $date_to) && (!empty($date_to)) )
+            {{-- @if (($date_from  > $date_to) && (!empty($date_to)) )
             <div class="row">
               <span class="info-filter">Masukkan tanggal dengan benar </span>
             </div>
               
                 
-            @endif
+            @endif --}}
           </div>
         </div>
+  
   
   <table class="table">
     {{-- table heading --}}
@@ -65,7 +76,7 @@
           <th scope="col" >
             <span>
               Tanggal
-              <i wire:click="sortBy('created_at')" style="cursor: pointer" class="material-icons-round {{ $sortBy === 'created_at' && $sortDirection === 'desc' ? '' : 'no-use' }}">arrow_drop_down</i>
+              <i wire:click="sortBy('tgl_pack')" style="cursor: pointer" class="material-icons-round {{ $sortBy === 'tgl_pack' && $sortDirection === 'desc' ? '' : 'no-use' }}">arrow_drop_down</i>
             </span> 
           </th> 
           <th  scope="col" >
@@ -77,7 +88,7 @@
           <th  scope="col" >
             <span>
               No FPPP
-              <i wire:click="sortBy('fppp_no')" style="cursor: pointer" class="material-icons-round {{ $sortBy === 'fppp_no' && $sortDirection === 'desc' ? '' : 'no-use' }}">arrow_drop_down</i>
+              <i wire:click="sortBy(fppp_no)" style="cursor: pointer" class="material-icons-round {{ $sortBy === 'fppp_no' && $sortDirection === 'desc' ? '' : 'no-use' }}">arrow_drop_down</i>
             </span> 
           </th>
           <th  scope="col" >
@@ -92,7 +103,26 @@
               <i wire:click="sortBy('project_name')" style="cursor: pointer" class="material-icons-round {{ $sortBy === 'project_name' && $sortDirection === 'desc' ? '' : 'no-use' }}">arrow_drop_down</i>
             </span>
           </th>
+          <th  scope="col">
+              <span>
+                Kota
+                <i wire:click="sortBy('tujuan')" style="cursor: pointer" class="material-icons-round {{ $sortBy === 'tujuan' && $sortDirection === 'desc' ? '' : 'no-use' }}">arrow_drop_down</i>
+              </span>
+          </th>
+          <th  scope="col">
+              <span>
+                Item Jadi
+                <i wire:click="sortBy('qty_pack')" style="cursor: pointer" class="material-icons-round {{ $sortBy === 'qty_pack' && $sortDirection === 'desc' ? '' : 'no-use' }}">arrow_drop_down</i>
+              </span>
+          </th>
+          <th  scope="col">
+              <span>
+                Total Item
+                <i wire:click="sortBy('qty_pack')" style="cursor: pointer" class="material-icons-round {{ $sortBy === 'qty_pack' && $sortDirection === 'desc' ? '' : 'no-use' }}">arrow_drop_down</i>
+              </span>
+          </th>
           <th scope="col">Status</th>
+          <th scope="col">Aksi</th>
         </tr>
       
         {{-- Search filter --}}
@@ -164,9 +194,15 @@
                   <td>{{ $item -> fppp_no }}</td>
                   <td>{{ $item -> applicator_name }}</td>
                   <td>{{ $item -> project_name }}</td>
+                  <td>{{ $item -> tujuan }}</td>
+                  <td>{{ $item -> qty_pack }}</td>
+                  <td>100</td>
                   <td class="p-4 text-center">
-                    <button class="status  p-2 btn btn-outline-light"  wire:click.prevent = "statusChangedConfirmation({{ $item->id }})" style="background-color: {{ $item -> status_color }}; color:{{ $item-> status_text_color }}">{{ $item -> acc_produksi }}</button>
+                    <span class="status  p-2 rounded" style="background-color: {{ $item -> status_color }}; color:{{ $item-> status_text_color }}">{{ $item -> acc_pengiriman }}</span>
                   </td>
+                  <td>
+                      <a href="{{ "/pengiriman/edit/$item->id?status=history" }}" class="aksi-btn btn py-2 px-4 text-white">Lihat</a>
+                    </td>
                 </tr>
         @endforeach
       </tbody>
@@ -177,6 +213,8 @@
   </div>
   </div>
   </div>
+
+  
   
   
   
