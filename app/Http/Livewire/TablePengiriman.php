@@ -13,6 +13,8 @@ class TablePengiriman extends Component
     public $selectedStatus =null;
     public $date_from =null;
     public $date_to =null;
+    public $col_selected = null;
+    public $search = null;
     // public $searchColumnsKode, $searchColumnsNama, $searchColumnsPriceMin, $searchColumnsPriceMax, $searchColumnsCategoryId;
 
 
@@ -28,11 +30,21 @@ class TablePengiriman extends Component
 
     public function render()
     {
-        $columns = ['Kode Barang','Nama Barang'];
+        $columns = [
+            'quotation_no'=>'No Quotation',
+            'fppp_no' => 'No FPPP',
+            'applicator_name' => 'Aplikator',
+            'project_name' => 'Nama Projek',
+            'tujuan' => 'Kota',
+            'qty_pack' => 'Item Jadi'
+        ];
         $status = ['ACCEPT','PENDING','ACCEPT WITH NOTE'];
         $items = Pengiriman::select(['wos.id','wos.tgl_pack','wos.tujuan', 'wos.tujuan', 'wos.qty_pack', 'wos.acc_pengiriman', 'fppps.quotation_no', 'fppps.fppp_no', 'fppps.applicator_name', 'fppps.project_name'])
                     ->join('fppps', 'wos.fppp_id','=','fppps.id')
                     ->whereNotNull('finish_qc')
+                    ->when($this->col_selected,function($q){
+                        $q->where($this->col_selected,"like","%". $this->search ."%");
+                    })
                     ->when($this->selectedStatus,function($query){
                         $query->where('acc_pengiriman',$this->selectedStatus);
                         })

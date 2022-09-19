@@ -66,14 +66,14 @@ class TableProduksi extends Component
         $columns = [
             'quotation_no'=>'No Quotation',
             'fppp_no' => 'No FPPP',
-            'applicator_name ' => 'Aplikator',
+            'applicator_name' => 'Aplikator',
             'project_name' => 'Nama Projek'
         ];
         $status = ['ACCEPT','PENDING'];
         $items = Produksi::query()
                     ->where('order_status',"=", 1)
                     ->when($this->col_selected,function($q){
-                        $q->where($this->col_selected,"ilike","% $this->search %");
+                        $q->where($this->col_selected,"like","%". $this->search ."%");
                     })
                     ->when($this->selectedStatus,function($query){
                         $query->where('acc_produksi',$this->selectedStatus);

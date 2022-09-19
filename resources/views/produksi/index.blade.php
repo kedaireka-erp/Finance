@@ -24,8 +24,6 @@
                   </select>
                   <input wire:model="search" class="form-control" style="width:20rem" id="exampleInputEmail1" aria-describedby="emailHelp" name="search" placeholder="search..">
                 </div>
-                {{ $col_selected }}
-                {{ $search}}
           </div>
           <div class="col">
             <div class="input-group mx-auto mb-4" style="width:max-content">
