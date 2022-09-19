@@ -42,7 +42,7 @@
 /* #sidebar-closed{
     width: 4.5rem;
 }  */
-.sidebar-item li a:hover{
+.info-filter, .sidebar-item li a:hover{
     color: #4891FF !important;
 }
 .judul,h5,h6{
@@ -113,4 +113,11 @@
 .kembali-btn{
     background: #f3b243 !important;
     box-shadow: 0px 10px 20px rgba(243, 178, 67, 0.25);
+}
+
+@media screen and (max-width: 900px) {
+
+    .close {
+      display: none;
+    }
 }

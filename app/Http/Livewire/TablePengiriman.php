@@ -10,16 +10,13 @@ class TablePengiriman extends Component
 {
     public $sortBy = 'wos.created_at';
     public $sortDirection = 'desc';
-    public $selectedStatus ='';
-    public $flag = 0;
-    public $searchColumnsKode, $searchColumnsNama, $searchColumnsPriceMin, $searchColumnsPriceMax, $searchColumnsCategoryId;
+    public $selectedStatus =null;
+    public $date_from =null;
+    public $date_to =null;
+    public $col_selected = null;
+    public $search = null;
+    // public $searchColumnsKode, $searchColumnsNama, $searchColumnsPriceMin, $searchColumnsPriceMax, $searchColumnsCategoryId;
 
-
-    public function flagging()
-    {
-        $flag = 1;
-        return $flag;
-    }
 
     public function sortBy($columnName)
     {
@@ -33,18 +30,30 @@ class TablePengiriman extends Component
 
     public function render()
     {
-        $columns = ['Kode Barang','Nama Barang'];
-        $status = Pengiriman::groupBy('acc_pengiriman')
-                    ->pluck('acc_pengiriman');
-        // $items = Pengiriman::query()
-        //             ->with('fppps')
-        //             ->whereNotNull('finish_qc')
-        //             ->orderBy($this->sortBy, $this->sortDirection)
-        //             ->paginate();
-
+        $columns = [
+            'quotation_no'=>'No Quotation',
+            'fppp_no' => 'No FPPP',
+            'applicator_name' => 'Aplikator',
+            'project_name' => 'Nama Projek',
+            'tujuan' => 'Kota',
+            'qty_pack' => 'Item Jadi'
+        ];
+        $status = ['ACCEPT','PENDING','ACCEPT WITH NOTE'];
         $items = Pengiriman::select(['wos.id','wos.tgl_pack','wos.tujuan', 'wos.tujuan', 'wos.qty_pack', 'wos.acc_pengiriman', 'fppps.quotation_no', 'fppps.fppp_no', 'fppps.applicator_name', 'fppps.project_name'])
                     ->join('fppps', 'wos.fppp_id','=','fppps.id')
                     ->whereNotNull('finish_qc')
+                    ->when($this->col_selected,function($q){
+                        $q->where($this->col_selected,"like","%". $this->search ."%");
+                    })
+                    ->when($this->selectedStatus,function($query){
+                        $query->where('acc_pengiriman',$this->selectedStatus);
+                        })
+                    ->when($this->date_from,function($q){
+                        $q->where('tgl_pack','>=',$this -> date_from);
+                    })
+                    ->when($this->date_to,function($q){
+                        $q->where('tgl_pack','<=',$this -> date_to);
+                    })
                     ->orderBy($this->sortBy, $this->sortDirection)
                     ->paginate();
                     
@@ -65,9 +74,6 @@ class TablePengiriman extends Component
                     ->get();
         $id_update = $id; 
         $status = ['ACCEPT','PENDING','ACCEPT WITH NOTE'];
-        // $status_selected = Pengiriman::where('acc_pengiriman')
-        //             ->pluck('id','acc_pengiriman');
-        // $status_id = str($id);
         return view('pengiriman.edit',[
             'item' => $item,
             'status' => $status,
