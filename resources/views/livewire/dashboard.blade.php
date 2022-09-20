@@ -12,14 +12,14 @@
         <i class="material-icons-round bi me-4" style="color:#4891FF">info</i>
         <span class="info">Terdapat 3 status pending pada produksi yang perlu diselesaikan.</span>
       </div>
-      <h6 class="col-1 text-end mt-2" style="cursor: pointer">Abaikan</h6>
+      <h6 class="col text-end mt-2" style="cursor: pointer">Abaikan</h6>
     </div>
     <div class="row rounded-2 nt p-3 mt-2">
       <div class="col d-flex text-start mt-2">
         <i class="material-icons-round bi me-4" style="color:#4891FF">info</i>
         <span class="info">Terdapat 1 status pending pada pengiriman yang perlu diselesaikan.</span>
       </div>
-      <h6 class="col-1 text-end mt-2 " style="cursor: pointer">Abaikan</h6>
+      <h6 class="col text-end mt-2 " style="cursor: pointer">Abaikan</h6>
     </div>
   </div>
   

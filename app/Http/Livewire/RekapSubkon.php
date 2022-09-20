@@ -14,6 +14,10 @@ class RekapSubkon extends Component
     public $selectedStatus ='';
     public $checkedTagih =[];
     public $searchColumnsKode, $searchColumnsNama, $searchColumnsPriceMin, $searchColumnsPriceMax, $searchColumnsCategoryId;
+    public $selectAll = false;
+    public $editedSubkonIndex = null;
+    public $subkons =[];
+
 
     public function sortBy($columnName)
     {
@@ -49,8 +53,36 @@ class RekapSubkon extends Component
                     'tgl_tagih' => Carbon::now(),
                     'status_tagih' => 1,
         ]);
-
-            return Redirect::back();
+        $this->checkedTagih =[];
+        $this->selectAll = false;
+        // return Redirect::back();
     }
+
+    public function updatedSelectAll($value)
+    {
+        if($value){
+            $this->checkedTagih = Resub::pluck('id');
+        }else{
+            $this->checkedTagih = [];
+        }
+    }
+
+    public function editedSubkon($subkonIndex)
+    {
+        $this->editedSubkonIndex = $subkonIndex;
+    }
+
+    // public function savedSubkon($subkonIndex)
+    // {
+    //     $this -> subkons = Resub::select(['jumlah_daun','keliling_kaca','harga_jasa'])->get()->toArray();
+    //     // dd($this -> subkons);
+    //     $subkon = $this->subkons[$subkonIndex] ?? NULL;
+    //     if (!is_null($subkon)){
+    //         $editedSubkon = Resub::find($subkon['id']);
+    //         if ($editedSubkon) {
+    //             $editedSubkon->update($subkon);
+    //         }
+    //     }
+    //     $this->savedSubkonIndex = null;
+    // }
 }
- 
