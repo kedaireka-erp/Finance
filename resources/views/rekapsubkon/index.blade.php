@@ -23,10 +23,9 @@
                 <input class="form-control" style="width:20rem" id="exampleInputEmail1" aria-describedby="emailHelp" name="search" placeholder="search..">
               </div>
         </div>
-        <div class="col-6 float-end">
-            <button class="btn aksi-btn text-white mx-2 float-end">Pilih Semua</button>
+        <div class="col-4 float-end">
             <a  href="/list-approved" class="btn aksi-btn2 text-white mx-2 float-end {{ Route::is('list-approved') ? 'active' : '' }}">Approved</a>
-            <button class="btn aksi-btn3  text-white  mx-2 float-end" wire:click="Approve()">Approve Tagihan  ({{ count($checkedTagih) }})</button>
+            <button class="btn aksi-btn3  text-white  mx-2 float-end" wire:click="Approve()">Approve Tagihan </button>
         </div>
 
 
@@ -34,7 +33,7 @@
   {{-- table heading --}}
     <thead>
       <tr class="text-center">
-        <th scope="col">Pilih</th>
+        <th scope="col" ><input type="checkbox" wire:model="selectAll" ></th>
         <th scope="col" >
           <span>
             Tanggal Pengerjaan
@@ -91,6 +90,12 @@
         </th>
         <th  scope="col">
             <span>
+              Keliling Kaca
+              <i wire:click="sortBy('')" style="cursor: pointer" class="material-icons-round {{ $sortBy === '' && $sortDirection === 'desc' ? '' : 'no-use' }}">arrow_drop_down</i>
+            </span>
+        </th>
+        <th  scope="col">
+            <span>
               Harga Jasa
               <i wire:click="sortBy('')" style="cursor: pointer" class="material-icons-round {{ $sortBy === '' && $sortDirection === 'desc' ? '' : 'no-use' }}">arrow_drop_down</i>
             </span>
@@ -101,6 +106,7 @@
               <i wire:click="sortBy('')" style="cursor: pointer" class="material-icons-round {{ $sortBy === '' && $sortDirection === 'desc' ? '' : 'no-use' }}">arrow_drop_down</i>
             </span>
         </th>
+        <th  scope="col">Aksi</th>
       </tr>
 
       {{-- Search filter --}}
@@ -177,9 +183,39 @@
                 <td>{{ $item -> tipe_barang }}</td>
                 <td>warna</td>
                 <td>{{ $item -> kode_unit }}</td>
-                <td>jumlah daun</td>
-                <td>harga jasa</td>
-                <td>total biaya</td>
+                <td>
+                    @if($editedSubkonIndex !== $d )
+                        {{ $item -> jumlah_daun }}
+                    @else
+                    <input class="rounded-lg" type="text"
+                    wire:model.defer="subkons.{{ $d }}.jumlah_daun">
+                    @endif
+                </td>
+                <td>
+                    @if($editedSubkonIndex !== $d )
+                        {{ $item -> keliling_kaca }}
+                    @else
+                    <input type="text"
+                    wire:model.defer="subkons.{{ $d }}.keliling_kaca">
+                    @endif
+                </td>
+                <td>
+                    @if($editedSubkonIndex !== $d )
+                        {{ $item -> harga_jasa }}
+                    @else
+                    <input type="text"
+                    wire:model.defer="subkons.{{ $d }}.harga_jasa">
+                    @endif
+
+                </td>
+                <td>{{ $item -> jumlah_daun * $item -> harga_jasa }}</td>
+                <td>
+                    @if($editedSubkonIndex !== $d )
+                    <button class="btn aksi-btn4 text-white" wire:click.prevent="editedSubkon({{$d}})" >edit</button>
+                    @else
+                    <button class="btn aksi-btn4 text-white" wire:click.prevent="savedSubkon({{$d}})">save</button>
+                    @endif
+                </td>
               </tr>
       @endforeach
     </tbody>
@@ -190,4 +226,4 @@
 </div>
 </div>
 </div>
-    
+

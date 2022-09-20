@@ -110,6 +110,10 @@
     background: #0ECB38 !important;
     box-shadow: 0px 5px 10px rgba(14, 203, 56, 0.45);
 }
+.aksi-btn4{
+    background: #06270d !important;
+    box-shadow: 0px 5px 10px rgba(79, 91, 82, 0.45);
+}
 .kembali-btn{
     background: #f3b243 !important;
     box-shadow: 0px 10px 20px rgba(243, 178, 67, 0.25);
