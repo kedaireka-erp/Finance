@@ -16,7 +16,7 @@
     color: #4891FF;
     cursor: pointer;
 }
-.s{
+.s, .s-mini{
     width: 270px;
     height: 100vh;
     position: sticky;
@@ -121,14 +121,28 @@
 #select-filter{
     flex-wrap : nowrap !important;
 }
+#offcanvasWithBothOptions{
+    display: none;
+}
+#burger-menu-sm{
+    display: none;
+}
 
 @media screen and (max-width: 900px) {
 
-    .close {
+    .s {
       display: none;
-      transition: all .3s linear 0s;
     }
-    .hi{
+    #offcanvasWithBothOptions{
+        display: block;
+    }
+    #burger-menu-sm{
+        display: block;
+        font-size: 32px;
+        color: #4891FF;
+        cursor: pointer;
+    }
+    #burger-menu{
         display: none;
     }
 }
