@@ -65,7 +65,7 @@ class TablePengiriman extends Component
             'status' => $status,
             'icon' => 'local_shipping',
             'columns'=>$columns
-        ])->extends('layouts.main')->section('container');;
+        ])->extends('layouts.main')->section('container');
     }
 
     

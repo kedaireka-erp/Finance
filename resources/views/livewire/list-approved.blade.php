@@ -1,6 +1,4 @@
-@extends('layouts/main')
 
-@section('container')
 <div class="container-fluid flex-grow-1">
   <h3 class="my-4 judul"> {{ $title }} </h3>
   <div class="card border-light mb-3">
@@ -190,6 +188,5 @@
 </div>
 </div>
 </div>
-@endsection
 
 
