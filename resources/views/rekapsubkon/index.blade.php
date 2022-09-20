@@ -25,7 +25,7 @@
         </div>
         <div class="col-4 float-end">
             <a  href="/list-approved" class="btn aksi-btn2 text-white mx-2 float-end {{ Route::is('list-approved') ? 'active' : '' }}">Approved</a>
-            <button class="btn aksi-btn3  text-white  mx-2 float-end" wire:click="Approve()">Approve Tagihan </button>
+            <button class="btn aksi-btn3  text-white  mx-2 float-end" wire:click="Approve()">Approve Tagihan ({{   count($checkedTagih)}})</button>
         </div>
 
 
