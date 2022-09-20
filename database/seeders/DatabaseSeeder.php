@@ -17,8 +17,13 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
+            QuotationSeeder::class,
+            DetailQuotationSeeder::class,
             FpppSeeder::class,
+            AssemblySeeder::class,
+            WorkOrderSeeder::class,
             WoSeeder::class,
+            RekapSubkonSeeder::class,
         ]);
     }
 }
