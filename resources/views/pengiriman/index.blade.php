@@ -11,7 +11,7 @@
           </h5>
         </div>
         <div class="col">
-            <a href="{{ route('history-kirim') }}" class="nav-link float-end my-4 mx-2" >History</a>
+            <a href="{{ route('history-kirim') }}" class="btn aksi-btn2 text-white mx-2 float-end " >History</a>
           
           
         </div>
@@ -125,65 +125,6 @@
           <th scope="col">Status</th>
           <th scope="col">Aksi</th>
         </tr>
-      
-        {{-- Search filter --}}
-        {{-- <tr class="align-center">
-          <td></td>
-          <td>
-             <input type="text" class="form-control" wire:model="searchColumnsKode" style="width : 10rem"/>
-          </td>
-          <td>
-            <input type="text" class="form-control" wire:model="searchColumnsNama" style="width : 10rem"/>
-         </td>
-          <td>
-            <div class="d-flex flex-column">
-              <label>From</label>
-              <input type="number" class="form-control d-inline mb-2" style="width: 75px"
-                wire:model="searchColumnsStockMin" />
-              <label>to</label>
-              <input type="number" class="form-control d-inline" style="width: 75px"
-               wire:model="searchColumnsStockMax" />
-            </div>
-          </td>
-          <td>
-            <div class="d-flex flex-column">
-              <label>From</label>
-              <input type="number" class="form-control d-inline mb-2" style="width: 75px"
-                wire:model="searchColumnsPriceMin" />
-              <label>to</label>
-              <input type="number" class="form-control d-inline" style="width: 75px"
-               wire:model="searchColumnsPriceMax" />
-            </div>
-         </td>
-         <td>
-          <div class="d-flex flex-column">
-            <label>From</label>
-            <input type="number" class="form-control d-inline mb-2" style="width: 75px"
-              wire:model="searchColumnsTotalMin" />
-            <label>to</label>
-            <input type="number" class="form-control d-inline" style="width: 75px"
-             wire:model="searchColumnsTotalMax" />
-          </div>
-       </td>
-       <td>
-        <div class="d-flex flex-column">
-          <label>From</label>
-          <input type="date" class="form-date form-control d-inline mb-2"  
-            wire:model="searchColumnsDateMin" />
-          <label>to</label>
-          <input type="date" class="form-date form-control d-inline" 
-           wire:model="searchColumnsDateMax" />
-        </div>
-     </td>
-          <td>
-             <select class="selection form-control" wire:model="searchColumnsStatusId">
-                <option value="">choose status</option>
-                 @foreach ($status as $status_id => $status_name)
-                     <option value="{{ $status_id }}">{{ $status_name }}</option>
-                 @endforeach
-             </select>
-          </td>
-       </tr> --}}
       </thead>
       {{-- table body --}}
       <tbody>

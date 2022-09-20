@@ -41,12 +41,6 @@
             </span>
           </th>
           <th  scope="col" >
-            <span>
-              Tanggal Tagih
-              <i wire:click="sortBy('tgl_tagih')" style="cursor: pointer" class="material-icons-round {{ $sortBy === 'tgl_tagih' && $sortDirection === 'desc' ? '' : 'no-use' }}">arrow_drop_down</i>
-            </span>
-          </th>
-          <th  scope="col" >
               <span>
                 Jenis Pekerjaan
                 <i wire:click="sortBy('')" style="cursor: pointer" class="material-icons-round {{ $sortBy === '' && $sortDirection === 'desc' ? '' : 'no-use' }}">arrow_drop_down</i>
@@ -108,65 +102,6 @@
           </th>
           <th  scope="col">Aksi</th>
         </tr>
-  
-        {{-- Search filter --}}
-        {{-- <tr class="align-center">
-          <td></td>
-          <td>
-             <input type="text" class="form-control" wire:model="searchColumnsKode" style="width : 10rem"/>
-          </td>
-          <td>
-            <input type="text" class="form-control" wire:model="searchColumnsNama" style="width : 10rem"/>
-         </td>
-          <td>
-            <div class="d-flex flex-column">
-              <label>From</label>
-              <input type="number" class="form-control d-inline mb-2" style="width: 75px"
-                wire:model="searchColumnsStockMin" />
-              <label>to</label>
-              <input type="number" class="form-control d-inline" style="width: 75px"
-               wire:model="searchColumnsStockMax" />
-            </div>
-          </td>
-          <td>
-            <div class="d-flex flex-column">
-              <label>From</label>
-              <input type="number" class="form-control d-inline mb-2" style="width: 75px"
-                wire:model="searchColumnsPriceMin" />
-              <label>to</label>
-              <input type="number" class="form-control d-inline" style="width: 75px"
-               wire:model="searchColumnsPriceMax" />
-            </div>
-         </td>
-         <td>
-          <div class="d-flex flex-column">
-            <label>From</label>
-            <input type="number" class="form-control d-inline mb-2" style="width: 75px"
-              wire:model="searchColumnsTotalMin" />
-            <label>to</label>
-            <input type="number" class="form-control d-inline" style="width: 75px"
-             wire:model="searchColumnsTotalMax" />
-          </div>
-       </td>
-       <td>
-        <div class="d-flex flex-column">
-          <label>From</label>
-          <input type="date" class="form-date form-control d-inline mb-2"
-            wire:model="searchColumnsDateMin" />
-          <label>to</label>
-          <input type="date" class="form-date form-control d-inline"
-           wire:model="searchColumnsDateMax" />
-        </div>
-     </td>
-          <td>
-             <select class="selection form-control" wire:model="searchColumnsStatusId">
-                <option value="">choose status</option>
-                 @foreach ($status as $status_id => $status_name)
-                     <option value="{{ $status_id }}">{{ $status_name }}</option>
-                 @endforeach
-             </select>
-          </td>
-       </tr> --}}
       </thead>
       {{-- table body --}}
       <tbody>
@@ -176,7 +111,7 @@
                           <input class="form-check-input mt-0" type="checkbox" value="{{ $item->id}}" wire:model="checkedTagih">
                   </th>
                   <td>{{ $item -> tgl_terima_fppp }}</td>
-                  <td>{{ $item -> tgl_tagih }}</td>
+                  {{-- <td>{{ $item -> tgl_tagih }}</td> --}}
                   <td>jenis pekerjaan</td>
                   <td>{{ $item -> fppps -> fppp_no }}</td>
                   <td>{{ $item -> fppps -> project_name }}</td>
@@ -211,9 +146,9 @@
                   <td>{{ $item -> jumlah_daun * $item -> harga_jasa }}</td>
                   <td>
                       @if($editedSubkonIndex !== $d )
-                      <button class="btn aksi-btn4 text-white" wire:click.prevent="editedSubkon({{$d}})" >edit</button>
+                      <button class="btn aksi-btn text-white" wire:click.prevent="editedSubkon({{$d}})" >edit</button>
                       @else
-                      <button class="btn aksi-btn4 text-white" wire:click.prevent="savedSubkon({{$d}})">save</button>
+                      <button class="btn aksi-btn text-white" wire:click.prevent="savedSubkon({{$d}})">save</button>
                       @endif
                   </td>
                 </tr>

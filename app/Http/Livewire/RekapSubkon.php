@@ -13,7 +13,7 @@ class RekapSubkon extends Component
     public $sortDirection = 'desc';
     public $selectedStatus ='';
     public $checkedTagih =[];
-    public $searchColumnsKode, $searchColumnsNama, $searchColumnsPriceMin, $searchColumnsPriceMax, $searchColumnsCategoryId;
+    // public $searchColumnsKode, $searchColumnsNama, $searchColumnsPriceMin, $searchColumnsPriceMax, $searchColumnsCategoryId;
     public $selectAll = false;
     public $editedSubkonIndex = null;
     public $subkons =[];
@@ -34,13 +34,13 @@ class RekapSubkon extends Component
         $columns = ['Kode Barang','Nama Barang'];
         $items = Resub::query()
                     ->orderBy($this->sortBy, $this->sortDirection)
-                    ->where('status_tagih',0)
-                    ->paginate();
-
+                    ->where('status_tagih',0);
+        $items_view = $items -> paginate();
+        $this->subkons = $items->get()->toArray();
         return view('rekapsubkon.index',[
             'title' => 'Tagihan Subcon',
             'ket' => 'Tabel ',
-            'items' => $items,
+            'items' => $items_view,
             'icon' => 'groups',
             'columns'=>$columns
         ])->extends('layouts.main')->section('container') ;
@@ -72,17 +72,23 @@ class RekapSubkon extends Component
         $this->editedSubkonIndex = $subkonIndex;
     }
 
-    // public function savedSubkon($subkonIndex)
-    // {
-    //     $this -> subkons = Resub::select(['jumlah_daun','keliling_kaca','harga_jasa'])->get()->toArray();
-    //     // dd($this -> subkons);
-    //     $subkon = $this->subkons[$subkonIndex] ?? NULL;
-    //     if (!is_null($subkon)){
-    //         $editedSubkon = Resub::find($subkon['id']);
-    //         if ($editedSubkon) {
-    //             $editedSubkon->update($subkon);
-    //         }
-    //     }
-    //     $this->savedSubkonIndex = null;
-    // }
+    public function savedSubkon($subkonIndex)
+    {
+        // $this -> subkons = Resub::select(['jumlah_daun','keliling_kaca','harga_jasa'])->get()->toArray();
+        $subkon = ['id'=>$this->subkons[$subkonIndex]['id'] ?? NULL,
+                   'jumlah_daun'=>$this->subkons[$subkonIndex]['jumlah_daun'] ?? NULL,
+                   'keliling_kaca'=>$this->subkons[$subkonIndex]['keliling_kaca'] ?? NULL,
+                   'harga_jasa'=>$this->subkons[$subkonIndex]['harga_jasa'] ?? NULL];
+        // $subkon['id'] = $subkonIndex;
+        // dd($subkon['id']);
+        if (!is_null($subkon)){
+             Resub::query()
+                ->where('id',$subkon['id'])
+                ->update($subkon);
+            // if ($editedSubkon) {
+            //     $editedSubkon->update($subkon);
+            // }
+        }
+        $this->editedSubkonIndex = null;
+    }
 }

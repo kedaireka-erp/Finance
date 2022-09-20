@@ -90,9 +90,6 @@
                             @foreach ($status as $status)
                             <option id="status" value='{{ $status }}' {{ $i -> acc_pengiriman == $status ? "selected":"" }} >{{ $status }}</option>
                             @endforeach
-                          {{-- <option value=1>ACCEPT</option>
-                          <option value=2>PENDING</option>
-                          <option value=3>ACCEPT WITH NOTE</option> --}}
                         </select>
                     </div>
 
@@ -125,7 +122,7 @@
             <div class="d-flex justify-content-between">
                 <div>
                   @if(request()->get('status') == 'history')
-                    <a href="/pengiriman?status=history" class="kembali-btn btn text-white btn-lg" style="width: 10rem">Kembali</a>        
+                    <a href="{{ route('history-kirim') }}" class="kembali-btn btn text-white btn-lg" style="width: 10rem">Kembali</a>        
                   @else
                   <a href="/pengiriman" class="kembali-btn btn text-white btn-lg" style="width: 10rem">Kembali</a>
                   @endif
