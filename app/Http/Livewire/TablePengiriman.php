@@ -40,9 +40,21 @@ class TablePengiriman extends Component
             'qty_pack' => 'Item Jadi'
         ];
         $status = ['ACCEPT','PENDING','ACCEPT WITH NOTE'];
-            $items = Pengiriman::select(['wos.id','wos.tgl_pack', 'wos.tujuan', 'wos.qty_pack', 'wos.acc_pengiriman', 'fppps.quotation_no', 'fppps.fppp_no', 'fppps.applicator_name', 'fppps.project_name'])
+            $items = Pengiriman::select(['work_orders.id',
+                                        'work_orders.tgl_pack',
+                                        'work_orders.tujuan', 
+                                        'work_orders.qty_packing', 
+                                        'work_orders.qty', 
+                                        'work_orders.acc_pengiriman', 
+                                        'fppps.fppp_no', 
+                                        'fppps.applicator_name', 
+                                        'fppps.project_name',
+                                        'quotations.quotation_no'])
                     ->join('fppps', 'wos.fppp_id','=','fppps.id')
-                    ->whereNotNull('finish_qc') 
+                    ->join('quotations','fppps.quotation_id','=','quotations.id')
+                    ->whereNotNull('process_assembly1')
+                    ->orWhereNotNull('process_assembly2')
+                    ->orWhereNotNull('process_assembly3') 
                     ->when($this->col_selected,function($q){
                         $q->where($this->col_selected,"like","%". $this->search ."%");
                     })

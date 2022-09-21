@@ -11,8 +11,8 @@ class Pengiriman extends Model
 {
     use HasFactory;
 
-    protected $table = 'wos';
-    protected $fillable =['tgl_terima_fppp','fppp_id','tujuan','acc_pengiriman','note'];
+    protected $table = 'work_orders';
+    protected $fillable =['tgl_pack','fppp_id','tujuan','qty_packing','qty','acc_pengiriman','note'];
     // public $date = ['tgl_pack'];
 
 
