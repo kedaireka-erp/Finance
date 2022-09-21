@@ -77,7 +77,7 @@
           <th scope="col" >
             <span>
               Tanggal
-              <i wire:click="sortBy('tgl_pack')" style="cursor: pointer" class="material-icons-round {{ $sortBy === 'tgl_pack' && $sortDirection === 'desc' ? '' : 'no-use' }}">arrow_drop_down</i>
+              <i wire:click="sortBy('tanggal_packing')" style="cursor: pointer" class="material-icons-round {{ $sortBy === 'tanggal_packing' && $sortDirection === 'desc' ? '' : 'no-use' }}">arrow_drop_down</i>
             </span> 
           </th> 
           <th  scope="col" >
@@ -89,7 +89,7 @@
           <th  scope="col" >
             <span>
               No FPPP
-              <i wire:click="sortBy(fppp_no)" style="cursor: pointer" class="material-icons-round {{ $sortBy === 'fppp_no' && $sortDirection === 'desc' ? '' : 'no-use' }}">arrow_drop_down</i>
+              <i wire:click="sortBy('fppp_no')" style="cursor: pointer" class="material-icons-round {{ $sortBy === 'fppp_no' && $sortDirection === 'desc' ? '' : 'no-use' }}">arrow_drop_down</i>
             </span> 
           </th>
           <th  scope="col" >
@@ -113,13 +113,13 @@
           <th  scope="col">
               <span>
                 Item Jadi
-                <i wire:click="sortBy('qty_pack')" style="cursor: pointer" class="material-icons-round {{ $sortBy === 'qty_pack' && $sortDirection === 'desc' ? '' : 'no-use' }}">arrow_drop_down</i>
+                <i wire:click="sortBy('qty_packing')" style="cursor: pointer" class="material-icons-round {{ $sortBy === 'qty_packing' && $sortDirection === 'desc' ? '' : 'no-use' }}">arrow_drop_down</i>
               </span>
           </th>
           <th  scope="col">
               <span>
                 Total Item
-                <i wire:click="sortBy('qty_pack')" style="cursor: pointer" class="material-icons-round {{ $sortBy === 'qty_pack' && $sortDirection === 'desc' ? '' : 'no-use' }}">arrow_drop_down</i>
+                <i wire:click="sortBy('qty')" style="cursor: pointer" class="material-icons-round {{ $sortBy === 'qty' && $sortDirection === 'desc' ? '' : 'no-use' }}">arrow_drop_down</i>
               </span>
           </th>
           <th scope="col">Status</th>
@@ -137,8 +137,8 @@
                   <td>{{ $item -> applicator_name }}</td>
                   <td>{{ $item -> project_name }}</td>
                   <td>{{ $item -> tujuan }}</td>
-                  <td>{{ $item -> qty_pack }}</td>
-                  <td>100</td>
+                  <td>{{ $item -> qty_packing }}</td>
+                  <td>{{ $item -> qty }}</td>
                   <td class="p-4 text-center">
                     <span class="status  p-2 rounded" style="background-color: {{ $item -> status_color }}; color:{{ $item-> status_text_color }};font-size:13px">{{ $item -> acc_pengiriman }}</span>
                   </td>

@@ -47,6 +47,9 @@ return new class extends Migration
             $table->text('note')->nullable();
             $table->date('tgl_tagih')->nullable();
             $table->boolean('status_tagih')->default('0');
+            $table->integer('jumlah_daun')->nullable();
+            $table->integer('keliling_kaca')->nullable();
+            $table->integer('harga_jasa')->nullable();
             $table->timestamps();
         });
     }

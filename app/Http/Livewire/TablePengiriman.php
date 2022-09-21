@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class TablePengiriman extends Component
 {
-    public $sortBy = 'wos.created_at';
+    public $sortBy = 'work_orders.tanggal_packing';
     public $sortDirection = 'desc';
     public $selectedStatus =null;
     public $date_from =null;
@@ -40,9 +40,19 @@ class TablePengiriman extends Component
             'qty_pack' => 'Item Jadi'
         ];
         $status = ['ACCEPT','PENDING','ACCEPT WITH NOTE'];
-            $items = Pengiriman::select(['wos.id','wos.tgl_pack', 'wos.tujuan', 'wos.qty_pack', 'wos.acc_pengiriman', 'fppps.quotation_no', 'fppps.fppp_no', 'fppps.applicator_name', 'fppps.project_name'])
-                    ->join('fppps', 'wos.fppp_id','=','fppps.id')
-                    ->whereNotNull('finish_qc') 
+            $items = Pengiriman::select(['work_orders.id',
+                                        'work_orders.tanggal_packing',
+                                        'work_orders.tujuan', 
+                                        'work_orders.qty_packing', 
+                                        'work_orders.qty', 
+                                        'work_orders.acc_pengiriman', 
+                                        'fppps.fppp_no', 
+                                        'fppps.applicator_name', 
+                                        'fppps.project_name',
+                                        'quotations.quotation_no'])
+                    ->join('fppps', 'work_orders.fppp_id','=','fppps.id')
+                    ->join('quotations','fppps.quotation_id','=','quotations.id')
+                    ->whereNotNull('qty_packing') 
                     ->when($this->col_selected,function($q){
                         $q->where($this->col_selected,"like","%". $this->search ."%");
                     })
@@ -50,10 +60,10 @@ class TablePengiriman extends Component
                         $query->where('acc_pengiriman',$this->selectedStatus);
                         })
                     ->when($this->date_from,function($q){
-                        $q->where('tgl_pack','>=',$this -> date_from);
+                        $q->where('tanggal_packing','>=',$this -> date_from);
                     })
                     ->when($this->date_to,function($q){
-                        $q->where('tgl_pack','<=',$this -> date_to);
+                        $q->where('tanggal_packing','<=',$this -> date_to);
                     })
                     ->orderBy($this->sortBy, $this->sortDirection)
                     ->paginate();
@@ -70,9 +80,20 @@ class TablePengiriman extends Component
 
     
     public function edit(Request $request, $id){
-        $item = Pengiriman::select(['wos.id as id ','wos.tgl_pack','wos.tujuan', 'wos.tujuan', 'wos.qty_pack', 'wos.acc_pengiriman','wos.note', 'fppps.quotation_no', 'fppps.fppp_no', 'fppps.applicator_name', 'fppps.project_name'])
-                    ->join('fppps', 'wos.fppp_id','=','fppps.id')
-                    ->where('wos.id','=',$id)
+        $item = Pengiriman::select(['work_orders.id',
+                            'work_orders.tanggal_packing',
+                            'work_orders.tujuan', 
+                            'work_orders.qty_packing', 
+                            'work_orders.qty', 
+                            'work_orders.acc_pengiriman',
+                            'work_orders.note',
+                            'fppps.fppp_no', 
+                            'fppps.applicator_name', 
+                            'fppps.project_name',
+                            'quotations.quotation_no'])
+                    ->join('fppps', 'work_orders.fppp_id','=','fppps.id')
+                    ->join('quotations','fppps.quotation_id','=','quotations.id')
+                    ->where('work_orders.id','=',$id)
                     ->get();
         if($request -> get('status') == 'history'){
             $item = $item;

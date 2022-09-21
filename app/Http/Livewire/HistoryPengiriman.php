@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class HistoryPengiriman extends Component
 {
-    public $sortBy = 'wos.created_at';
+    public $sortBy = 'work_orders.tanggal_packing';
     public $sortDirection = 'desc';
     public $selectedStatus =null;
     public $date_from =null;
@@ -37,9 +37,19 @@ class HistoryPengiriman extends Component
             'qty_pack' => 'Item Jadi'
         ];
         $status = ['ACCEPT','ACCEPT WITH NOTE'];
-        $items = Pengiriman::select(['wos.id','wos.tgl_pack','wos.tujuan', 'wos.tujuan', 'wos.qty_pack', 'wos.acc_pengiriman', 'fppps.quotation_no', 'fppps.fppp_no', 'fppps.applicator_name', 'fppps.project_name'])
-            ->join('fppps', 'wos.fppp_id','=','fppps.id')
-            ->whereNotNull('finish_qc')
+        $items = Pengiriman::select(['work_orders.id',
+                        'work_orders.tanggal_packing',
+                        'work_orders.tujuan', 
+                        'work_orders.qty_packing', 
+                        'work_orders.qty', 
+                        'work_orders.acc_pengiriman', 
+                        'fppps.fppp_no', 
+                        'fppps.applicator_name', 
+                        'fppps.project_name',
+                        'quotations.quotation_no'])
+            ->join('fppps', 'work_orders.fppp_id','=','fppps.id')
+            ->join('quotations','fppps.quotation_id','=','quotations.id')
+            ->whereNotNull('qty_packing')
             ->whereNot('acc_pengiriman','=','PENDING')
             ->when($this->col_selected,function($q){
                 $q->where($this->col_selected,"like","%". $this->search ."%");
@@ -48,10 +58,10 @@ class HistoryPengiriman extends Component
                 $query->where('acc_pengiriman',$this->selectedStatus);
                 })
             ->when($this->date_from,function($q){
-                $q->where('tgl_pack','>=',$this -> date_from);
+                $q->where('tanggal_packing','>=',$this -> date_from);
             })
             ->when($this->date_to,function($q){
-                $q->where('tgl_pack','<=',$this -> date_to);
+                $q->where('tanggal_packing','<=',$this -> date_to);
             })
             ->orderBy($this->sortBy, $this->sortDirection)
             ->paginate();

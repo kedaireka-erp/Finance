@@ -68,11 +68,11 @@
                       <div class="d-flex">
                         <div class="d-flex flex-column bg-ini p-1 text-center rounded mx-2">
                             <div class="px-4 py-3 bg-luar-ini text-white rounded ">Produk selesai</div>
-                            <span class="datum p-4">{{ $i->qty_pack }}</span>
+                            <span class="datum p-4">{{ $i->qty_packing }}</span>
                         </div>
                         <div class="d-flex flex-column bg-ini p-1 text-center rounded mx-2">
                             <div class="px-4 py-3 bg-luar-ini text-white rounded ">Total Item</div>
-                            <span class="datum p-4">100</span>
+                            <span class="datum p-4">{{ $i->qty }}</span>
                         </div>
                       </div>
                       
@@ -136,7 +136,7 @@
                     <button id="btn-selesai" type="submit" class="aksi-btn btn btn-primary btn-lg" style="width: 10rem">Selesai</button>
                     @endif
                               
-                </div>
+                </div> 
             </div>
             
         </div>
