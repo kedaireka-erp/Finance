@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Redirect;
 
 class RekapSubkon extends Component
 {
-    public $sortBy = 'created_at';
+    public $sortBy = 'tgl_terima_fppp';
     public $sortDirection = 'desc';
     public $selectedStatus ='';
     public $checkedTagih =[];
@@ -32,7 +32,8 @@ class RekapSubkon extends Component
     public function render()
     {
         $columns = ['Kode Barang','Nama Barang'];
-        $items = Resub::query()
+        $items = Resub::select(['wos.id','wos.tgl_terima_fppp','wos.tgl_tagih', 'wos.tipe_barang', 'wos.qty_pack', 'wos.kode_unit','wos.jumlah_daun', 'wos.keliling_kaca','wos.harga_jasa','fppps.quotation_no', 'fppps.fppp_no', 'fppps.applicator_name', 'fppps.project_name'])
+                    ->join('fppps', 'wos.fppp_id','=','fppps.id')
                     ->orderBy($this->sortBy, $this->sortDirection)
                     ->where('status_tagih',0);
         $items_view = $items -> paginate();

@@ -49,7 +49,7 @@
           <th  scope="col" >
             <span>
               No FPPP
-              <i wire:click="sortBy('')" style="cursor: pointer" class="material-icons-round {{ $sortBy === '' && $sortDirection === 'desc' ? '' : 'no-use' }}">arrow_drop_down</i>
+              <i wire:click="sortBy('fppp_no')" style="cursor: pointer" class="material-icons-round {{ $sortBy === '' && $sortDirection === 'desc' ? '' : 'no-use' }}">arrow_drop_down</i>
             </span>
           </th>
           <th  scope="col">
@@ -79,25 +79,25 @@
           <th  scope="col">
               <span>
                 Jumlah Daun
-                <i wire:click="sortBy('')" style="cursor: pointer" class="material-icons-round {{ $sortBy === '' && $sortDirection === 'desc' ? '' : 'no-use' }}">arrow_drop_down</i>
+                <i wire:click="sortBy('jumlah_daun')" style="cursor: pointer" class="material-icons-round {{ $sortBy === '' && $sortDirection === 'desc' ? '' : 'no-use' }}">arrow_drop_down</i>
               </span>
           </th>
           <th  scope="col">
               <span>
                 Keliling Kaca
-                <i wire:click="sortBy('')" style="cursor: pointer" class="material-icons-round {{ $sortBy === '' && $sortDirection === 'desc' ? '' : 'no-use' }}">arrow_drop_down</i>
+                <i wire:click="sortBy('keliling_kaca')" style="cursor: pointer" class="material-icons-round {{ $sortBy === '' && $sortDirection === 'desc' ? '' : 'no-use' }}">arrow_drop_down</i>
               </span>
           </th>
           <th  scope="col">
               <span>
                 Harga Jasa
-                <i wire:click="sortBy('')" style="cursor: pointer" class="material-icons-round {{ $sortBy === '' && $sortDirection === 'desc' ? '' : 'no-use' }}">arrow_drop_down</i>
+                <i wire:click="sortBy('harga_jasa')" style="cursor: pointer" class="material-icons-round {{ $sortBy === '' && $sortDirection === 'desc' ? '' : 'no-use' }}">arrow_drop_down</i>
               </span>
           </th>
           <th  scope="col">
               <span>
                   Total Biaya
-                <i wire:click="sortBy('')" style="cursor: pointer" class="material-icons-round {{ $sortBy === '' && $sortDirection === 'desc' ? '' : 'no-use' }}">arrow_drop_down</i>
+                {{-- <i wire:click="sortBy('')" style="cursor: pointer" class="material-icons-round {{ $sortBy === '' && $sortDirection === 'desc' ? '' : 'no-use' }}">arrow_drop_down</i> --}}
               </span>
           </th>
           <th  scope="col">Aksi</th>
@@ -113,8 +113,8 @@
                   <td>{{ $item -> tgl_terima_fppp }}</td>
                   {{-- <td>{{ $item -> tgl_tagih }}</td> --}}
                   <td>jenis pekerjaan</td>
-                  <td>{{ $item -> fppps -> fppp_no }}</td>
-                  <td>{{ $item -> fppps -> project_name }}</td>
+                  <td>{{ $item -> fppp_no }}</td>
+                  <td>{{ $item -> project_name }}</td>
                   <td>{{ $item -> tipe_barang }}</td>
                   <td>warna</td>
                   <td>{{ $item -> kode_unit }}</td>
