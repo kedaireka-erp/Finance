@@ -42,6 +42,6 @@ class Pengiriman extends Model
 
     public function getDateForHumansAttribute()
     {
-        return Carbon::parse($this->tgl_pack)->format('M, d Y');
+        return Carbon::parse($this->tgl_packing)->format('M, d Y');
     }
 }
