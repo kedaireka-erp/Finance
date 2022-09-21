@@ -133,6 +133,7 @@
     .s {
       display: none;
     }
+
     #offcanvasWithBothOptions{
         display: block;
     }
@@ -146,3 +147,4 @@
         display: none;
     }
 }
+

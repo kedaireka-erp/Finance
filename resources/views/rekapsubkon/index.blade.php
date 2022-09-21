@@ -23,10 +23,12 @@
                 <input class="form-control" style="width:20rem" id="exampleInputEmail1" aria-describedby="emailHelp" name="search" placeholder="search..">
               </div>
         </div>
+
         <div class="col-lg-4 float-end mb-4">
             <a  href="/list-approved" class="btn aksi-btn2 text-white mx-2 float-end {{ Route::is('list-approved') ? 'active' : '' }}">Approved</a>
             <button class="btn aksi-btn3  text-white  mx-2 float-end" wire:click="Approve()">Approve Tagihan </button>
         </div>
+
 
 <div class="table-responsive">
   <table class="table">
@@ -156,7 +158,6 @@
       </tbody>
     </table>
 </div>
-
   {{-- pagination   --}}
   {{ $items -> links() }}
 
