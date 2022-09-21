@@ -112,7 +112,7 @@
                   <tr class="items-align-center">
                     <th scope="row">{{ $items->firstItem() + $d}}</th>
                     <td>{{ $item -> date_for_humans }}</td>
-                    <td>{{ $item -> quotation_no }}</td>
+                    <td>{{ $item -> quotations-> quotation_no }}</td>
                     <td>{{ $item -> fppp_no }}</td>
                     <td>{{ $item -> applicator_name }}</td>
                     <td>{{ $item -> project_name }}</td>

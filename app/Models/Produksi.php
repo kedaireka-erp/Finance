@@ -13,7 +13,11 @@ class Produksi extends Model
     protected $fillable =['created_at','quotation_no','fppp_no','aplicator_name','project_name','acc_produksi'];
 
 
-
+    public function quotations()
+    {
+        return $this->belongsTo(Quotation::class,"quotation_id");
+    }
+    
     public function wos()
     {
         return $this->hasMany(Pengiriman::class);
