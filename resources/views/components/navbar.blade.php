@@ -1,5 +1,6 @@
 <nav class="navbar navbar-expand-lg mt-4">
     <div class=" d-flex container-fluid">
+      <i class="material-icons-round bi me-4" id="burger-menu-sm" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">menu</i>    
       <i class="material-icons-round bi me-4" id="burger-menu">menu</i>    
       <div>
         <div class="dropdown px-4">
