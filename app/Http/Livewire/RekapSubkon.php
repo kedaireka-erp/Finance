@@ -62,7 +62,7 @@ class RekapSubkon extends Component
     public function updatedSelectAll($value)
     {
         if($value){
-            $this->checkedTagih = Resub::pluck('id');
+            $this->checkedTagih = Resub::where('status_tagih',0)->pluck('id');
         }else{
             $this->checkedTagih = [];
         }
@@ -92,4 +92,3 @@ class RekapSubkon extends Component
         }
         $this->editedSubkonIndex = null;
     }
-}
