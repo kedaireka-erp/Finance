@@ -49,13 +49,12 @@
             </div>
             <div class="col">
               <div class="row">
-                <button style="color:transparent; border-color:transparent; background-color:transparent;"></button>
+                <button class="btn btn-primary" style="width:10rem; color:transparent; background-color:transparent; border-color:transparent;" disabled></button>
               </div>
             </div>
             <div class="col">
               <div class="row">
-                <button style="width:15.9rem; color:transparent; border-color:transparent; background-color:transparent;"></button>
-                  <a href="/accproduksi" class="btn btn-primary {{ Route::is('accproduksi') ? 'active' : '' }}" style="width:10rem;">Accepted</a>
+              <button class="btn btn-primary" style="width:15.9rem; color:transparent; background-color:transparent; border-color:transparent;" disabled></button>
               </div>
             </div>
             @if (($date_from  > $date_to) && (!empty($date_to)) )
@@ -112,12 +111,12 @@
                   <tr class="items-align-center">
                     <th scope="row">{{ $items->firstItem() + $d}}</th>
                     <td>{{ $item -> date_for_humans }}</td>
-                    <td>{{ $item -> quotation_no }}</td>
+                    <td>{{ $item -> quotations -> quotation_no }}</td>
                     <td>{{ $item -> fppp_no }}</td>
                     <td>{{ $item -> applicator_name }}</td>
                     <td>{{ $item -> project_name }}</td>
                     <td class="p-4 text-center">
-                      <button class="status  p-2 btn btn-outline-light"  wire:click.prevent = "statusChangedConfirmation({{ $item->id }})" {{$item-> status_disable}} style="background-color: {{ $item -> status_color }}; color:{{ $item-> status_text_color }};font-size:13px">{{ $item -> acc_produksi }}</button>
+                      <button class="status  p-2 btn btn-outline-light"  wire:click.prevent = "statusChangedConfirmation({{ $item->id }})" style="background-color: {{ $item -> status_color }}; color:{{ $item-> status_text_color }};font-size:13px" {{ $item -> status_disabled}} >{{ $item -> acc_produksi }}</button>
                     </td>
                   </tr>
           @endforeach
