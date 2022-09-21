@@ -24,6 +24,8 @@ class WorkOrderSeeder extends Seeder
             'qty' => 50,
             'qty_packing' => 50,
             'process_assembly1' => 'Assembly',
+            'tanggal_assembly1' => Carbon::parse('2022-08-01'),
+            'warna' => 'Sand  Dark Brown',
         ]);
         WorkOrder::create([
             'fppp_id' => 2,
@@ -33,6 +35,8 @@ class WorkOrderSeeder extends Seeder
             'qty' => 250,
             'qty_packing' => 123,
             'process_assembly1' => 'Las',
+            'tanggal_assembly1' => Carbon::parse('2022-08-01'),
+            'warna' => 'Sand  Dark Brown',
         ]);
         WorkOrder::create([
             'fppp_id' => 3,
@@ -42,6 +46,8 @@ class WorkOrderSeeder extends Seeder
             'qty' => 100,
             'qty_packing' => 50,
             'process_assembly1' => 'Cek Opening',
+            'tanggal_assembly1' => Carbon::parse('2022-08-01'),
+            'warna' => 'Sand  Dark Brown',
         ]);
         WorkOrder::create([
             'fppp_id' => 4,
@@ -51,6 +57,8 @@ class WorkOrderSeeder extends Seeder
             'qty' => 78,
             'qty_packing' => 68,
             'process_assembly1' => 'Pasang Kaca',
+            'tanggal_assembly1' => Carbon::parse('2022-08-01'),
+            'warna' => 'Sand  Dark Brown',
         ]);
         WorkOrder::create([
             'fppp_id' => 5,
@@ -60,6 +68,8 @@ class WorkOrderSeeder extends Seeder
             'qty' => 432,
             'qty_packing' => 234,
             'process_assembly1' => 'Sealant Kaca',
+            'tanggal_assembly1' => Carbon::parse('2022-08-01'),
+            'warna' => 'Sand  Dark Brown',
         ]);
         WorkOrder::create([
             'fppp_id' => 6,
@@ -69,6 +79,8 @@ class WorkOrderSeeder extends Seeder
             'qty' => 56,
             'qty_packing' => 20,
             'process_assembly2' => 'Assembly',
+            'tanggal_assembly2' => Carbon::parse('2022-08-01'),
+            'warna' => 'Sand  Dark Brown',
         ]);
         WorkOrder::create([
             'fppp_id' => 7,
@@ -78,6 +90,8 @@ class WorkOrderSeeder extends Seeder
             'qty' => 124,
             'qty_packing' => 124,
             'process_assembly2' => 'Las',
+            'tanggal_assembly2' => Carbon::parse('2022-08-01'),
+            'warna' => 'Sand  Dark Brown',
         ]);
         WorkOrder::create([
             'fppp_id' => 8,
@@ -87,6 +101,8 @@ class WorkOrderSeeder extends Seeder
             'qty' => 122,
             'qty_packing' => 90,
             'process_assembly2' => 'Cek Opening',
+            'tanggal_assembly2' => Carbon::parse('2022-08-01'),
+            'warna' => 'Sand  Dark Brown',
         ]);
         WorkOrder::create([
             'fppp_id' => 9,
@@ -96,6 +112,8 @@ class WorkOrderSeeder extends Seeder
             'qty' => 211,
             'qty_packing' => 210,
             'process_assembly2' => 'Pasang Kaca',
+            'tanggal_assembly2' => Carbon::parse('2022-08-01'),
+            'warna' => 'Sand  Dark Brown',
         ]);
         WorkOrder::create([
             'fppp_id' => 10,
@@ -105,6 +123,8 @@ class WorkOrderSeeder extends Seeder
             'qty' => 198,
             'qty_packing' => 176,
             'process_assembly2' => 'Sealant Kaca',
+            'tanggal_assembly2' => Carbon::parse('2022-08-01'),
+            'warna' => 'Sand  Dark Brown',
         ]);
         WorkOrder::create([
             'fppp_id' => 11,
@@ -114,6 +134,8 @@ class WorkOrderSeeder extends Seeder
             'qty' => 43,
             'qty_packing' => 33,
             'process_assembly3' => 'Assembly',
+            'tanggal_assembly3' => Carbon::parse('2022-08-01'),
+            'warna' => 'Sand  Dark Brown',
         ]);
         WorkOrder::create([
             'fppp_id' => 12,
@@ -123,6 +145,8 @@ class WorkOrderSeeder extends Seeder
             'qty' => 122,
             'qty_packing' => 44,
             'process_assembly3' => 'Las',
+            'tanggal_assembly3' => Carbon::parse('2022-08-01'),
+            'warna' => 'Sand  Dark Brown',
         ]);
     }
 }

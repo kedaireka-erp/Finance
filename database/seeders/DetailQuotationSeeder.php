@@ -20,7 +20,7 @@ class DetailQuotationSeeder extends Seeder
             'kode_warna' => 'Sand  Dark Brown',
             'kode_item' => 'ASTRAL',
             'kode_tipe' => 'AP',
-            'kode_tipe' => 100,
+            'qty' => 100,
         ]);
 
         DetailQuotation::create([
@@ -28,7 +28,7 @@ class DetailQuotationSeeder extends Seeder
             'kode_warna' => 'Sand  Dark Brown',
             'kode_item' => 'ASTRAL',
             'kode_tipe' => 'AS',
-            'kode_tipe' => 124,
+            'qty' => 124,
         ]);
     }
 }

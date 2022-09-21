@@ -20,10 +20,10 @@ return new class extends Migration
             $table->integer('kode_assembly')->nullable();
             $table->date('tgl_tagih')->nullable();
             $table->boolean('status_tagih')->default('0');
-            $table->double('daun')->default('0');
-            $table->double('keliling')->default('0');
-            $table->double('jasa')->default('0');
-            $table->double('total')->default('0');
+            $table->double('jumlah_daun')->default('0');
+            $table->double('keliling_kaca')->default('0');
+            $table->double('harga_jasa')->default('0');
+            $table->double('total_biaya')->default('0');
             $table->timestamps();
         });
     }

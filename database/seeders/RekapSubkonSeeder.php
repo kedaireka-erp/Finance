@@ -17,63 +17,63 @@ class RekapSubkonSeeder extends Seeder
     {
         RekapSubkon::create([
             'work_order_id' => 1,
-            'assembly_id' => 0,
-            'kode_assembly' => 0,
+            'assembly_id' => 1,
+            'kode_assembly' => 1,
         ]);
         RekapSubkon::create([
             'work_order_id' => 2,
-            'assembly_id' => 1,
-            'kode_assembly' => 0,
+            'assembly_id' => 2,
+            'kode_assembly' =>1,
         ]);
         RekapSubkon::create([
             'work_order_id' => 3,
-            'assembly_id' => 2,
-            'kode_assembly' => 0,
+            'assembly_id' => 3,
+            'kode_assembly' => 1,
         ]);
         RekapSubkon::create([
             'work_order_id' => 4,
-            'assembly_id' => 3,
-            'kode_assembly' => 0,
+            'assembly_id' => 4,
+            'kode_assembly' => 1,
         ]);
         RekapSubkon::create([
             'work_order_id' => 5,
-            'assembly_id' => 4,
-            'kode_assembly' => 0,
+            'assembly_id' => 5,
+            'kode_assembly' => 1,
         ]);
         RekapSubkon::create([
             'work_order_id' => 6,
-            'assembly_id' => 0,
-            'kode_assembly' => 1,
+            'assembly_id' => 1,
+            'kode_assembly' => 2,
         ]);
         RekapSubkon::create([
             'work_order_id' => 7,
-            'assembly_id' => 1,
-            'kode_assembly' => 1,
+            'assembly_id' => 2,
+            'kode_assembly' => 2,
         ]);
         RekapSubkon::create([
             'work_order_id' => 8,
-            'assembly_id' => 2,
-            'kode_assembly' => 1,
+            'assembly_id' => 3,
+            'kode_assembly' => 2,
         ]);
         RekapSubkon::create([
             'work_order_id' => 9,
-            'assembly_id' => 3,
-            'kode_assembly' => 1,
+            'assembly_id' => 4,
+            'kode_assembly' => 2,
         ]);
         RekapSubkon::create([
             'work_order_id' => 10,
-            'assembly_id' => 4,
-            'kode_assembly' => 1,
+            'assembly_id' => 5,
+            'kode_assembly' => 2,
         ]);
         RekapSubkon::create([
             'work_order_id' => 11,
-            'assembly_id' => 0,
-            'kode_assembly' => 2,
+            'assembly_id' => 1,
+            'kode_assembly' => 3,
         ]);
         RekapSubkon::create([
             'work_order_id' => 12,
-            'assembly_id' => 1,
-            'kode_assembly' => 2,
+            'assembly_id' => 2,
+            'kode_assembly' => 3,
         ]);
 
     }

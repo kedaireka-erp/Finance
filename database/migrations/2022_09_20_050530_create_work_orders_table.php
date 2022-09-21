@@ -62,6 +62,11 @@ return new class extends Migration
             $table->enum("last_process", ["queued", "cutting", "machining", "assembly", "qc", "packing", "on delivery", "delivered"])->nullable();
             $table->date("tanggal_kirim")->nullable();
             $table->string("no_surat_jalan")->nullable();
+            $table-> string('warna')->nullable();
+            $table->enum('acc_pengiriman',['ACCEPT','PENDING','ACCEPT WITH NOTE'])->default('PENDING');
+            $table->text('note')->nullable();
+            $table->date('tgl_tagih')->nullable();
+            $table->boolean('status_tagih')->default('0');
             $table->timestamps();
         });
     }
