@@ -65,6 +65,7 @@ return new class extends Migration
             $table-> string('warna')->nullable();
             $table->enum('acc_pengiriman',['ACCEPT','PENDING','ACCEPT WITH NOTE'])->default('PENDING');
             $table->text('note')->nullable();
+            $table->string('tujuan')->nullable();
             $table->date('tgl_tagih')->nullable();
             $table->boolean('status_tagih')->default('0');
             $table->timestamps();

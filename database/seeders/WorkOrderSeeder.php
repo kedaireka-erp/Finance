@@ -26,6 +26,7 @@ class WorkOrderSeeder extends Seeder
             'process_assembly1' => 'Assembly',
             'tanggal_assembly1' => Carbon::parse('2022-08-01'),
             'warna' => 'Sand  Dark Brown',
+            'tujuan' => 'Dalam Kota',
         ]);
         WorkOrder::create([
             'fppp_id' => 2,
@@ -37,6 +38,7 @@ class WorkOrderSeeder extends Seeder
             'process_assembly1' => 'Las',
             'tanggal_assembly1' => Carbon::parse('2022-08-01'),
             'warna' => 'Sand  Dark Brown',
+            'tujuan' => 'Dalam Kota',
         ]);
         WorkOrder::create([
             'fppp_id' => 3,
@@ -48,6 +50,7 @@ class WorkOrderSeeder extends Seeder
             'process_assembly1' => 'Cek Opening',
             'tanggal_assembly1' => Carbon::parse('2022-08-01'),
             'warna' => 'Sand  Dark Brown',
+            'tujuan' => 'Dalam Kota',
         ]);
         WorkOrder::create([
             'fppp_id' => 4,
@@ -59,6 +62,7 @@ class WorkOrderSeeder extends Seeder
             'process_assembly1' => 'Pasang Kaca',
             'tanggal_assembly1' => Carbon::parse('2022-08-01'),
             'warna' => 'Sand  Dark Brown',
+            'tujuan' => 'Dalam Kota',
         ]);
         WorkOrder::create([
             'fppp_id' => 5,
@@ -70,6 +74,7 @@ class WorkOrderSeeder extends Seeder
             'process_assembly1' => 'Sealant Kaca',
             'tanggal_assembly1' => Carbon::parse('2022-08-01'),
             'warna' => 'Sand  Dark Brown',
+            'tujuan' => 'Dalam Kota',
         ]);
         WorkOrder::create([
             'fppp_id' => 6,
@@ -81,6 +86,7 @@ class WorkOrderSeeder extends Seeder
             'process_assembly2' => 'Assembly',
             'tanggal_assembly2' => Carbon::parse('2022-08-01'),
             'warna' => 'Sand  Dark Brown',
+            'tujuan' => 'Dalam Kota',
         ]);
         WorkOrder::create([
             'fppp_id' => 7,
@@ -92,6 +98,7 @@ class WorkOrderSeeder extends Seeder
             'process_assembly2' => 'Las',
             'tanggal_assembly2' => Carbon::parse('2022-08-01'),
             'warna' => 'Sand  Dark Brown',
+            'tujuan' => 'Dalam Kota',
         ]);
         WorkOrder::create([
             'fppp_id' => 8,
@@ -103,6 +110,7 @@ class WorkOrderSeeder extends Seeder
             'process_assembly2' => 'Cek Opening',
             'tanggal_assembly2' => Carbon::parse('2022-08-01'),
             'warna' => 'Sand  Dark Brown',
+            'tujuan' => 'Dalam Kota',
         ]);
         WorkOrder::create([
             'fppp_id' => 9,
@@ -114,6 +122,7 @@ class WorkOrderSeeder extends Seeder
             'process_assembly2' => 'Pasang Kaca',
             'tanggal_assembly2' => Carbon::parse('2022-08-01'),
             'warna' => 'Sand  Dark Brown',
+            'tujuan' => 'Dalam Kota',
         ]);
         WorkOrder::create([
             'fppp_id' => 10,
@@ -125,6 +134,7 @@ class WorkOrderSeeder extends Seeder
             'process_assembly2' => 'Sealant Kaca',
             'tanggal_assembly2' => Carbon::parse('2022-08-01'),
             'warna' => 'Sand  Dark Brown',
+            'tujuan' => 'Dalam Kota',
         ]);
         WorkOrder::create([
             'fppp_id' => 11,
@@ -136,6 +146,7 @@ class WorkOrderSeeder extends Seeder
             'process_assembly3' => 'Assembly',
             'tanggal_assembly3' => Carbon::parse('2022-08-01'),
             'warna' => 'Sand  Dark Brown',
+            'tujuan' => 'Dalam Kota',
         ]);
         WorkOrder::create([
             'fppp_id' => 12,
@@ -147,6 +158,7 @@ class WorkOrderSeeder extends Seeder
             'process_assembly3' => 'Las',
             'tanggal_assembly3' => Carbon::parse('2022-08-01'),
             'warna' => 'Sand  Dark Brown',
+            'tujuan' => 'Dalam Kota',
         ]);
     }
 }
