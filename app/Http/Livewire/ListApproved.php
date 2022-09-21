@@ -39,7 +39,7 @@ class ListApproved extends Component
             'items' => $items,
             'icon' => 'groups',
             'columns'=>$columns
-        ]);
+        ])->extends('layouts.main')->section('container');
     }
 
     public function Approve(){

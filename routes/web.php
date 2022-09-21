@@ -32,11 +32,7 @@ Route::get('history-kirim',App\Http\Livewire\HistoryPengiriman::class)->name('hi
 
 // BAGIAN Rekap-Subkon 
 Route::get('rekap_subkon', App\Http\Livewire\RekapSubkon::class)->name('rekap_subkon');
-// Route::get('/rekap_subkon', function () {
-//     return view('rekapsubkon.index');
-// }) -> name('rekap_subkon');
 
 // BAGIAN Approved Rekap-Subkon 
-Route::get('/list-approved', function () {
-    return view('listapproved.index');
-}) -> name('list-approved');
+Route::get('list-approved', App\Http\Livewire\ListApproved::class)->name('list-approved');
+

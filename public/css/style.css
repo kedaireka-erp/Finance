@@ -16,7 +16,7 @@
     color: #4891FF;
     cursor: pointer;
 }
-.s{
+.s, .s-mini{
     width: 270px;
     height: 100vh;
     position: sticky;
@@ -118,10 +118,33 @@
     background: #f3b243 !important;
     box-shadow: 0px 10px 20px rgba(243, 178, 67, 0.25);
 }
+#select-filter{
+    flex-wrap : nowrap !important;
+}
+#offcanvasWithBothOptions{
+    display: none;
+}
+#burger-menu-sm{
+    display: none;
+}
 
 @media screen and (max-width: 900px) {
 
-    .close {
+    .s {
       display: none;
     }
+
+    #offcanvasWithBothOptions{
+        display: block;
+    }
+    #burger-menu-sm{
+        display: block;
+        font-size: 32px;
+        color: #4891FF;
+        cursor: pointer;
+    }
+    #burger-menu{
+        display: none;
+    }
 }
+
