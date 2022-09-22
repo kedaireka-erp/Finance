@@ -131,17 +131,18 @@ class RekapSubkon extends Component
                    'jumlah_daun'=>$this->subkons[$subkonIndex]['jumlah_daun'] ?? NULL,
                    'keliling_kaca'=>$this->subkons[$subkonIndex]['keliling_kaca'] ?? NULL,
                    'harga_jasa'=>$this->subkons[$subkonIndex]['harga_jasa'] ?? NULL,
-                   'total_biaya'=>($this->subkons[$subkonIndex]['jumlah_daun']) * ($this->subkons[$subkonIndex]['harga_jasa'])
+                //    'total_biaya'=>($this->subkons[$subkonIndex]['jumlah_daun']) * ($this->subkons[$subkonIndex]['harga_jasa'])
                 ];
-        // $subkon['id'] = $subkonIndex;
+        if ($subkon['keliling_kaca'] != NULL){
+            $subkon['total_biaya'] = $subkon['keliling_kaca'] * $subkon['harga_jasa'];
+        } else {
+            $subkon['total_biaya']= $subkon['jumlah_daun'] * $subkon['harga_jasa'];
+        };
         // dd($subkon);
         if (!is_null($subkon)){
              Resub::query()
                 ->where('id',$subkon['id'])
                 ->update($subkon);
-            // if ($editedSubkon) {
-            //     $editedSubkon->update($subkon);
-            // }
         }
         $this->editedSubkonIndex = null;
     }

@@ -17,11 +17,11 @@
               </select>
             </div>
         </div>
-        <div class="row">
-          <span class="my-2 mx-2 fs-7" style="color: #5C5858">
-            Cari Berdasarkan
-          </span>
+        <div class="row align-items-end">
           <div class="col">
+            <span class="my-2 mx-2 fs-7" style="color: #5C5858">
+              Cari Berdasarkan
+            </span>
             <div class="input-group mx-2-lg mb-4" id="select-filter"> 
               <select wire:model="col_selected" class="selection form-select" id="itemType" name="item_type" aria-label=".form-select-sm example">
                 <option value= "0">Choose Columns</option>
@@ -34,6 +34,9 @@
             </div>
           </div>
           <div class="col">
+            <span class="my-2 mx-2 fs-7" style="color: #5C5858">
+              Jenis Pekerjaan
+            </span>
             <div class="input-group mx-auto-sm mb-4">
               <select class="selection form-select" wire:model="selectedJob" id="itemType" name="item_type" aria-label=".form-select-sm example">
                 <option value= "0">ALL</option>
@@ -45,8 +48,17 @@
             </div>
           </div>
           <div class="col float-end mb-4">
-            <a  href="/list-approved" class="btn aksi-btn2 text-white mx-2 float-end {{ Route::is('list-approved') ? 'active' : '' }}">Approved</a>
-            <button class="btn aksi-btn3  text-white  mx-2 float-end" wire:click="Approve()">Approve Tagihan ({{   count($checkedTagih)}})</button>
+            <div class="row">
+              <div class="col">
+                <button class="btn aksi-btn3  text-white  mx-2 float-end" wire:click="Approve()">Approve Tagihan ({{   count($checkedTagih)}})</button>
+              </div>
+              <div class="col-4">
+                <a  href="/list-approved" class="btn aksi-btn2 text-white mx-2 float-end {{ Route::is('list-approved') ? 'active' : '' }}">Approved</a>
+              </div>
+              
+            </div>
+            
+            
           </div>
 
         </div>
@@ -139,11 +151,11 @@
                   
                   <td>
                     @if ($tgl_assembly == 1)
-                    {{ $item -> tanggal_assembly1 }}
+                    {{ $item -> assembly_date_1 }}
                     @elseif ($tgl_assembly == 2)
-                    {{ $item -> tanggal_assembly2 }}
+                    {{ $item -> assembly_date_2 }}
                     @else
-                    {{ $item -> tanggal_assembly3 }}
+                    {{ $item -> assembly_date_3 }}
                     @endif
                   </td>
                   {{-- <td>{{ $item -> tgl_tagih }}</td> --}}
@@ -154,19 +166,19 @@
                   <td>{{ $item -> warna }}</td>
                   <td>{{ $item -> kode_unit }}</td>
                   <td>
-                      @if($editedSubkonIndex !== $d )
-                          {{ $item -> jumlah_daun }}
-                      @else
+                      @if(($editedSubkonIndex === $d) && (($item->name == 'Assembly')||($item->name == 'Las')||($item->name == 'Cek Opening')) )
                       <input class="rounded-lg" type="text"
                       wire:model.defer="subkons.{{ $d }}.jumlah_daun">
+                      @else
+                      {{ $item -> jumlah_daun }}
                       @endif
                   </td>
                   <td>
-                      @if($editedSubkonIndex !== $d )
-                          {{ $item -> keliling_kaca }}
-                      @else
+                      @if(($editedSubkonIndex === $d) && (($item->name == 'Pasang Kaca')||($item->name == 'Sealant Kaca')) )
                       <input type="text"
                       wire:model.defer="subkons.{{ $d }}.keliling_kaca">
+                      @else
+                      {{ $item -> keliling_kaca }}
                       @endif
                   </td>
                   <td>
