@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Wo extends Model
 {
     use HasFactory;
-    protected $table = 'wos';
+    protected $table = 'work_orders';
 
     public function fppps(){
         return $this -> belongsTo(Fppp::class,"fppp_id");

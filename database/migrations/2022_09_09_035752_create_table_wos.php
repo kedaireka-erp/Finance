@@ -39,12 +39,17 @@ return new class extends Migration
             $table->date('finish_qc')->nullable();
             $table->string('user_qc')->nullable();
             $table->date('tgl_pack')->nullable();
+            $table->integer('qty')->nullable();
             $table->integer('qty_pack')->nullable();
             $table->string('user_pack')->nullable();
+            $table-> string('warna')->nullable();
             $table->enum('acc_pengiriman',['ACCEPT','PENDING','ACCEPT WITH NOTE'])->default('PENDING');
             $table->text('note')->nullable();
             $table->date('tgl_tagih')->nullable();
             $table->boolean('status_tagih')->default('0');
+            $table->integer('jumlah_daun')->nullable();
+            $table->integer('keliling_kaca')->nullable();
+            $table->integer('harga_jasa')->nullable();
             $table->timestamps();
         });
     }
