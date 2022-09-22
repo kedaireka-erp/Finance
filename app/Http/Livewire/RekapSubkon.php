@@ -147,3 +147,4 @@ class RekapSubkon extends Component
         $this->editedSubkonIndex = null;
     }
 }
+
