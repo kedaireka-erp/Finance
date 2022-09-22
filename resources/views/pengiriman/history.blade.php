@@ -88,7 +88,7 @@
             <th  scope="col" >
               <span>
                 No FPPP
-                <i wire:click="sortBy(fppp_no)" style="cursor: pointer" class="material-icons-round {{ $sortBy === 'fppp_no' && $sortDirection === 'desc' ? '' : 'no-use' }}">arrow_drop_down</i>
+                <i wire:click="sortBy('fppp_no')" style="cursor: pointer" class="material-icons-round {{ $sortBy === 'fppp_no' && $sortDirection === 'desc' ? '' : 'no-use' }}">arrow_drop_down</i>
               </span> 
             </th>
             <th  scope="col" >

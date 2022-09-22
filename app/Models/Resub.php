@@ -9,13 +9,13 @@ class Resub extends Model
 {
     use HasFactory;
 
-    protected $table = 'wos';
-    protected $fillable =['fppp_id','tgl_terima_fppp','tgl_tagih','tipe_barang','kode_unit','jumlah_daun','keliling_kaca','harga_jasa'];
+    protected $table = 'rekap_subkons';
+    protected $fillable =['tgl_tagih','tipe_barang','kode_unit','jumlah_daun','keliling_kaca','harga_jasa','total_biaya'];
 
 
-    public function fppps()
-    {
-        return $this->belongsTo(Produksi::class,"fppp_id");
-    }
+    // public function fppps()
+    // {
+    //     return $this->belongsTo(Produksi::class,"fppp_id");
+    // }
     
 }
