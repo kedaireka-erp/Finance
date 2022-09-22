@@ -15,8 +15,6 @@ class TablePengiriman extends Component
     public $date_to =null;
     public $col_selected = null;
     public $search = null;
-    // public $searchColumnsKode, $searchColumnsNama, $searchColumnsPriceMin, $searchColumnsPriceMax, $searchColumnsCategoryId;
-
 
     public function sortBy($columnName)
     {
