@@ -13,7 +13,7 @@
             </a>
           </li>
           <li>
-            <a href="/produksi" class="d-flex nav-link p-3 align-items-center {{ Route::is('produksi') ? 'active' : '' }}">
+            <a href="/produksi" class="d-flex nav-link p-3 align-items-center {{ (Route::is('accproduksi'))||(Route::is('produksi'))  ? 'active' : ''  }}">
               <i class="material-icons-round bi me-4">precision_manufacturing</i>
               <span class="text">Produksi</span>
             </a>
@@ -25,7 +25,7 @@
             </a>
           </li>
           <li>
-            <a href="/rekap_subkon" class="d-flex nav-link p-3 align-items-center {{ Route::is('rekap_subkon') ? 'active' : '' }}"">
+            <a href="/rekap_subkon" class="d-flex nav-link p-3 align-items-center {{ (Route::is('rekap_subkon')) || (Route::is('list-approved')) ? 'active' : ''  }}">
               <i class="material-icons-round bi me-4">groups</i>
               <span class="text">Rekap Subkon</span>
             </a>
@@ -53,19 +53,19 @@
           </a>
         </li>
         <li>
-          <a href="/produksi" class="d-flex nav-link p-3 align-items-center {{ Route::is('produksi') ? 'active' : '' }}">
+          <a href="/produksi" class="d-flex nav-link p-3 align-items-center {{ (Route::is('accproduksi'))||(Route::is('produksi'))  ? 'active' : ''  }}">
             <i class="material-icons-round bi me-4">precision_manufacturing</i>
             <span class="text">Produksi</span>
           </a>
         </li>
         <li>
-          <a href="/pengiriman" class="d-flex nav-link p-3 align-items-center {{ (Route::is('pengiriman')) || (Route::is('history-kirim'))  ? 'active' : '' }}">
+          <a href="/pengiriman" class="d-flex nav-link p-3 align-items-center {{ (Route::is('pengiriman')) || (Route::is('history-kirim'))  ? 'active' : ''  }}">
             <i class="material-icons-round bi me-4">local_shipping</i>
             <span class="text">Pengiriman</span>
           </a>
         </li>
         <li>
-          <a href="/rekap_subkon" class="d-flex nav-link p-3 align-items-center {{ Route::is('rekap_subkon') ? 'active' : '' }}"">
+          <a href="/rekap_subkon" class="d-flex nav-link p-3 align-items-center {{ (Route::is('rekap_subkon')) || (Route::is('list-approved')) ? 'active' : ''  }}">
             <i class="material-icons-round bi me-4">groups</i>
             <span class="text">Rekap Subkon</span>
           </a>

@@ -64,7 +64,7 @@ class ListApproved extends Component
                     })
                     ->paginate();
 
-        return view('livewire.list-approved',[
+        return view('listapproved.index',[
             'title' => 'Tagihan Subcon',
             'ket' => 'Tabel ',
             'items' => $items,

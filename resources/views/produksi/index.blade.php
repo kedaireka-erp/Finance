@@ -4,10 +4,19 @@
     <h3 class="my-4 judul"> {{ $title }} </h3>
     <div class="card border-light mb-3">
       <div class="card-body">
-        <h5 class="my-4 mx-2"> 
-          <i class="material-icons-round bi me-2">{{ $icon }}</i>
-          {{ $ket }}{{ $title }} 
-        </h5>
+        <div class="row">
+          <div class="col">
+            <h5 class="my-4 mx-2"> 
+              <i class="material-icons-round bi me-2">{{ $icon }}</i>
+              {{ $ket }}{{ $title }} 
+            </h5>
+          </div>
+          <div class="col">
+              <a href="{{ route('accproduksi') }}" class="btn aksi-btn2 text-white mx-2 float-end " >History</a>
+          </div>
+          
+  
+        </div>
   
         <div class="row my-4">
           <span class="my-2 mx-2-lg fs-7" style="color: #5C5858"> 
@@ -101,13 +110,13 @@
                   <tr class="items-align-center">
                     <th scope="row">{{ $items->firstItem() + $d}}</th>
                     <td>{{ $item -> date_for_humans }}</td>
-                    <td>{{ $item -> quotation_no }}</td>
+                    <td>{{ $item -> quotations-> quotation_no }}</td>
                     <td>{{ $item -> fppp_no }}</td>
                     <td>{{ $item -> applicator_name }}</td>
                     <td>{{ $item -> project_name }}</td>
                     <td class="p-4 text-center">
-                      <button class="status  p-2 btn btn-outline-light"  wire:click.prevent = "statusChangedConfirmation({{ $item->id }})" style="background-color: {{ $item -> status_color }}; color:{{ $item-> status_text_color }};font-size:13px">{{ $item -> acc_produksi }}</button>
-                    </td>
+                      <button class="status  p-2 btn btn-outline-light"  wire:click.prevent = "statusChangedConfirmation({{ $item->id }})" {{$item->status_disable}} style="background-color: {{ $item -> status_color }}; color:{{ $item-> status_text_color }};font-size:13px">{{ $item -> acc_produksi }}</button>
+                    </td> 
                   </tr>
           @endforeach
         </tbody>

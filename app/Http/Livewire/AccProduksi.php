@@ -8,12 +8,11 @@ use App\Models\Produksi;
 use Illuminate\Support\Facades\Redirect;
 
 
-class TableProduksi extends Component
+class AccProduksi extends Component
 {
 
     public $sortBy = 'fppps.created_at';
     public $sortDirection = 'desc';
-    // public $searchColumnsKode, $searchColumnsNama, $searchColumnsPriceMin, $searchColumnsPriceMax, $searchColumnsCategoryId;
     public $status_id ;
     public $selectedStatus =null;
     public $date_from =null;
@@ -72,6 +71,7 @@ class TableProduksi extends Component
         $status = ['ACCEPT','PENDING'];
         $items = Produksi::select(['fppps.*','quotations.quotation_no'])
                     ->join('quotations','fppps.quotation_id','=','quotations.id')
+                    ->where('fppps.acc_produksi','=','ACCEPT')
                     ->when($this->col_selected,function($q){
                         $q->where($this->col_selected,"like","%". $this->search ."%");
                     })
@@ -86,7 +86,7 @@ class TableProduksi extends Component
                     })
                     ->orderBy($this->sortBy, $this->sortDirection)
                     ->paginate();
-        return view('produksi.index',[
+        return view('accproduksi.index',[
             'title' => 'Produksi',
             'ket' => 'Tabel ',
             'items' => $items,

@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Produksi extends Model
+class Accepted extends Model
 {
     use HasFactory;
 
@@ -18,10 +18,10 @@ class Produksi extends Model
         return $this->belongsTo(Quotation::class,"quotation_id");
     }
     
-    // public function wos()
-    // {
-    //     return $this->hasMany(Pengiriman::class);
-    // }
+    public function wos()
+    {
+        return $this->hasMany(Pengiriman::class);
+    }
 
     public function getStatusColorAttribute()
     {
@@ -42,13 +42,5 @@ class Produksi extends Model
     public function getDateForHumansAttribute()
     {
         return $this->created_at->format('M, d Y');
-    }
-
-    public function getStatusDisableAttribute()
-    {
-        return [
-            'ACCEPT' => 'disabled',
-            'PENDING' => ''
-        ][$this->acc_produksi]?? '#4891FF';;
     }
 }
