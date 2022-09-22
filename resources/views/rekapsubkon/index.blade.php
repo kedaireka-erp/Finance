@@ -47,7 +47,7 @@
               </select>
             </div>
           </div>
-          <div class="col float-end mb-4">
+          <div class="col-md float-end mb-4">
             <div class="row">
               <div class="col">
                 <button class="btn aksi-btn3  text-white  mx-2 float-end" wire:click="Approve()">Approve Tagihan ({{   count($checkedTagih)}})</button>

@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Redirect;
 class TableProduksi extends Component
 {
 
-    public $sortBy = 'created_at';
+    public $sortBy = 'fppps.created_at';
     public $sortDirection = 'desc';
     // public $searchColumnsKode, $searchColumnsNama, $searchColumnsPriceMin, $searchColumnsPriceMax, $searchColumnsCategoryId;
     public $status_id ;
@@ -70,19 +70,19 @@ class TableProduksi extends Component
             'project_name' => 'Nama Projek'
         ];
         $status = ['ACCEPT','PENDING'];
-        $items = Produksi::query()
-                    ->where('order_status',"=", 1)
+        $items = Produksi::select(['fppps.*','quotations.quotation_no'])
+                    ->join('quotations','fppps.quotation_id','=','quotations.id')
                     ->when($this->col_selected,function($q){
                         $q->where($this->col_selected,"like","%". $this->search ."%");
                     })
                     ->when($this->selectedStatus,function($query){
-                        $query->where('acc_produksi',$this->selectedStatus);
+                        $query->where('fppps.acc_produksi',$this->selectedStatus);
                     })
                     ->when($this->date_from,function($q){
-                        $q->where('created_at','>=',$this -> date_from);
+                        $q->where('fppps.created_at','>=',$this -> date_from);
                     })
                     ->when($this->date_to,function($q){
-                        $q->where('created_at','<=',$this -> date_to);
+                        $q->where('fppps.created_at','<=',$this -> date_to);
                     })
                     ->orderBy($this->sortBy, $this->sortDirection)
                     ->paginate();

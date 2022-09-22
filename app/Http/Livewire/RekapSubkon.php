@@ -48,7 +48,7 @@ class RekapSubkon extends Component
             'jumlah_daun' => 'Jumlah Daun',
             'keliling_kaca' => 'Keliling Kaca',
             'harga_jasa' => 'Harga Jasa',
-            'total_biaya' => 'Total Biaya'
+            'total_biaya' => 'Total Biaya',
         ];
         $items = Resub::select([
                         'rekap_subkons.id',
