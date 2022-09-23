@@ -20,6 +20,7 @@ Route::get('/', function () {
 
 // BAGIAN PRODUKSI 
 Route::get('produksi', App\Http\Livewire\TableProduksi::class)->name('produksi');
+Route::get('accproduksi', App\Http\Livewire\AccProduksi::class)->name('accproduksi');
 
 
 // BAGIAN PENGIRIMAN
