@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class Resub extends Model
 {
@@ -18,4 +19,20 @@ class Resub extends Model
     //     return $this->belongsTo(Produksi::class,"fppp_id");
     // }
     
+    public function getAssemblyDate1Attribute()
+    {
+        return Carbon::parse($this->tanggal_assembly1)->format('M, d Y');
+    }
+    public function getAssemblyDate2Attribute()
+    {
+        return Carbon::parse($this->tanggal_assembly2)->format('M, d Y');
+    }
+    public function getAssemblyDate3Attribute()
+    {
+        return Carbon::parse($this->tanggal_assembly3)->format('M, d Y');
+    }
+    public function getAssemblyTagihDateAttribute()
+    {
+        return Carbon::parse($this->tgl_tagih)->format('M, d Y');
+    }
 }

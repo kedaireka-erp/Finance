@@ -4,16 +4,15 @@ namespace App\Http\Livewire;
 
 use Schema;
 use Livewire\Component;
-use App\Models\Accepted;
+use App\Models\Produksi;
 use Illuminate\Support\Facades\Redirect;
 
 
 class AccProduksi extends Component
 {
 
-    public $sortBy = 'created_at';
+    public $sortBy = 'fppps.created_at';
     public $sortDirection = 'desc';
-    // public $searchColumnsKode, $searchColumnsNama, $searchColumnsPriceMin, $searchColumnsPriceMax, $searchColumnsCategoryId;
     public $status_id ;
     public $selectedStatus =null;
     public $date_from =null;
@@ -37,7 +36,7 @@ class AccProduksi extends Component
     public function statusChangedConfirmation($id)
     {
         $this -> status_id = $id;
-        $pop = Accepted::find($id);
+        $pop = Produksi::find($id);
             if($pop['acc_produksi']=='ACCEPT') {
                 $this -> dispatchBrowserEvent('show-status-confirmation1');
             }
@@ -48,14 +47,14 @@ class AccProduksi extends Component
 
 
     public function update(){
-        Accepted::query()
+        Produksi::query()
         ->whereIn('id', [$this->status_id])
         ->update(['acc_produksi' => 'ACCEPT']);
         // $this->dispatchBrowserEvent('statusChanged');
     }
 
     public function update_undo(){
-        Accepted::query()
+        Produksi::query()
         ->whereIn('id', [$this->status_id])
         ->update(['acc_produksi' => 'PENDING']);
         // $this->dispatchBrowserEvent('statusChanged');
@@ -70,24 +69,24 @@ class AccProduksi extends Component
             'project_name' => 'Nama Projek'
         ];
         $status = ['ACCEPT','PENDING'];
-        $items = Accepted::query()
-                    ->where('order_status',"=", 1)
-                    ->where('acc_produksi','=','ACCEPT')
+        $items = Produksi::select(['fppps.*','quotations.quotation_no'])
+                    ->join('quotations','fppps.quotation_id','=','quotations.id')
+                    ->where('fppps.acc_produksi','=','ACCEPT')
                     ->when($this->col_selected,function($q){
                         $q->where($this->col_selected,"like","%". $this->search ."%");
                     })
                     ->when($this->selectedStatus,function($query){
-                        $query->where('acc_produksi',$this->selectedStatus);
+                        $query->where('fppps.acc_produksi',$this->selectedStatus);
                     })
                     ->when($this->date_from,function($q){
-                        $q->where('created_at','>=',$this -> date_from);
+                        $q->where('fppps.created_at','>=',$this -> date_from);
                     })
                     ->when($this->date_to,function($q){
-                        $q->where('created_at','<=',$this -> date_to);
+                        $q->where('fppps.created_at','<=',$this -> date_to);
                     })
                     ->orderBy($this->sortBy, $this->sortDirection)
                     ->paginate();
-        return view('livewire.accproduksi',[
+        return view('accproduksi.index',[
             'title' => 'Produksi',
             'ket' => 'Tabel ',
             'items' => $items,
