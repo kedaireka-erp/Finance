@@ -22,13 +22,13 @@
             Cari Berdasarkan
           </span>
           <div class="col">
-            <div class="input-group mx-2-lg mb-4" id="select-filter"> 
+            <div class="input-group mx-2-lg mb-4" id="select-filter">
               <select wire:model="col_selected" class="selection form-select" id="itemType" name="item_type" aria-label=".form-select-sm example">
                 <option value= "0">Choose Columns</option>
                 @foreach ($columns as $columns_id => $columns_name)
                  <option value="{{ $columns_id }}">{{ $columns_name }}</option>
                 @endforeach
-                
+
               </select>
               <input wire:model="search" class="form-control" style="width:20rem" id="exampleInputEmail1" aria-describedby="emailHelp" name="search" placeholder="search..">
             </div>
@@ -40,7 +40,7 @@
                 @foreach ($job as $job)
                  <option value="{{ $job }}">{{ $job }}</option>
                 @endforeach
-                
+
               </select>
             </div>
           </div>
@@ -50,9 +50,9 @@
           </div>
 
         </div>
-        
 
-        
+
+
 
 <div class="table-responsive">
   <table class="table">
@@ -136,7 +136,7 @@
                   <th scope="row">
                           <input class="form-check-input mt-0" type="checkbox" value="{{ $item->id}}" wire:model="checkedTagih">
                   </th>
-                  
+
                   <td>
                     @if ($tgl_assembly == 1)
                     {{ $item -> tanggal_assembly1 }}
@@ -176,7 +176,7 @@
                       <input type="text"
                       wire:model.defer="subkons.{{ $d }}.harga_jasa">
                       @endif
-  
+
                   </td>
                   <td>{{ $item -> total_biaya }}</td>
                   <td>

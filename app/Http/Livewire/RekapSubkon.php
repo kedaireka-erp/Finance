@@ -96,7 +96,7 @@ class RekapSubkon extends Component
             'kode_assembly' => $kode_assembly,
             'tgl_assembly' => $this -> assembly,
         ])->extends('layouts.main')->section('container') ;
-    } 
+    }
 
     public function Approve(){
         Resub::query()

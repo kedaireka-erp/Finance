@@ -6,7 +6,7 @@
       <h5 class="my-4 mx-2">
         <i class="material-icons-round bi me-2">{{ $icon }}</i>
         {{ $ket }}{{ $title }}
-      </h5> 
+      </h5>
 
       <div class="row my-4 justify-content-between">
         <div class="row">
@@ -19,27 +19,38 @@
           </div>
       </div>
       <div class="row">
-        <span class="my-2 mx-2 fs-7" style="color: #5C5858">
-          Cari Berdasarkan
-        </span>
-        <div class="col">
-              <div class="input-group mx-2 mb-4" id="select-filter">
-                <select class="selection form-select" id="itemType" name="item_type" aria-label=".form-select-sm example">
-                  <option value= "0">Choose Columns</option>
-                  @foreach ($columns as $columns_id => $columns_name)
-                   <option value="{{ $columns_id }}">{{ $columns_name }}</option>
-                  @endforeach
+          <span class="my-2 mx-2 fs-7" style="color: #5C5858">
+            Cari Berdasarkan
+          </span>
+          <div class="col">
+            <div class="input-group mx-2-lg mb-4" id="select-filter">
+              <select wire:model="col_selected" class="selection form-select" id="itemType" name="item_type" aria-label=".form-select-sm example">
+                <option value= "0">Choose Columns</option>
+                @foreach ($columns as $columns_id => $columns_name)
+                 <option value="{{ $columns_id }}">{{ $columns_name }}</option>
+                @endforeach
 
-                </select>
-                <input class="form-control" style="width:10rem" id="exampleInputEmail1" aria-describedby="emailHelp" name="search" placeholder="search..">
+              </select>
+              <input wire:model="search" class="form-control" style="width:20rem" id="exampleInputEmail1" aria-describedby="emailHelp" name="search" placeholder="search..">
+            </div>
+          </div>
+          <div class="col">
+            <div class="input-group mx-auto-sm mb-4">
+              <select class="selection form-select" wire:model="selectedJob" id="itemType" name="item_type" aria-label=".form-select-sm example">
+                <option value= "0">ALL</option>
+                @foreach ($job as $job)
+                 <option value="{{ $job }}">{{ $job }}</option>
+                @endforeach
+
+              </select>
               </div>
         </div>
         <div class="col float-end">
           <a href="/rekap_subkon"  class="btn aksi-btn text-white mx-2 float-end {{ Route::is('rekap_subkon') ? 'active' : ''}}">Add Item</a>
       </div>
       </div>
-        
-        
+
+
 
         </div>
 
@@ -143,7 +154,7 @@
         @endforeach
       </tbody>
     </table>
-  
+
 </div>
   {{-- pagination   --}}
   {{ $items -> links() }}
