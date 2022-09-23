@@ -25,7 +25,7 @@
           Cari Berdasarkan
         </span>
         <div class="col">
-              <div class="input-group mx-2-lg mb-4" id="select-filter">
+              <div class="input-group mx-2-lg mb-4" id="select-filter"> 
                 <select wire:model="col_selected" class="selection form-select" id="itemType" name="item_type" aria-label=".form-select-sm example">
                   <option value= "0">Choose Columns</option>
                   @foreach ($columns as $columns_id => $columns_name)

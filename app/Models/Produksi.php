@@ -18,10 +18,10 @@ class Produksi extends Model
         return $this->belongsTo(Quotation::class,"quotation_id");
     }
     
-    public function wos()
-    {
-        return $this->hasMany(Pengiriman::class);
-    }
+    // public function wos()
+    // {
+    //     return $this->hasMany(Pengiriman::class);
+    // }
 
     public function getStatusColorAttribute()
     {

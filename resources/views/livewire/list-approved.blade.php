@@ -6,27 +6,51 @@
       <h5 class="my-4 mx-2">
         <i class="material-icons-round bi me-2">{{ $icon }}</i>
         {{ $ket }}{{ $title }}
-      </h5> 
+      </h5>
 
       <div class="row my-4 justify-content-between">
-        <span class="my-2 mx-2 fs-7" style="color: #5C5858">
-          Cari Berdasarkan
-        </span>
-        <div class="col">
-              <div class="input-group mx-2 mb-4" id="select-filter">
-                <select class="selection form-select" id="itemType" name="item_type" aria-label=".form-select-sm example">
-                  <option value= "0">Choose Columns</option>
-                  @foreach ($columns as $columns_id => $columns_name)
-                   <option value="{{ $columns_id }}">{{ $columns_name }}</option>
-                  @endforeach
+        <div class="row">
+          <div class="col-sm-4 mx-2 my-4">
+            <select wire:model="assembly" class="selection2 form-select" id="itemType" name="item_type" aria-label=".form-select-sm example">
+              @foreach ($kode_assembly as $id => $assembly)
+               <option value="{{ $id }}">{{ $assembly }}</option>
+              @endforeach
+            </select>
+          </div>
+      </div>
+      <div class="row">
+          <span class="my-2 mx-2 fs-7" style="color: #5C5858">
+            Cari Berdasarkan
+          </span>
+          <div class="col">
+            <div class="input-group mx-2-lg mb-4" id="select-filter">
+              <select wire:model="col_selected" class="selection form-select" id="itemType" name="item_type" aria-label=".form-select-sm example">
+                <option value= "0">Choose Columns</option>
+                @foreach ($columns as $columns_id => $columns_name)
+                 <option value="{{ $columns_id }}">{{ $columns_name }}</option>
+                @endforeach
 
-                </select>
-                <input class="form-control" style="width:10rem" id="exampleInputEmail1" aria-describedby="emailHelp" name="search" placeholder="search..">
+              </select>
+              <input wire:model="search" class="form-control" style="width:20rem" id="exampleInputEmail1" aria-describedby="emailHelp" name="search" placeholder="search..">
+            </div>
+          </div>
+          <div class="col">
+            <div class="input-group mx-auto-sm mb-4">
+              <select class="selection form-select" wire:model="selectedJob" id="itemType" name="item_type" aria-label=".form-select-sm example">
+                <option value= "0">ALL</option>
+                @foreach ($job as $job)
+                 <option value="{{ $job }}">{{ $job }}</option>
+                @endforeach
+
+              </select>
               </div>
         </div>
         <div class="col float-end">
-            <a href="/rekap_subkon"  class="btn aksi-btn text-white mx-2 float-end {{ Route::is('rekap_subkon') ? 'active' : ''}}">Add Item</a>
-        </div>
+          <a href="/rekap_subkon"  class="btn aksi-btn text-white mx-2 float-end {{ Route::is('rekap_subkon') ? 'active' : ''}}">Add Item</a>
+      </div>
+      </div>
+
+
 
         </div>
 
@@ -38,7 +62,7 @@
           <th scope="col" >
             <span>
               Tanggal Pengerjaan
-              <i wire:click="sortBy('tgl_terima_fppp')" style="cursor: pointer" class="material-icons-round {{ $sortBy === 'tgl_terima_fppp' && $sortDirection === 'desc' ? '' : 'no-use' }}">arrow_drop_down</i>
+              <i wire:click="sortBy('tanggal_assembly1')" style="cursor: pointer" class="material-icons-round {{ $sortBy === 'tanggal_assembly1' && $sortDirection === 'desc' ? '' : 'no-use' }}">arrow_drop_down</i>
             </span>
           </th>
           <th  scope="col" >
@@ -50,13 +74,13 @@
           <th  scope="col" >
               <span>
                 Jenis Pekerjaan
-                <i wire:click="sortBy('')" style="cursor: pointer" class="material-icons-round {{ $sortBy === '' && $sortDirection === 'desc' ? '' : 'no-use' }}">arrow_drop_down</i>
+                <i wire:click="sortBy('name')" style="cursor: pointer" class="material-icons-round {{ $sortBy === 'name' && $sortDirection === 'desc' ? '' : 'no-use' }}">arrow_drop_down</i>
               </span>
             </th>
           <th  scope="col" >
             <span>
               No FPPP
-              <i wire:click="sortBy('')" style="cursor: pointer" class="material-icons-round {{ $sortBy === '' && $sortDirection === 'desc' ? '' : 'no-use' }}">arrow_drop_down</i>
+              <i wire:click="sortBy('fppp_no')" style="cursor: pointer" class="material-icons-round {{ $sortBy === 'fppp_no' && $sortDirection === 'desc' ? '' : 'no-use' }}">arrow_drop_down</i>
             </span>
           </th>
           <th  scope="col">
@@ -68,13 +92,13 @@
           <th  scope="col">
               <span>
                 Tipe Barang
-                <i wire:click="sortBy('tipe_barang')" style="cursor: pointer" class="material-icons-round {{ $sortBy === 'tipe_barang' && $sortDirection === 'desc' ? '' : 'no-use' }}">arrow_drop_down</i>
+                <i wire:click="sortBy('nama_item')" style="cursor: pointer" class="material-icons-round {{ $sortBy === 'nama_item' && $sortDirection === 'desc' ? '' : 'no-use' }}">arrow_drop_down</i>
               </span>
           </th>
           <th  scope="col">
               <span>
                 Warna
-                <i wire:click="sortBy('')" style="cursor: pointer" class="material-icons-round {{ $sortBy === '' && $sortDirection === 'desc' ? '' : 'no-use' }}">arrow_drop_down</i>
+                <i wire:click="sortBy('warna')" style="cursor: pointer" class="material-icons-round {{ $sortBy === 'warna' && $sortDirection === 'desc' ? '' : 'no-use' }}">arrow_drop_down</i>
               </span>
           </th>
           <th  scope="col">
@@ -86,19 +110,19 @@
           <th  scope="col">
               <span>
                 Jumlah Daun
-                <i wire:click="sortBy('')" style="cursor: pointer" class="material-icons-round {{ $sortBy === '' && $sortDirection === 'desc' ? '' : 'no-use' }}">arrow_drop_down</i>
+                <i wire:click="sortBy('jumlah_daun')" style="cursor: pointer" class="material-icons-round {{ $sortBy === 'jumlah_daun' && $sortDirection === 'desc' ? '' : 'no-use' }}">arrow_drop_down</i>
               </span>
           </th>
           <th  scope="col">
               <span>
                 Harga Jasa
-                <i wire:click="sortBy('')" style="cursor: pointer" class="material-icons-round {{ $sortBy === '' && $sortDirection === 'desc' ? '' : 'no-use' }}">arrow_drop_down</i>
+                <i wire:click="sortBy('harga_jasa')" style="cursor: pointer" class="material-icons-round {{ $sortBy === 'harga_jasa' && $sortDirection === 'desc' ? '' : 'no-use' }}">arrow_drop_down</i>
               </span>
           </th>
           <th  scope="col">
               <span>
                   Total Biaya
-                <i wire:click="sortBy('')" style="cursor: pointer" class="material-icons-round {{ $sortBy === '' && $sortDirection === 'desc' ? '' : 'no-use' }}">arrow_drop_down</i>
+                <i wire:click="sortBy('total_biaya')" style="cursor: pointer" class="material-icons-round {{ $sortBy === 'total_biaya' && $sortDirection === 'desc' ? '' : 'no-use' }}">arrow_drop_down</i>
               </span>
           </th>
         </tr>
@@ -107,22 +131,30 @@
       <tbody>
         @foreach ($items as $d=>$item)
                 <tr class="items-align-center">
-                  <td>{{ $item -> tgl_terima_fppp }}</td>
+                  <td>
+                    @if ($tgl_assembly == 1)
+                    {{ $item -> tanggal_assembly1 }}
+                    @elseif ($tgl_assembly == 2)
+                    {{ $item -> tanggal_assembly2 }}
+                    @else
+                    {{ $item -> tanggal_assembly3 }}
+                    @endif
+                  </td>
                   <td>{{ $item -> tgl_tagih }}</td>
-                  <td>jenis pekerjaan</td>
-                  <td>{{ $item -> fppps -> fppp_no }}</td>
-                  <td>{{ $item -> fppps -> project_name }}</td>
-                  <td>{{ $item -> tipe_barang }}</td>
-                  <td>warna</td>
+                  <td>{{ $item -> name }}</td>
+                  <td>{{ $item -> fppp_no }}</td>
+                  <td>{{ $item -> project_name }}</td>
+                  <td>{{ $item -> nama_item }}</td>
+                  <td>{{ $item -> warna }}</td>
                   <td>{{ $item -> kode_unit }}</td>
                   <td>{{ $item -> jumlah_daun }}</td>
                   <td>{{ $item -> harga_jasa }}</td>
-                  <td>{{ $item -> jumlah_daun * $item -> harga_jasa }}</td>
+                  <td>{{ $item -> total_biaya }}</td>
                 </tr>
         @endforeach
       </tbody>
     </table>
-  
+
 </div>
   {{-- pagination   --}}
   {{ $items -> links() }}
