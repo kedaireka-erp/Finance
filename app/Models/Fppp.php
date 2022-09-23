@@ -10,7 +10,7 @@ class Fppp extends Model
     use HasFactory;
     protected $table = 'fppps';
 
-    public function wos(){
-        return $this -> hasMany(Wo::class);
-    }
+    // public function wos(){
+    //     return $this -> hasMany(Wo::class);
+    // }
 }
