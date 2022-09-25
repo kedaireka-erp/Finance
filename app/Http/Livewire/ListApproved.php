@@ -11,9 +11,12 @@ class ListApproved extends Component
 {
     public $sortBy = 'rekap_subkons.created_at';
     public $sortDirection = 'desc';
+    public $selectedJob =null;
     public $selectedStatus ='';
     public $checkedTagih =[];
     public $assembly = 1;
+    public $col_selected = null;
+    public $search = null;
 
 
     public function sortBy($columnName)
@@ -34,7 +37,17 @@ class ListApproved extends Component
             3 => 'Kode Assembly 3'
         ];
         $job = ['Assembly','Las','Cek Opening','Pasang Kaca','Sealent Kaca'];
-        $columns = ['Kode Barang','Nama Barang'];
+        $columns = [
+            'fppp_no' => 'No FPPP',
+            'project_name' => ' Nama Projek',
+            'nama_item' => 'Tipe Barang',
+            'warna' => 'Warna',
+            'kode_unit' => 'Kode Unit',
+            'jumlah_daun' => 'Jumlah Daun',
+            'keliling_kaca' => 'Keliling Kaca',
+            'harga_jasa' => 'Harga Jasa',
+            'total_biaya' => 'Total Biaya'
+        ];
         $items = Resub::select([
                         'rekap_subkons.id',
                         'rekap_subkons.jumlah_daun',
@@ -59,15 +72,21 @@ class ListApproved extends Component
                     ->join('assemblies', 'rekap_subkons.assembly_id','=','assemblies.id')
                     ->join('fppps', 'work_orders.fppp_id','=','fppps.id')
                     ->where('rekap_subkons.status_tagih',1)
+                    ->when($this->col_selected,function($q){
+                        $q->where($this->col_selected,"like","%". $this->search ."%");
+                    })
                     ->when($this->assembly,function($query){
                         $query->where('rekap_subkons.kode_assembly',$this->assembly);
                     })
-                    ->paginate();
-
-        return view('listapproved.index',[
+                    ->when($this->selectedJob,function($query){
+                        $query->where('assemblies.name',$this->selectedJob);
+                        });
+        $items_view = $items -> paginate();
+        $this->subkons = $items->get()->toArray();
+        return view('livewire.list-approved',[
             'title' => 'Tagihan Subcon',
             'ket' => 'Tabel ',
-            'items' => $items,
+            'items' => $items_view,
             'icon' => 'groups',
             'job' => $job,
             'columns'=>$columns,
