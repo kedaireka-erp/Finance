@@ -137,7 +137,7 @@
                     <td>{{ $item -> project_name }}</td>
                     <td>{{ $item -> tujuan }}</td>
                     <td>{{ $item -> qty_packing }}</td>
-                    <td>100</td>
+                    <td>{{ $item -> qty }}</td>
                     <td class="p-4 text-center">
                       <span class="status  p-2 rounded" style="background-color: {{ $item -> status_color }}; color:{{ $item-> status_text_color }};font-size:13px">{{ $item -> acc_pengiriman }}</span>
                     </td>
