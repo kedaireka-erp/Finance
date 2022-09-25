@@ -83,7 +83,7 @@ class ListApproved extends Component
                         });
         $items_view = $items -> paginate();
         $this->subkons = $items->get()->toArray();
-        return view('livewire.list-approved',[
+        return view('listapproved.index',[
             'title' => 'Tagihan Subcon',
             'ket' => 'Tabel ',
             'items' => $items_view,
