@@ -18,7 +18,7 @@ class Dashboard extends Component
         $produksi = Fppp::get();
         $acc_produksi = Fppp::where('acc_produksi', 1)->get();
         $pending_produksi = Fppp::where('acc_produksi', 2)->get();
-        return view('livewire.dashboard',[
+        return view('dashboard.dashboard',[
             'title' => 'Dashboard',
             'pengiriman' => $pengiriman,
             'acc_pengiriman' => $acc_pengiriman,
@@ -27,6 +27,6 @@ class Dashboard extends Component
             'produksi' => $produksi,
             'acc_produksi' => $acc_produksi,
             'pending_produksi' => $pending_produksi,
-        ]);
+        ])->extends('layouts.main')->section('container');
     }
 }
