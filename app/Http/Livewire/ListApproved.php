@@ -17,6 +17,8 @@ class ListApproved extends Component
     public $assembly = 1;
     public $col_selected = null;
     public $search = null;
+    public $selectAll = false;
+
 
 
     public function sortBy($columnName)
