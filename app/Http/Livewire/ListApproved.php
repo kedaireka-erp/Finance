@@ -94,4 +94,26 @@ class ListApproved extends Component
             'tgl_assembly' => $this -> assembly,
         ])->extends('layouts.main')->section('container');
     }
+
+    public function updatedSelectAll($value)
+    {
+        if($value){
+            $this->checkedTagih = Resub::where('status_tagih',1)->pluck('id');
+        }else{
+            $this->checkedTagih = [];
+        }
+    }
+
+    public function Unapprove(){
+        Resub::query()
+            ->whereIn('id', $this->checkedTagih)
+            ->update([
+                    'tgl_tagih' => null,
+                    'status_tagih' => 0,
+        ]);
+        $this->checkedTagih =[];
+        $this->selectAll = false;
+        // return Redirect::back();
+    }
+
 }

@@ -46,7 +46,14 @@
               </div>
         </div>
         <div class="col float-end">
-          <a href="/rekap_subkon"  class="btn aksi-btn text-white mx-2 float-end {{ Route::is('rekap_subkon') ? 'active' : ''}}">Add Item</a>
+            <div class="row">
+              <div class="col">
+                <button class="btn aksi-btn5  text-white  mx-2 float-end" wire:click="Unapprove()">Unapprove Tagihan ({{   count($checkedTagih)}})</button>
+              </div>
+              <div class="col-4">
+                <a href="/rekap_subkon"  class="btn aksi-btn text-white float-end {{ Route::is('rekap_subkon') ? 'active' : ''}}">Add Item</a>
+              </div>
+            </div>
       </div>
       </div>
 
@@ -59,6 +66,7 @@
     {{-- table heading --}}
       <thead>
         <tr class="text-center">
+          <th scope="col" ><input type="checkbox" wire:model="selectAll" ></th>
           <th scope="col" >
             <span>
               Tanggal Pengerjaan
@@ -137,6 +145,9 @@
       <tbody>
         @foreach ($items as $d=>$item)
                 <tr class="items-align-center">
+                  <th scope="row">
+                    <input class="form-check-input mt-0" type="checkbox" value="{{ $item->id}}" wire:model="checkedTagih">
+                  </th>
                   <td>
                     @if ($tgl_assembly == 1)
                     {{ $item -> tanggal_assembly1 }}
