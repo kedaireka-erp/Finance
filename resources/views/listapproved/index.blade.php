@@ -9,21 +9,20 @@
       </h5>
 
       <div class="row my-4 justify-content-between">
-        <div class="row">
-          <div class="col-sm-4 mx-2 my-4">
-            <select wire:model="assembly" class="selection2 form-select" id="itemType" name="item_type" aria-label=".form-select-sm example">
+      <div class="row">
+        
+          <span class="my-2 mx-2 fs-7" style="color: #5C5858">
+            Cari Berdasarkan
+          </span>
+          <div class="col-sm-2">
+            <select wire:model="assembly" class="selection2 form-select mb-4" id="itemType" name="item_type" aria-label=".form-select-sm example">
               @foreach ($kode_assembly as $id => $assembly)
                <option value="{{ $id }}">{{ $assembly }}</option>
               @endforeach
             </select>
           </div>
-      </div>
-      <div class="row">
-          <span class="my-2 mx-2 fs-7" style="color: #5C5858">
-            Cari Berdasarkan
-          </span>
           <div class="col">
-            <div class="input-group mx-2-lg mb-4" id="select-filter">
+            <div class="input-group mb-4" id="select-filter">
               <select wire:model="col_selected" class="selection form-select" id="itemType" name="item_type" aria-label=".form-select-sm example">
                 <option value= "0">Choose Columns</option>
                 @foreach ($columns as $columns_id => $columns_name)
@@ -31,11 +30,11 @@
                 @endforeach
 
               </select>
-              <input wire:model="search" class="form-control" style="width:20rem" id="exampleInputEmail1" aria-describedby="emailHelp" name="search" placeholder="search..">
+              <input wire:model="search" class="form-control" style="width: 10rem" id="exampleInputEmail1" aria-describedby="emailHelp" name="search" placeholder="search..">
             </div>
           </div>
-          <div class="col">
-            <div class="input-group mx-auto-sm mb-4">
+          <div class="col-sm-2">
+            <div class="input-group mx-auto-sm mb-4" style="width: 10rem">
               <select class="selection form-select" wire:model="selectedJob" id="itemType" name="item_type" aria-label=".form-select-sm example">
                 <option value= "0">ALL</option>
                 @foreach ($job as $job)
