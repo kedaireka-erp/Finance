@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use App\Models\Pengiriman;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class TablePengiriman extends Component
 {
@@ -15,6 +16,7 @@ class TablePengiriman extends Component
     public $date_to =null;
     public $col_selected = null;
     public $search = null;
+    public $status_null = false;
 
     public function sortBy($columnName)
     {
@@ -53,7 +55,7 @@ class TablePengiriman extends Component
                     ->whereNotNull('qty_packing') 
                     ->when($this->col_selected,function($q){
                         $q->where($this->col_selected,"like","%". $this->search ."%");
-                    })
+                    }) 
                     ->when($this->selectedStatus,function($query){
                         $query->where('acc_pengiriman',$this->selectedStatus);
                         })
@@ -97,7 +99,7 @@ class TablePengiriman extends Component
             $item = $item;
         }
         $id_update = $id; 
-        $status = ['ACCEPT','PENDING','ACCEPT WITH NOTE'];
+        $status = ['ACCEPT','ACCEPT WITH NOTE'];
         return view('pengiriman.edit',[
             'item' => $item,
             'status' => $status,
@@ -109,6 +111,9 @@ class TablePengiriman extends Component
     public function update(Request $request, $id)
     {
         $item = Pengiriman::findorfail($id);
+        $validatedData = $request->validate([
+                        'status_select' => 'required'
+                    ]);
         $item -> update([
             "acc_pengiriman" => $request -> status_select,
             "note" => $request -> note
