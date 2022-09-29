@@ -2,7 +2,10 @@
 @section('container')
     
 {{-- <form action="{{ url('pengiriman/update/'.$id) }}" method="post"> --}}
-<form action="{{ url('pengiriman/update/'.$id) }}" method="post">
+@error('status_select')
+<div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+@enderror
+  <form action="{{ url('pengiriman/update/'.$id) }}" method="post">
     @csrf
     @foreach ($item as $i)
       <div class="container-fluid flex-grow-1">
@@ -87,7 +90,8 @@
                         Status
                         </span>
                         <select class="form-select m-2 slect" aria-label="Default select example" name="status_select">
-                            @foreach ($status as $status)
+                          <option id="status" value='' >SELECT STATUS</option>  
+                          @foreach ($status as $status)
                             <option id="status" value='{{ $status }}' {{ $i -> acc_pengiriman == $status ? "selected":"" }} >{{ $status }}</option>
                             @endforeach
                         </select>
