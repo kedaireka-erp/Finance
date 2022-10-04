@@ -13,7 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
+Route::group(['middleware' => ['auth']], function() {
+    // Route::get('/', function () {
 //     return view('dashboard.dashboard');
 // }) -> name('dashboard');
 Route::get('/', App\Http\Livewire\Dashboard::class)->name('dashboard');
@@ -36,4 +37,10 @@ Route::get('rekap_subkon', App\Http\Livewire\RekapSubkon::class)->name('rekap_su
 
 // BAGIAN Approved Rekap-Subkon 
 Route::get('list-approved', App\Http\Livewire\ListApproved::class)->name('list-approved');
+});
 
+Route::get("/login", [LoginController::class, "index"])->name("login");
+
+Route::post("/login", [LoginController::class, "login"]);
+
+Route::post("/logout", [LoginController::class, "logout"])->name("logout");

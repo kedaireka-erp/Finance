@@ -2,7 +2,7 @@
 <div class="container-fluid flex-grow-1">
   <h3 class="my-4 judul"> {{ $title }} </h3>
   <div class="card border-light mb-3 p-5">
-    <h4 class="text-dark">Selamat Datang, Sulistyo A ! </h4>
+    <h4 class="text-dark">Selamat Datang, {{ Auth::user()->name }} ! </h4>
     <p class="text-muted">Selamat datang di sistem finance.</p>
     @if(count($pending_produksi) != 0)
     <div class="rounded-2 nt p-3 row" id="offProduksi">
