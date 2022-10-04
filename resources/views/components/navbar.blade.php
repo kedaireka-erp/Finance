@@ -7,7 +7,7 @@
           <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle" style="color:#5C5858;" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
             <img src="https://github.com/mdo.png" alt="" width="52" height="52" class="rounded-circle me-2">
             <div class="d-flex flex-column">
-              <strong>mdo</strong>
+              <strong>{{ Auth::user()->name }}</strong>
               <span>Admin</span>
             </div>
           </a>
