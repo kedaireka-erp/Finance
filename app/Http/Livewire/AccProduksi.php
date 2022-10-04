@@ -63,17 +63,18 @@ class AccProduksi extends Component
     public function render()
     {
         $columns = [
-            'quotation_no'=>'No Quotation',
+            'no_quotation'=>'No Quotation',
             'fppp_no' => 'No FPPP',
-            'applicator_name' => 'Aplikator',
-            'project_name' => 'Nama Projek'
+            'aplikator' => 'Aplikator',
+            'nama_proyek' => 'Nama Projek'
         ];
         $status = ['ACCEPT','PENDING'];
-        $items = Produksi::select([ 'proyek_quotations.date',
+        $items = Produksi::select([ 'fppps.id',
+                                    'proyek_quotations.date',
                                     'proyek_quotations.no_quotation',
                                     'fppps.fppp_no',
                                     'master_aplikators.aplikator',
-                                    'proyek_quotations.name_proyek',
+                                    'proyek_quotations.nama_proyek',
                                     'fppps.acc_produksi'])
                     ->join('quotations','quotations.id','=','fppps.quotation_id')
                     ->join('proyek_quotations','proyek_quotations.id','=','quotations.proyek_quotation_id')
@@ -86,10 +87,10 @@ class AccProduksi extends Component
                         $query->where('fppps.acc_produksi',$this->selectedStatus);
                     })
                     ->when($this->date_from,function($q){
-                        $q->where('fppps.created_at','>=',$this -> date_from);
+                        $q->where('proyek_quotations.date','>=',$this -> date_from);
                     })
                     ->when($this->date_to,function($q){
-                        $q->where('fppps.created_at','<=',$this -> date_to);
+                        $q->where('proyek_quotations.date','<=',$this -> date_to);
                     })
                     ->orderBy($this->sortBy, $this->sortDirection)
                     ->paginate();

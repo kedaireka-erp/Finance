@@ -62,31 +62,31 @@
           <tr class="text-center">
             <th scope="col">No</th>
             <th scope="col" >
-              <span>
+              <span class='d-flex justify-content-center'>
                 Tanggal
                 <i wire:click="sortBy('created_at')" style="cursor: pointer" class="material-icons-round {{ $sortBy === 'created_at' && $sortDirection === 'desc' ? '' : 'no-use' }}">arrow_drop_down</i>
               </span> 
             </th> 
             <th  scope="col" >
-              <span>
+              <span class='d-flex justify-content-center'>
                 No Quotation
                 <i wire:click="sortBy('quotation_no')" style="cursor: pointer" class="material-icons-round {{ $sortBy === 'quotation_no' && $sortDirection === 'desc' ? '' : 'no-use' }}">arrow_drop_down</i>
               </span> 
             </th>               
             <th  scope="col" >
-              <span>
+              <span class='d-flex justify-content-center'>
                 No FPPP
                 <i wire:click="sortBy('fppp_no')" style="cursor: pointer" class="material-icons-round {{ $sortBy === 'fppp_no' && $sortDirection === 'desc' ? '' : 'no-use' }}">arrow_drop_down</i>
               </span> 
             </th>
             <th  scope="col" >
-              <span>
+              <span class='d-flex justify-content-center'>
                 Aplikator
                 <i wire:click="sortBy('applicator_name')" style="cursor: pointer" class="material-icons-round {{ $sortBy === 'applicator_name' && $sortDirection === 'desc' ? '' : 'no-use' }}">arrow_drop_down</i>
               </span>
             </th>
             <th  scope="col">
-              <span>
+              <span class='d-flex justify-content-center'>
                 Nama Projek
                 <i wire:click="sortBy('project_name')" style="cursor: pointer" class="material-icons-round {{ $sortBy === 'project_name' && $sortDirection === 'desc' ? '' : 'no-use' }}">arrow_drop_down</i>
               </span>
@@ -99,11 +99,11 @@
           @foreach ($items as $d=>$item)
                   <tr class="items-align-center">
                     <th scope="row">{{ $items->firstItem() + $d}}</th>
-                    <td>{{ $item -> date_for_humans }}</td>
-                    <td>{{ $item -> quotations -> quotation_no }}</td>
+                    <td>{{ $item -> date }}</td>
+                    <td>{{ $item -> no_quotation }}</td>
                     <td>{{ $item -> fppp_no }}</td>
-                    <td>{{ $item -> applicator_name }}</td>
-                    <td>{{ $item -> project_name }}</td>
+                    <td>{{ $item -> aplikator }}</td>
+                    <td>{{ $item -> nama_proyek }}</td>
                     <td class="p-4 text-center">
                       <button class="status  p-2 btn btn-outline-light"  wire:click.prevent = "statusChangedConfirmation({{ $item->id }})" style="background-color: {{ $item -> status_color }}; color:{{ $item-> status_text_color }};font-size:13px" {{ $item -> status_disabled}} >{{ $item -> acc_produksi }}</button>
                     </td>

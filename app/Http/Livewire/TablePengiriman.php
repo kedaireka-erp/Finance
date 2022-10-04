@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use App\Models\Pengiriman;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 class TablePengiriman extends Component
@@ -32,12 +33,13 @@ class TablePengiriman extends Component
     public function render()
     {
         $columns = [
-            'quotation_no'=>'No Quotation',
+            'no_quotation'=>'No Quotation',
             'fppp_no' => 'No FPPP',
-            'applicator_name' => 'Aplikator',
-            'project_name' => 'Nama Projek',
-            'tujuan' => 'Kota',
-            'qty_pack' => 'Item Jadi'
+            'aplikator' => 'Aplikator',
+            'nama_proyek' => 'Nama Projek',
+            'kota' => 'Kota',
+            'jumlah_jadi' => 'Item Jadi',
+            'jumlah_total' => 'Total Item'
         ];
         $status = ['ACCEPT','PENDING','ACCEPT WITH NOTE'];
             $items = Pengiriman::select([
@@ -47,13 +49,13 @@ class TablePengiriman extends Component
                                         'work_orders.qty_packing', 
                                         'master_aplikators.aplikator', 
                                         'proyek_quotations.nama_proyek', 
-                                        'detail_quotations.kota', 
-                                        'work_orders.kode_unit', 
-                                        'work_orders.tanggal_packing'])
+                                        'detail_quotations.kota'])
+                    ->select(DB::raw("COUNT(work_orders.kode_unit) as jumlah_total"))
+                    ->select(DB::raw("COUNT(work_orders.tanggal_packing) as jumlah_jadi"))
                     ->join('work_orders', 'work_orders.fppp_id','=','fppps.id')
                     ->join('quotations','fppps.quotation_id','=','quotations.id')
                     ->join('detail_quotations','detail_quotations.quotation_id','=','quotations.id')
-                    ->whereNotNull('qty_packing') 
+                    ->whereNotNull('work_orders.tanggal_packing') 
                     ->when($this->col_selected,function($q){
                         $q->where($this->col_selected,"like","%". $this->search ."%");
                     }) 
