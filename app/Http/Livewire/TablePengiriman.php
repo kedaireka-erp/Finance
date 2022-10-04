@@ -40,25 +40,26 @@ class TablePengiriman extends Component
             'qty_pack' => 'Item Jadi'
         ];
         $status = ['ACCEPT','PENDING','ACCEPT WITH NOTE'];
-            $items = Pengiriman::select(['work_orders.id',
+            $items = Pengiriman::select([
                                         'work_orders.tanggal_packing',
-                                        'work_orders.tujuan', 
-                                        'work_orders.qty_packing', 
-                                        'work_orders.qty', 
-                                        'work_orders.acc_pengiriman', 
+                                        'proyek_quotations.no_quotation',
                                         'fppps.fppp_no', 
-                                        'fppps.applicator_name', 
-                                        'fppps.project_name',
-                                        'quotations.quotation_no'])
-                    ->join('fppps', 'work_orders.fppp_id','=','fppps.id')
+                                        'work_orders.qty_packing', 
+                                        'master_aplikators.aplikator', 
+                                        'proyek_quotations.nama_proyek', 
+                                        'detail_quotations.kota', 
+                                        'work_orders.kode_unit', 
+                                        'work_orders.tanggal_packing'])
+                    ->join('work_orders', 'work_orders.fppp_id','=','fppps.id')
                     ->join('quotations','fppps.quotation_id','=','quotations.id')
+                    ->join('detail_quotations','detail_quotations.quotation_id','=','quotations.id')
                     ->whereNotNull('qty_packing') 
                     ->when($this->col_selected,function($q){
                         $q->where($this->col_selected,"like","%". $this->search ."%");
                     }) 
                     ->when($this->selectedStatus,function($query){
                         $query->where('acc_pengiriman',$this->selectedStatus);
-                        })
+                    })
                     ->when($this->date_from,function($q){
                         $q->where('tanggal_packing','>=',$this -> date_from);
                     })
@@ -81,25 +82,26 @@ class TablePengiriman extends Component
     
     public function edit(Request $request, $id){
         $item = Pengiriman::select(['work_orders.id',
-                            'work_orders.tanggal_packing',
-                            'work_orders.tujuan', 
-                            'work_orders.qty_packing', 
-                            'work_orders.qty', 
-                            'work_orders.acc_pengiriman',
-                            'work_orders.note',
-                            'fppps.fppp_no', 
-                            'fppps.applicator_name', 
-                            'fppps.project_name',
-                            'quotations.quotation_no'])
-                    ->join('fppps', 'work_orders.fppp_id','=','fppps.id')
-                    ->join('quotations','fppps.quotation_id','=','quotations.id')
-                    ->where('work_orders.id','=',$id)
-                    ->get();
+                                'work_orders.tanggal_packing',
+                                'work_orders.tujuan', 
+                                'work_orders.qty_packing', 
+                                'detail_quotations.qty', 
+                                'work_orders.acc_pengiriman', 
+                                'fppps.fppp_no', 
+                                'fppps.applicator_name', 
+                                'fppps.project_name',
+                                'quotations.quotation_no'])
+                        ->join('fppps', 'work_orders.fppp_id','=','fppps.id')
+                        ->join('quotations','fppps.quotation_id','=','quotations.id')
+                        ->join('detail_quotations','detail_quotations.quotation_id','=','quotations.id')
+                        ->where('work_orders.id','=',$id)
+                        ->get();
         if($request -> get('status') == 'history'){
             $item = $item;
         }
         $id_update = $id; 
         $status = ['ACCEPT','ACCEPT WITH NOTE'];
+
         return view('pengiriman.edit',[
             'item' => $item,
             'status' => $status,

@@ -11,16 +11,16 @@ class Pengiriman extends Model
 {
     use HasFactory;
 
-    protected $table = 'work_orders';
-    protected $fillable =['tgl_pack','fppp_id','tujuan','qty_packing','qty','acc_pengiriman','note'];
+    protected $table = 'fppps';
+    // protected $fillable =['tgl_pack','fppp_id','tujuan','qty_packing','qty','acc_pengiriman','note'];
     // public $date = ['tgl_pack'];
 
 
 
-    public function fppps()
-    {
-        return $this->belongsTo(Produksi::class,"fppp_id");
-    }
+    // public function fppps()
+    // {
+    //     return $this->belongsTo(Produksi::class,"fppp_id");
+    // }
 
     public function getStatusColorAttribute()
     {

@@ -41,7 +41,7 @@ class HistoryPengiriman extends Component
                         'work_orders.tanggal_packing',
                         'work_orders.tujuan', 
                         'work_orders.qty_packing', 
-                        'work_orders.qty', 
+                        'detail_quotations.qty', 
                         'work_orders.acc_pengiriman', 
                         'fppps.fppp_no', 
                         'fppps.applicator_name', 
@@ -49,6 +49,7 @@ class HistoryPengiriman extends Component
                         'quotations.quotation_no'])
             ->join('fppps', 'work_orders.fppp_id','=','fppps.id')
             ->join('quotations','fppps.quotation_id','=','quotations.id')
+            ->join('detail_quotations','detail_quotations.quotation_id','=','quotations.id')
             ->whereNotNull('qty_packing')
             ->whereNot('acc_pengiriman','=','PENDING')
             ->when($this->col_selected,function($q){

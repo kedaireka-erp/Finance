@@ -63,16 +63,19 @@ class ListApproved extends Component
                         'work_orders.tanggal_assembly2',
                         'work_orders.tanggal_assembly3',
                         'work_orders.nama_item',
-                        'work_orders.warna',
+                        'detail_quotations.kode_warna',
                         'work_orders.kode_unit',
                         'work_orders.fppp_id',
                         'fppps.fppp_no',
-                        'fppps.project_name',
+                        'proyek_quotations.nama_proyek',
                         'assemblies.name'
-                        ])
+                    ])
                     ->join('work_orders', 'rekap_subkons.work_order_id','=','work_orders.id')
                     ->join('assemblies', 'rekap_subkons.assembly_id','=','assemblies.id')
                     ->join('fppps', 'work_orders.fppp_id','=','fppps.id')
+                    ->join('detail_quotations', 'detail_quotations.quotation_id','=','fppps.quotation_id')
+                    ->join('quotations', 'fppps.quotation_id','=','quotations.id')
+                    ->join('proyek_quotations','proyek_quotations.id','=','quotations.proyek_quotation_id' )
                     ->where('rekap_subkons.status_tagih',1)
                     ->when($this->col_selected,function($q){
                         $q->where($this->col_selected,"like","%". $this->search ."%");

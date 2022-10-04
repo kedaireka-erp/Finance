@@ -69,8 +69,15 @@ class AccProduksi extends Component
             'project_name' => 'Nama Projek'
         ];
         $status = ['ACCEPT','PENDING'];
-        $items = Produksi::select(['fppps.*','quotations.quotation_no'])
-                    ->join('quotations','fppps.quotation_id','=','quotations.id')
+        $items = Produksi::select([ 'proyek_quotations.date',
+                                    'proyek_quotations.no_quotation',
+                                    'fppps.fppp_no',
+                                    'master_aplikators.aplikator',
+                                    'proyek_quotations.name_proyek',
+                                    'fppps.acc_produksi'])
+                    ->join('quotations','quotations.id','=','fppps.quotation_id')
+                    ->join('proyek_quotations','proyek_quotations.id','=','quotations.proyek_quotation_id')
+                    ->join('master_aplikators','master_aplikators.kode','=','proyek_quotations.kode_aplikator')
                     ->where('fppps.acc_produksi','=','ACCEPT')
                     ->when($this->col_selected,function($q){
                         $q->where($this->col_selected,"like","%". $this->search ."%");
