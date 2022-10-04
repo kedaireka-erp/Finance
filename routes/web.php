@@ -1,6 +1,12 @@
 <?php
 
+use App\Http\Livewire\Dashboard;
+use App\Http\Livewire\AccProduksi;
+use App\Http\Livewire\TableProduksi;
 use Illuminate\Support\Facades\Route;
+use App\Http\Livewire\TablePengiriman;
+use App\Http\Livewire\HistoryPengiriman;
+use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
