@@ -10,7 +10,7 @@ class Produksi extends Model
     use HasFactory;
 
     protected $table = 'fppps';
-    protected $fillable =['created_at','quotation_no','fppp_no','aplicator_name','project_name','acc_produksi'];
+    // protected $fillable =['created_at','quotation_no','fppp_no','aplicator_name','project_name','acc_produksi'];
 
 
     public function quotations()

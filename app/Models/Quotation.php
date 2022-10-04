@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Quotation extends Model
 {
     use HasFactory;
+    protected $table = 'quotations';
+
+    public function detail_quotations(){
+        return $this -> hasMany(DetailQuotation::class);
+    }
 }

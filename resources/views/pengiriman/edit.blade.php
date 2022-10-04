@@ -91,9 +91,9 @@
                         </span>
                         <select class="form-select m-2 slect" aria-label="Default select example" name="status_select">
                           <option id="status" value='' >SELECT STATUS</option>  
-                          @foreach ($status as $status)
-                            <option id="status" value='{{ $status }}' {{ $i -> acc_pengiriman == $status ? "selected":"" }} >{{ $status }}</option>
-                            @endforeach
+                          @foreach ($status as $stat)
+                            <option id="status" value='{{ $stat }}' {{ $i -> acc_pengiriman == $stat ? "selected":"" }} >{{ $stat }}</option>
+                          @endforeach
                         </select>
                     </div>
 

@@ -106,12 +106,6 @@
           </th>
           <th  scope="col">
               <span>
-                Kota
-                <i wire:click="sortBy('tujuan')" style="cursor: pointer" class="material-icons-round {{ $sortBy === 'tujuan' && $sortDirection === 'desc' ? '' : 'no-use' }}">arrow_drop_down</i>
-              </span>
-          </th>
-          <th  scope="col">
-              <span>
                 Item Jadi
                 <i wire:click="sortBy('qty_packing')" style="cursor: pointer" class="material-icons-round {{ $sortBy === 'qty_packing' && $sortDirection === 'desc' ? '' : 'no-use' }}">arrow_drop_down</i>
               </span>
@@ -136,7 +130,6 @@
                   <td>{{ $item -> fppp_no }}</td>
                   <td>{{ $item -> applicator_name }}</td>
                   <td>{{ $item -> project_name }}</td>
-                  <td>{{ $item -> tujuan }}</td>
                   <td>{{ $item -> qty_packing }}</td>
                   <td>{{ $item -> qty }}</td>
                   <td class="p-4 text-center">
