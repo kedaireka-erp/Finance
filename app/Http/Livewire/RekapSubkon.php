@@ -62,7 +62,7 @@ class RekapSubkon extends Component
                         'work_orders.tanggal_assembly1',
                         'work_orders.tanggal_assembly2',
                         'work_orders.tanggal_assembly3',
-                        'work_orders.nama_item',
+                        'detail_quotations.kode_tipe',
                         'detail_quotations.kode_warna',
                         'work_orders.kode_unit',
                         'work_orders.fppp_id',

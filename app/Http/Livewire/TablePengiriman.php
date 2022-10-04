@@ -37,25 +37,30 @@ class TablePengiriman extends Component
             'fppp_no' => 'No FPPP',
             'aplikator' => 'Aplikator',
             'nama_proyek' => 'Nama Projek',
-            'kota' => 'Kota',
             'jumlah_jadi' => 'Item Jadi',
             'jumlah_total' => 'Total Item'
         ];
         $status = ['ACCEPT','PENDING','ACCEPT WITH NOTE'];
+        DB::enableQueryLog();
             $items = Pengiriman::select([
+                                        'fppps.id',
                                         'work_orders.tanggal_packing',
                                         'proyek_quotations.no_quotation',
-                                        'fppps.fppp_no', 
-                                        'work_orders.qty_packing', 
+                                        'fppps.fppp_no',  
                                         'master_aplikators.aplikator', 
                                         'proyek_quotations.nama_proyek', 
-                                        'detail_quotations.kota'])
-                    ->select(DB::raw("COUNT(work_orders.kode_unit) as jumlah_total"))
-                    ->select(DB::raw("COUNT(work_orders.tanggal_packing) as jumlah_jadi"))
-                    ->join('work_orders', 'work_orders.fppp_id','=','fppps.id')
+                                        'detail_quotations.lokasi',
+                                        'work_orders.acc_pengiriman',
+                                        DB::raw( 'COUNT(kode_unit) as jumlah_total'),
+                                        DB::raw( 'COUNT(tanggal_packing) as jumlah_jadi')
+                                        ])
+                    ->join('fppps', 'work_orders.fppp_id','=','fppps.id')
                     ->join('quotations','fppps.quotation_id','=','quotations.id')
                     ->join('detail_quotations','detail_quotations.quotation_id','=','quotations.id')
+                    ->join('proyek_quotations','proyek_quotations.id','=','quotations.id')
+                    ->join('master_aplikators', 'master_aplikators.kode','=','proyek_quotations.kode_aplikator')
                     ->whereNotNull('work_orders.tanggal_packing') 
+                    ->groupBy('work_orders.fppp_id')
                     ->when($this->col_selected,function($q){
                         $q->where($this->col_selected,"like","%". $this->search ."%");
                     }) 
@@ -83,20 +88,25 @@ class TablePengiriman extends Component
 
     
     public function edit(Request $request, $id){
-        $item = Pengiriman::select(['work_orders.id',
-                                'work_orders.tanggal_packing',
-                                'work_orders.tujuan', 
-                                'work_orders.qty_packing', 
-                                'detail_quotations.qty', 
-                                'work_orders.acc_pengiriman', 
-                                'fppps.fppp_no', 
-                                'fppps.applicator_name', 
-                                'fppps.project_name',
-                                'quotations.quotation_no'])
+        $item = Pengiriman::select([
+                                    'fppps.id',
+                                    'work_orders.tanggal_packing',
+                                    'proyek_quotations.no_quotation',
+                                    'fppps.fppp_no',  
+                                    'master_aplikators.aplikator', 
+                                    'proyek_quotations.nama_proyek', 
+                                    'detail_quotations.lokasi',
+                                    'work_orders.acc_pengiriman',
+                                    'work_orders.note',
+                                    DB::raw( 'COUNT(kode_unit) as jumlah_total'),
+                                    DB::raw( 'COUNT(tanggal_packing) as jumlah_jadi')
+                                    ])
                         ->join('fppps', 'work_orders.fppp_id','=','fppps.id')
                         ->join('quotations','fppps.quotation_id','=','quotations.id')
                         ->join('detail_quotations','detail_quotations.quotation_id','=','quotations.id')
-                        ->where('work_orders.id','=',$id)
+                        ->join('proyek_quotations','proyek_quotations.id','=','quotations.id')
+                        ->join('master_aplikators', 'master_aplikators.kode','=','proyek_quotations.kode_aplikator')
+                        ->where('fppps.id','=',$id)
                         ->get();
         if($request -> get('status') == 'history'){
             $item = $item;
@@ -114,7 +124,7 @@ class TablePengiriman extends Component
 
     public function update(Request $request, $id)
     {
-        $item = Pengiriman::findorfail($id);
+        $item = Pengiriman::find($id);
         $validatedData = $request->validate([
                         'status_select' => 'required'
                     ]);
@@ -122,7 +132,9 @@ class TablePengiriman extends Component
             "acc_pengiriman" => $request -> status_select,
             "note" => $request -> note
         ]);
+        
         return redirect('/pengiriman');
+        
     }
 
 

@@ -11,8 +11,8 @@ class Pengiriman extends Model
 {
     use HasFactory;
 
-    protected $table = 'fppps';
-    // protected $fillable =['tgl_pack','fppp_id','tujuan','qty_packing','qty','acc_pengiriman','note'];
+    protected $table = 'work_orders';
+    protected $fillable =['acc_pengiriman','note'];
     // public $date = ['tgl_pack'];
 
 
@@ -42,6 +42,6 @@ class Pengiriman extends Model
 
     public function getDateForHumansAttribute()
     {
-        return Carbon::parse($this->tgl_packing)->format('M, d Y');
+        return Carbon::parse($this->tgl_packing)->format('Y-m-d');
     }
 }

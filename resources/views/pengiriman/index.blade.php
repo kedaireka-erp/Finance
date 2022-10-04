@@ -126,12 +126,12 @@
                 <tr class="items-align-center">
                   <th scope="row">{{ $items->firstItem() + $d}}</th>
                   <td>{{ $item -> date_for_humans }}</td>
-                  <td>{{ $item -> quotation_no }}</td>
+                  <td>{{ $item -> no_quotation }}</td>
                   <td>{{ $item -> fppp_no }}</td>
-                  <td>{{ $item -> applicator_name }}</td>
-                  <td>{{ $item -> project_name }}</td>
-                  <td>{{ $item -> qty_packing }}</td>
-                  <td>{{ $item -> qty }}</td>
+                  <td>{{ $item -> aplikator }}</td>
+                  <td>{{ $item -> nama_proyek }}</td>
+                  <td>{{ $item -> jumlah_jadi }}</td>
+                  <td>{{ $item -> jumlah_total }}</td>
                   <td class="p-4 text-center">
                     <span class="status  p-2 rounded" style="background-color: {{ $item -> status_color }}; color:{{ $item-> status_text_color }};font-size:13px">{{ $item -> acc_pengiriman }}</span>
                   </td>
