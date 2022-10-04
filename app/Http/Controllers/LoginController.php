@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class LoginController extends Controller
 {
     public function index () {
-        return redirect("http://erp.alluresystem.site/dashboard");
+        return redirect("http://erp.alluresystem.site");
     }
 
     public function login (Request $request) {
