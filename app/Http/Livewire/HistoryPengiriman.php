@@ -34,26 +34,30 @@ class HistoryPengiriman extends Component
             'fppp_no' => 'No FPPP',
             'aplikator' => 'Aplikator',
             'nama_proyek' => 'Nama Projek',
-            'kota' => 'Kota',
             'jumlah_jadi' => 'Item Jadi',
             'jumlah_total' => 'Total Item'
         ];
         $status = ['ACCEPT','ACCEPT WITH NOTE'];
         $items = Pengiriman::select([
+                        'fppps.id',
                         'work_orders.tanggal_packing',
                         'proyek_quotations.no_quotation',
-                        'fppps.fppp_no', 
-                        'work_orders.qty_packing', 
+                        'fppps.fppp_no',  
                         'master_aplikators.aplikator', 
                         'proyek_quotations.nama_proyek', 
-                        'detail_quotations.kota'])
-            ->select(DB::raw("COUNT(work_orders.kode_unit) as jumlah_total"))
-            ->select(DB::raw("COUNT(work_orders.tanggal_packing) as jumlah_jadi"))
-            ->join('work_orders', 'work_orders.fppp_id','=','fppps.id')
+                        'detail_quotations.lokasi',
+                        'work_orders.acc_pengiriman',
+                        DB::raw( 'COUNT(kode_unit) as jumlah_total'),
+                        DB::raw( 'COUNT(tanggal_packing) as jumlah_jadi')
+                        ])
+            ->join('fppps', 'work_orders.fppp_id','=','fppps.id')
             ->join('quotations','fppps.quotation_id','=','quotations.id')
             ->join('detail_quotations','detail_quotations.quotation_id','=','quotations.id')
+            ->join('proyek_quotations','proyek_quotations.id','=','quotations.id')
+            ->join('master_aplikators', 'master_aplikators.kode','=','proyek_quotations.kode_aplikator')
             ->whereNotNull('work_orders.tanggal_packing') 
             ->whereNot('acc_pengiriman','=','PENDING')
+            ->groupBy('work_orders.fppp_id')
             ->when($this->col_selected,function($q){
                 $q->where($this->col_selected,"like","%". $this->search ."%");
             })

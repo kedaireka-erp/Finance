@@ -49,19 +49,19 @@
                         {{ $i->date_for_humans }}
                       </div>
                       <div class="row py-2">
-                        {{ $i->quotation_no }}
+                        {{ $i->no_quotation }}
                       </div>
                       <div class="row py-2">
                         {{ $i->fppp_no }}
                       </div>
                       <div class="row py-2">
-                        {{ $i->applicator_name }}
+                        {{ $i->aplikator }}
                       </div>
                       <div class="row py-2">
-                        {{ $i->project_name }}
+                        {{ $i->nama_proyek }}
                       </div>
                       <div class="row py-2">
-                        {{ $i->tujuan }}
+                        {{ $i->lokasi }}
                       </div>
                     
                   </div>
@@ -71,11 +71,11 @@
                       <div class="d-flex">
                         <div class="d-flex flex-column bg-ini p-1 text-center rounded mx-2">
                             <div class="px-4 py-3 bg-luar-ini text-white rounded ">Produk selesai</div>
-                            <span class="datum p-4">{{ $i->qty_packing }}</span>
+                            <span class="datum p-4">{{ $i->jumlah_jadi }}</span>
                         </div>
                         <div class="d-flex flex-column bg-ini p-1 text-center rounded mx-2">
                             <div class="px-4 py-3 bg-luar-ini text-white rounded ">Total Item</div>
-                            <span class="datum p-4">{{ $i->qty }}</span>
+                            <span class="datum p-4">{{ $i->jumlah_total }}</span>
                         </div>
                       </div>
                       
@@ -90,7 +90,11 @@
                         Status
                         </span>
                         <select class="form-select m-2 slect" aria-label="Default select example" name="status_select">
-                          <option id="status" value='' >SELECT STATUS</option>  
+                          @if(request()->get('status') == 'history')
+                          <option id="status" value='PENDING' >SELECT STATUS</option>
+                          @else
+                          <option id="status" value='' >SELECT STATUS</option>
+                          @endif
                           @foreach ($status as $stat)
                             <option id="status" value='{{ $stat }}' {{ $i -> acc_pengiriman == $stat ? "selected":"" }} >{{ $stat }}</option>
                           @endforeach
