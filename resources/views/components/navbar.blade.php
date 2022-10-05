@@ -12,7 +12,6 @@
             </div>
           </a>
           <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
-            <li><hr class="dropdown-divider"></li>
             <li>
               <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
