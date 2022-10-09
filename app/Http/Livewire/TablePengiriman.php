@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\Pengiriman;
+use App\Models\Wo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
@@ -36,12 +37,9 @@ class TablePengiriman extends Component
             'no_quotation'=>'No Quotation',
             'fppp_no' => 'No FPPP',
             'aplikator' => 'Aplikator',
-            'nama_proyek' => 'Nama Projek',
-            'jumlah_jadi' => 'Item Jadi',
-            'jumlah_total' => 'Total Item'
+            'nama_proyek' => 'Nama Projek'
         ];
         $status = ['ACCEPT','PENDING','ACCEPT WITH NOTE'];
-        DB::enableQueryLog();
             $items = Pengiriman::select([
                                         'fppps.id',
                                         'work_orders.tanggal_packing',
@@ -49,23 +47,24 @@ class TablePengiriman extends Component
                                         'fppps.fppp_no',  
                                         'master_aplikators.aplikator', 
                                         'proyek_quotations.nama_proyek', 
-                                        'detail_quotations.lokasi',
-                                        'work_orders.acc_pengiriman',
-                                        DB::raw( 'COUNT(kode_unit) as jumlah_total'),
-                                        DB::raw( 'COUNT(tanggal_packing) as jumlah_jadi')
+                                        'proyek_quotations.alamat_proyek',
+                                        'fppps.acc_pengiriman',
+                                        // 'detail_quotations.qty',
+                                        DB::raw( 'COUNT(work_orders.kode_unit) as jumlah_total'),
+                                        DB::raw( 'COUNT(CASE WHEN tanggal_packing IS NOT NULL THEN 1 ELSE NULL END) as jumlah_jadi')
                                         ])
-                    ->join('fppps', 'work_orders.fppp_id','=','fppps.id')
+                    ->join('work_orders', 'work_orders.fppp_id','=','fppps.id')
                     ->join('quotations','fppps.quotation_id','=','quotations.id')
-                    ->join('detail_quotations','detail_quotations.quotation_id','=','quotations.id')
+                    // ->join('detail_quotations','detail_quotations.quotation_id','=','quotations.id')
                     ->join('proyek_quotations','proyek_quotations.id','=','quotations.id')
                     ->join('master_aplikators', 'master_aplikators.kode','=','proyek_quotations.kode_aplikator')
-                    ->whereNotNull('work_orders.tanggal_packing') 
+                    // ->whereNotNull('work_orders.tanggal_packing') 
                     ->groupBy('work_orders.fppp_id')
                     ->when($this->col_selected,function($q){
                         $q->where($this->col_selected,"like","%". $this->search ."%");
                     }) 
                     ->when($this->selectedStatus,function($query){
-                        $query->where('acc_pengiriman',$this->selectedStatus);
+                        $query->where('fppps.acc_pengiriman',$this->selectedStatus);
                     })
                     ->when($this->date_from,function($q){
                         $q->where('tanggal_packing','>=',$this -> date_from);
@@ -95,18 +94,19 @@ class TablePengiriman extends Component
                                     'fppps.fppp_no',  
                                     'master_aplikators.aplikator', 
                                     'proyek_quotations.nama_proyek', 
-                                    'detail_quotations.lokasi',
-                                    'work_orders.acc_pengiriman',
-                                    'work_orders.note',
-                                    DB::raw( 'COUNT(kode_unit) as jumlah_total'),
-                                    DB::raw( 'COUNT(tanggal_packing) as jumlah_jadi')
+                                    'proyek_quotations.alamat_proyek',
+                                    'fppps.acc_pengiriman',
+                                    'fppps.note',
+                                    DB::raw( 'COUNT(work_orders.kode_unit) as jumlah_total'),
+                                    DB::raw( 'COUNT(CASE WHEN tanggal_packing IS NOT NULL THEN 1 ELSE NULL END) as jumlah_jadi')
                                     ])
-                        ->join('fppps', 'work_orders.fppp_id','=','fppps.id')
+                        ->join('work_orders', 'work_orders.fppp_id','=','fppps.id')
                         ->join('quotations','fppps.quotation_id','=','quotations.id')
-                        ->join('detail_quotations','detail_quotations.quotation_id','=','quotations.id')
+                        // ->join('detail_quotations','detail_quotations.quotation_id','=','quotations.id')
                         ->join('proyek_quotations','proyek_quotations.id','=','quotations.id')
                         ->join('master_aplikators', 'master_aplikators.kode','=','proyek_quotations.kode_aplikator')
-                        ->where('fppps.id','=',$id)
+                        ->groupBy('work_orders.fppp_id')
+                        ->where('work_orders.fppp_id','=',$id)
                         ->get();
         if($request -> get('status') == 'history'){
             $item = $item;
@@ -128,9 +128,28 @@ class TablePengiriman extends Component
         $validatedData = $request->validate([
                         'status_select' => 'required'
                     ]);
-        $item -> update([
+        if($item -> update([
             "acc_pengiriman" => $request -> status_select,
             "note" => $request -> note
+        ])){
+            $itemWO = Wo::find($id);
+            $itemWO = Wo::where('fppp_id', $id);
+            $itemWO -> update([
+                "acc_pengiriman" => $request -> status_select,
+            ]);  
+        }
+        return redirect('/pengiriman');
+        
+    }
+
+    public function updateWO(Request $request, $id)
+    {
+        $item = Wo::find($id);
+        $validatedData = $request->validate([
+                        'status_select' => 'required'
+                    ]);
+        $item -> update([
+            "acc_pengiriman" => $request -> status_select
         ]);
         
         return redirect('/pengiriman');

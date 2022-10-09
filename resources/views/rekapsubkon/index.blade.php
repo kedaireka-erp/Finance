@@ -211,7 +211,7 @@
                   <td>{{ $item -> name }}</td>
                   <td>{{ $item -> fppp_no }}</td>
                   <td>{{ $item -> nama_proyek }}</td>
-                  <td>{{ $item -> kode_tipe }}</td>
+                  <td>{{ $item -> nama_item }}</td>
                   <td>{{ $item -> kode_warna }}</td>
                   <td>{{ $item -> kode_unit }}</td>
                   <td>
