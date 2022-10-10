@@ -130,7 +130,7 @@
                     <td>{{ $item -> aplikator }}</td>
                     <td>{{ $item -> nama_proyek }}</td>
                     <td>{{ $item -> jumlah_jadi }}</td>
-                    <td>{{ $item -> jumlah_total }}</td>
+                    <td>{{ $item -> qty }}</td>
                     <td class="p-4 text-center">
                       <span class="status  p-2 rounded" style="background-color: {{ $item -> status_color }}; color:{{ $item-> status_text_color }};font-size:13px">{{ $item -> acc_pengiriman }}</span>
                     </td>

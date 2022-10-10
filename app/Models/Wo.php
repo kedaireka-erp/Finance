@@ -10,7 +10,7 @@ class Wo extends Model
     use HasFactory;
     protected $table = 'work_orders';
 
-    public function fppps(){
-        return $this -> belongsTo(Fppp::class,"fppp_id");
-    }
+    // public function fppps(){
+    //     return $this -> belongsTo(Fppp::class,"fppp_id");
+    // }
 }

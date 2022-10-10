@@ -33,9 +33,7 @@ class HistoryPengiriman extends Component
             'no_quotation'=>'No Quotation',
             'fppp_no' => 'No FPPP',
             'aplikator' => 'Aplikator',
-            'nama_proyek' => 'Nama Projek',
-            'jumlah_jadi' => 'Item Jadi',
-            'jumlah_total' => 'Total Item'
+            'nama_proyek' => 'Nama Projek'
         ];
         $status = ['ACCEPT','ACCEPT WITH NOTE'];
         $items = Pengiriman::select([
@@ -45,24 +43,25 @@ class HistoryPengiriman extends Component
                         'fppps.fppp_no',  
                         'master_aplikators.aplikator', 
                         'proyek_quotations.nama_proyek', 
-                        'detail_quotations.lokasi',
-                        'work_orders.acc_pengiriman',
-                        DB::raw( 'COUNT(kode_unit) as jumlah_total'),
-                        DB::raw( 'COUNT(tanggal_packing) as jumlah_jadi')
+                        'proyek_quotations.alamat_proyek',
+                        'fppps.acc_pengiriman',
+                        // 'detail_quotations.qty',
+                        DB::raw( 'COUNT(work_orders.kode_unit) as jumlah_total'),
+                        DB::raw( 'COUNT(CASE WHEN tanggal_packing IS NOT NULL THEN 1 ELSE NULL END) as jumlah_jadi')
                         ])
-            ->join('fppps', 'work_orders.fppp_id','=','fppps.id')
+            ->join('work_orders', 'work_orders.fppp_id','=','fppps.id')
             ->join('quotations','fppps.quotation_id','=','quotations.id')
-            ->join('detail_quotations','detail_quotations.quotation_id','=','quotations.id')
+            // ->join('detail_quotations','detail_quotations.quotation_id','=','quotations.id')
             ->join('proyek_quotations','proyek_quotations.id','=','quotations.id')
             ->join('master_aplikators', 'master_aplikators.kode','=','proyek_quotations.kode_aplikator')
-            ->whereNotNull('work_orders.tanggal_packing') 
-            ->whereNot('acc_pengiriman','=','PENDING')
+            // ->whereNotNull('work_orders.tanggal_packing') 
+            ->whereNot('fppps.acc_pengiriman','=','PENDING')
             ->groupBy('work_orders.fppp_id')
             ->when($this->col_selected,function($q){
                 $q->where($this->col_selected,"like","%". $this->search ."%");
             })
             ->when($this->selectedStatus,function($query){
-                $query->where('acc_pengiriman',$this->selectedStatus);
+                $query->where('fppps.acc_pengiriman',$this->selectedStatus);
                 })
             ->when($this->date_from,function($q){
                 $q->where('tanggal_packing','>=',$this -> date_from);

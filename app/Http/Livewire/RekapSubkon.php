@@ -62,8 +62,8 @@ class RekapSubkon extends Component
                         'work_orders.tanggal_assembly1',
                         'work_orders.tanggal_assembly2',
                         'work_orders.tanggal_assembly3',
-                        'detail_quotations.kode_tipe',
-                        'detail_quotations.kode_warna',
+                        'work_orders.nama_item',
+                        'fppps.color',
                         'work_orders.kode_unit',
                         'work_orders.fppp_id',
                         'fppps.fppp_no',
@@ -73,7 +73,7 @@ class RekapSubkon extends Component
                     ->join('work_orders', 'rekap_subkons.work_order_id','=','work_orders.id')
                     ->join('assemblies', 'rekap_subkons.assembly_id','=','assemblies.id')
                     ->join('fppps', 'work_orders.fppp_id','=','fppps.id')
-                    ->join('detail_quotations', 'detail_quotations.quotation_id','=','fppps.quotation_id')
+                    // ->join('detail_quotations', 'detail_quotations.quotation_id','=','fppps.quotation_id')
                     ->join('quotations', 'fppps.quotation_id','=','quotations.id')
                     ->join('proyek_quotations','proyek_quotations.id','=','quotations.proyek_quotation_id' )
                     ->orderBy($this->sortBy, $this->sortDirection)
