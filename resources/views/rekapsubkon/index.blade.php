@@ -232,14 +232,14 @@
                   </td>
                   <td>
                       @if($editedSubkonIndex !== $d )
-                          {{ $item -> harga_jasa }}
+                          @money( $item -> harga_jasa )
                       @else
                       <input type="text"
                       wire:model.defer="subkons.{{ $d }}.harga_jasa">
                       @endif
 
                   </td>
-                  <td>{{ $item -> total_biaya }}</td>
+                  <td>@money($item -> total_biaya)</td>
                   <td>
                       @if($editedSubkonIndex !== $d )
                       <button class="btn aksi-btn text-white" wire:click.prevent="editedSubkon({{$d}})" >edit</button>
