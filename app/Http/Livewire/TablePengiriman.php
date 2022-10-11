@@ -133,7 +133,11 @@ class TablePengiriman extends Component
             "note_acc" => $request -> note
         ])){
             $itemWO = Wo::find($id);
-            $itemWO = Wo::where('fppp_id', $id);
+            if($request -> status_select === 'ACCEPT WITH NOTE'){   
+                $itemWO = Wo::where('fppp_id', $id)->whereNotNull('tanggal_packing');
+            }else{
+                $itemWO = Wo::where('fppp_id', $id);
+            }
             $itemWO -> update([
                 "acc_pengiriman" => $request -> status_select,
             ]);  
@@ -142,19 +146,19 @@ class TablePengiriman extends Component
         
     }
 
-    public function updateWO(Request $request, $id)
-    {
-        $item = Wo::find($id);
-        $validatedData = $request->validate([
-                        'status_select' => 'required'
-                    ]);
-        $item -> update([
-            "acc_pengiriman" => $request -> status_select
-        ]);
+    // public function updateWO(Request $request, $id)
+    // {
+    //     $item = Wo::find($id);
+    //     $validatedData = $request->validate([
+    //                     'status_select' => 'required'
+    //                 ]);
+    //     $item -> update([
+    //         "acc_pengiriman" => $request -> status_select
+    //     ]);
         
-        return redirect('/pengiriman');
+    //     return redirect('/pengiriman');
         
-    }
+    // }
 
 
 }

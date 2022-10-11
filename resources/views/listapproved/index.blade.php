@@ -161,12 +161,12 @@
                   <td>{{ $item -> fppp_no }}</td>
                   <td>{{ $item -> project_name }}</td>
                   <td>{{ $item -> nama_item }}</td>
-                  <td>{{ $item -> warna }}</td>
+                  <td>{{ $item -> color }}</td>
                   <td>{{ $item -> kode_unit }}</td>
                   <td>{{ $item -> jumlah_daun }}</td>
                   <td>{{ $item -> keliling_kaca }}</td>
-                  <td>{{ $item -> harga_jasa }}</td>
-                  <td>{{ $item -> total_biaya }}</td>
+                  <td>@money($item -> harga_jasa)</td>
+                  <td>@money($item -> total_biaya)</td>
                 </tr>
         @endforeach
       </tbody>
