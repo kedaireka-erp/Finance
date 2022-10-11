@@ -11,10 +11,10 @@ class Dashboard extends Component
 {
     public function render()
     {
-        $pengiriman = Workorder::get();
-        $acc_pengiriman = Workorder::where('acc_pengiriman', 1)->get();
-        $pending_pengiriman = Workorder::where('acc_pengiriman', 2)->get();
-        $acc_withnote = Workorder::where('acc_pengiriman', 3)->get();
+        $pengiriman = Fppp::get();
+        $acc_pengiriman = Fppp::where('acc_pengiriman', 1)->get();
+        $pending_pengiriman = Fppp::where('acc_pengiriman', 2)->get();
+        $acc_withnote = Fppp::where('acc_pengiriman', 3)->get();
         $produksi = Fppp::get();
         $acc_produksi = Fppp::where('acc_produksi', 1)->get();
         $pending_produksi = Fppp::where('acc_produksi', 2)->get();
