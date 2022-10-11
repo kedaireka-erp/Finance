@@ -212,7 +212,7 @@
                   <td>{{ $item -> fppp_no }}</td>
                   <td>{{ $item -> nama_proyek }}</td>
                   <td>{{ $item -> nama_item }}</td>
-                  <td>{{ $item -> kode_warna }}</td>
+                  <td>{{ $item -> color }}</td>
                   <td>{{ $item -> kode_unit }}</td>
                   <td>
                       @if(($editedSubkonIndex === $d) && (($item->name == 'Assembly')||($item->name == 'Las')||($item->name == 'Cek Opening')) )
