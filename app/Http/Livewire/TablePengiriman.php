@@ -142,19 +142,19 @@ class TablePengiriman extends Component
         
     }
 
-    public function updateWO(Request $request, $id)
-    {
-        $item = Wo::find($id);
-        $validatedData = $request->validate([
-                        'status_select' => 'required'
-                    ]);
-        $item -> update([
-            "acc_pengiriman" => $request -> status_select
-        ]);
+    // public function updateWO(Request $request, $id)
+    // {
+    //     $item = Wo::find($id);
+    //     $validatedData = $request->validate([
+    //                     'status_select' => 'required'
+    //                 ]);
+    //     $item -> update([
+    //         "acc_pengiriman" => $request -> status_select
+    //     ]);
         
-        return redirect('/pengiriman');
+    //     return redirect('/pengiriman');
         
-    }
+    // }
 
 
 }
