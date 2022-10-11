@@ -61,7 +61,7 @@
                         {{ $i->nama_proyek }}
                       </div>
                       <div class="row py-2">
-                        {{ $i->lokasi }}
+                        {{ $i->alamat_proyek }}
                       </div>
                     
                   </div>
@@ -121,7 +121,7 @@
                 <span class="my-1 mx-2 fs-5" >Catatan</span>
             </div>
             <div class="p-3">
-              <textarea type="text" name="note" class="form-control" id="exampleFormControlInput1" rows="3" placeholder="Tuliskan note">{{ $i->note }}</textarea>
+              <textarea type="text" name="note" class="form-control" id="exampleFormControlInput1" rows="3" placeholder="Tuliskan note">{{ $i->note_acc }}</textarea>
             </div>
           </div>
         </div>

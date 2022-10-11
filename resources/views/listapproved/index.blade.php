@@ -161,7 +161,7 @@
                   <td>{{ $item -> fppp_no }}</td>
                   <td>{{ $item -> project_name }}</td>
                   <td>{{ $item -> nama_item }}</td>
-                  <td>{{ $item -> warna }}</td>
+                  <td>{{ $item -> color }}</td>
                   <td>{{ $item -> kode_unit }}</td>
                   <td>{{ $item -> jumlah_daun }}</td>
                   <td>{{ $item -> keliling_kaca }}</td>

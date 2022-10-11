@@ -43,7 +43,7 @@ class RekapSubkon extends Component
             'fppp_no' => 'No FPPP',
             'nama_proyek' => ' Nama Projek',
             'nama_item' => 'Tipe Barang',
-            'kode_warna' => 'Warna',
+            'color' => 'Warna',
             'kode_unit' => 'Kode Unit',
             'jumlah_daun' => 'Jumlah Daun',
             'keliling_kaca' => 'Keliling Kaca',

@@ -43,7 +43,7 @@ class ListApproved extends Component
             'fppp_no' => 'No FPPP',
             'nama_proyek' => ' Nama Projek',
             'nama_item' => 'Tipe Barang',
-            'kode_warna' => 'Warna',
+            'color' => 'Warna',
             'kode_unit' => 'Kode Unit',
             'jumlah_daun' => 'Jumlah Daun',
             'keliling_kaca' => 'Keliling Kaca',
@@ -63,7 +63,7 @@ class ListApproved extends Component
                         'work_orders.tanggal_assembly2',
                         'work_orders.tanggal_assembly3',
                         'work_orders.nama_item',
-                        'detail_quotations.kode_warna',
+                        'fppps.color',
                         'work_orders.kode_unit',
                         'work_orders.fppp_id',
                         'fppps.fppp_no',
@@ -73,7 +73,7 @@ class ListApproved extends Component
                     ->join('work_orders', 'rekap_subkons.work_order_id','=','work_orders.id')
                     ->join('assemblies', 'rekap_subkons.assembly_id','=','assemblies.id')
                     ->join('fppps', 'work_orders.fppp_id','=','fppps.id')
-                    ->join('detail_quotations', 'detail_quotations.quotation_id','=','fppps.quotation_id')
+                    // ->join('detail_quotations', 'detail_quotations.quotation_id','=','fppps.quotation_id')
                     ->join('quotations', 'fppps.quotation_id','=','quotations.id')
                     ->join('proyek_quotations','proyek_quotations.id','=','quotations.proyek_quotation_id' )
                     ->where('rekap_subkons.status_tagih',1)
