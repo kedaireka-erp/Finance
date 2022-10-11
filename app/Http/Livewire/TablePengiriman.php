@@ -96,7 +96,7 @@ class TablePengiriman extends Component
                                     'proyek_quotations.nama_proyek', 
                                     'proyek_quotations.alamat_proyek',
                                     'fppps.acc_pengiriman',
-                                    'fppps.note',
+                                    'fppps.note_acc',
                                     DB::raw( 'COUNT(work_orders.kode_unit) as jumlah_total'),
                                     DB::raw( 'COUNT(CASE WHEN tanggal_packing IS NOT NULL THEN 1 ELSE NULL END) as jumlah_jadi')
                                     ])
@@ -130,7 +130,7 @@ class TablePengiriman extends Component
                     ]);
         if($item -> update([
             "acc_pengiriman" => $request -> status_select,
-            "note" => $request -> note
+            "note_acc" => $request -> note
         ])){
             $itemWO = Wo::find($id);
             $itemWO = Wo::where('fppp_id', $id);
