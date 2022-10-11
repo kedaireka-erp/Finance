@@ -12,7 +12,7 @@ class Pengiriman extends Model
     use HasFactory;
 
     protected $table = 'fppps';
-    protected $fillable =['acc_pengiriman','note'];
+    protected $fillable =['acc_pengiriman','note_acc'];
     // public $date = ['tgl_pack'];
 
 
