@@ -19,7 +19,7 @@
             
               <div class="container">
 
-                <div class="row m-4">
+                <div class="row m-lg-4">
 
                   <div class = "col mb-3">
                     <div class="row px-3 py-2">

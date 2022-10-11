@@ -15,7 +15,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        Blade::directive('money', function ($amount) {
+            return "Rp. <?= number_format($amount,0, ',','.'); ?>";
+        });
     }
 
     /**
