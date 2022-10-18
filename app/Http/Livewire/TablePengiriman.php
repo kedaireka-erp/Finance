@@ -135,12 +135,16 @@ class TablePengiriman extends Component
             $itemWO = Wo::find($id);
             if($request -> status_select === 'ACCEPT WITH NOTE'){   
                 $itemWO = Wo::where('fppp_id', $id)->whereNotNull('tanggal_packing');
+                $itemWO -> update([
+                    "acc_pengiriman" => 'ACCEPT',
+                ]);
             }else{
                 $itemWO = Wo::where('fppp_id', $id);
+                $itemWO -> update([
+                    "acc_pengiriman" => $request -> status_select,
+                ]);
             }
-            $itemWO -> update([
-                "acc_pengiriman" => $request -> status_select,
-            ]);  
+              
         }
         return redirect('/pengiriman');
         
