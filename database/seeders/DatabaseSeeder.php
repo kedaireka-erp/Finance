@@ -22,7 +22,6 @@ class DatabaseSeeder extends Seeder
             FpppSeeder::class,
             AssemblySeeder::class,
             WorkOrderSeeder::class,
-            WoSeeder::class,
             RekapSubkonSeeder::class,
         ]);
     }

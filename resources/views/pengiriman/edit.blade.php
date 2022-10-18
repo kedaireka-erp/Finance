@@ -61,7 +61,7 @@
                         {{ $i->nama_proyek }}
                       </div>
                       <div class="row py-2">
-                        {{ $i->lokasi }}
+                        {{ $i->alamat_proyek }}
                       </div>
                     
                   </div>

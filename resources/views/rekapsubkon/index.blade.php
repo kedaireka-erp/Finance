@@ -153,7 +153,7 @@
           </th>
           <th  scope="col">
               <span>
-                Kode Warna
+                Warna
                 <i wire:click="sortBy('warna')" style="cursor: pointer" class="material-icons-round {{ $sortBy === 'warna' && $sortDirection === 'desc' ? '' : 'no-use' }}">arrow_drop_down</i>
               </span>
           </th>
