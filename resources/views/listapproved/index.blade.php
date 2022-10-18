@@ -165,8 +165,8 @@
                   <td>{{ $item -> kode_unit }}</td>
                   <td>{{ $item -> jumlah_daun }}</td>
                   <td>{{ $item -> keliling_kaca }}</td>
-                  <td>{{ $item -> harga_jasa }}</td>
-                  <td>{{ $item -> total_biaya }}</td>
+                  <td>@money($item -> harga_jasa)</td>
+                  <td>@money($item -> total_biaya)</td>
                 </tr>
         @endforeach
       </tbody>
