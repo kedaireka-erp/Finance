@@ -19,6 +19,10 @@ use App\Http\Controllers\LoginController;
 |
 */
 
+Route::get("/login", [LoginController::class, "index"])->name("login");
+
+Route::post("/login", [LoginController::class, "login"]);
+
 // Route::group(['middleware' => ['auth']], function() {
 Route::middleware('role:Finance|Manager Finance|Admin')->group(function () {
     // Route::get('/', function () {
@@ -28,7 +32,7 @@ Route::get('/', App\Http\Livewire\Dashboard::class)->name('dashboard');
 
 // BAGIAN PRODUKSI 
 Route::get('produksi', App\Http\Livewire\TableProduksi::class)->name('produksi');
-Route::get('accproduksi', App\Http\Livewire\AccProduksi::class)->name('accproduksi');
+Route::get('accproduksi', App\Http\Livewire\AccProduksi::class)->name('accproduksi')->middleware('role:Manager Finance|Admin');
 
 
 // BAGIAN PENGIRIMAN
@@ -37,17 +41,13 @@ Route::get('pengiriman/edit/{id}', [App\Http\Livewire\TablePengiriman::class,'ed
 Route::post('pengiriman/update/{id}',[App\Http\Livewire\TablePengiriman::class,'update'])->name('pengiriman.update');
 
 // BAGIAN History Pengiriman
-Route::get('history-kirim',App\Http\Livewire\HistoryPengiriman::class)->name('history-kirim');
+Route::get('history-kirim',App\Http\Livewire\HistoryPengiriman::class)->name('history-kirim')->middleware('role:Manager Finance|Admin');
 
 // BAGIAN Rekap-Subkon 
 Route::get('rekap_subkon', App\Http\Livewire\RekapSubkon::class)->name('rekap_subkon');
 
 // BAGIAN Approved Rekap-Subkon 
 Route::get('list-approved', App\Http\Livewire\ListApproved::class)->name('list-approved');
-});
-
-Route::get("/login", [LoginController::class, "index"])->name("login");
-
-Route::post("/login", [LoginController::class, "login"]);
 
 Route::post("/logout", [LoginController::class, "logout"])->name("logout");
+});

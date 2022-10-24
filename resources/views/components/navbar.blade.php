@@ -8,7 +8,7 @@
             <img src="https://github.com/mdo.png" alt="" width="52" height="52" class="rounded-circle me-2">
             <div class="d-flex flex-column">
               <strong>{{ Auth::user()->name }}</strong>
-              <span>Admin</span>
+              <span>{{ Auth::user()->roles->first()->name }}</span>
             </div>
           </a>
           <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
