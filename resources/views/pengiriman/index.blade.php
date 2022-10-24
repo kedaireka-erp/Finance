@@ -10,7 +10,7 @@
             {{ $ket }}{{ $title }} 
           </h5>
         </div>
-        @if(Auth::user()->hasRole('Manager Finance|admin'))
+        @if(Auth::user()->hasRole('Manager Finance') || Auth::user()->hasRole('Admin'))
         <div class="col">
             <a href="{{ route('history-kirim') }}" class="btn aksi-btn2 text-white mx-2 float-end " >History</a>
         </div>
