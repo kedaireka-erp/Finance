@@ -11,10 +11,11 @@
               {{ $ket }}{{ $title }} 
             </h5>
           </div>
+          @if(Auth::user()->hasRole('Manager Finance') || Auth::user()->hasRole('Admin'))
           <div class="col">
               <a href="{{ route('accproduksi') }}" class="btn aksi-btn2 text-white mx-2 float-end " >History</a>
           </div>
-          
+          @endif
   
         </div>
   
