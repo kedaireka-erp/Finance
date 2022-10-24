@@ -19,7 +19,8 @@ use App\Http\Controllers\LoginController;
 |
 */
 
-Route::group(['middleware' => ['auth']], function() {
+// Route::group(['middleware' => ['auth']], function() {
+Route::middleware('role:Finance|Manager Finance|Admin')->group(function () {
     // Route::get('/', function () {
 //     return view('dashboard.dashboard');
 // }) -> name('dashboard');
