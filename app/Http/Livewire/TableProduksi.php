@@ -77,7 +77,7 @@ class TableProduksi extends Component
                                     'master_aplikators.aplikator',
                                     'proyek_quotations.nama_proyek',
                                     'fppps.acc_produksi'])
-                    ->join('fppps','fppps.quotation_id','=','proyek_quotations.id')
+                    ->join('proyek_quotations','proyek_quotations.id','=','fppps.quotation_id')
                     ->join('master_aplikators','master_aplikators.kode','=','proyek_quotations.kode_aplikator')
                     ->when($this->col_selected,function($q){
                         $q->where($this->col_selected,"like","%". $this->search ."%");
