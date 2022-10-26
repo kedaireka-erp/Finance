@@ -6,6 +6,7 @@ use Schema;
 use Livewire\Component;
 use App\Models\Produksi;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\DB;
 
 
 class AccProduksi extends Component
@@ -73,13 +74,14 @@ class AccProduksi extends Component
                                     'proyek_quotations.date',
                                     'proyek_quotations.no_quotation',
                                     'fppps.fppp_no',
-                                    'master_aplikators.aplikator',
+                                    DB::raw('group_concat(master_aplikators.aplikator SEPARATOR  ", ") as aplikator'),
+                                    // 'master_aplikators.aplikator',
                                     'proyek_quotations.nama_proyek',
                                     'fppps.acc_produksi'])
-                    ->join('quotations','quotations.id','=','fppps.quotation_id')
-                    ->join('proyek_quotations','proyek_quotations.id','=','quotations.proyek_quotation_id')
-                    ->join('master_aplikators','master_aplikators.kode','=','proyek_quotations.kode_aplikator')
-                    ->where('fppps.acc_produksi','=','ACCEPT')
+                    ->join('proyek_quotations','proyek_quotations.id','=','fppps.quotation_id')
+                    ->join('master_aplikators','proyek_quotations.kode_aplikator','=','master_aplikators.kode')
+                    ->groupby('fppps.fppp_no')
+                    ->having('fppps.acc_produksi','=','ACCEPT')
                     ->when($this->col_selected,function($q){
                         $q->where($this->col_selected,"like","%". $this->search ."%");
                     })

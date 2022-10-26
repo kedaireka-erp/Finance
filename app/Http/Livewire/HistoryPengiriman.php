@@ -41,7 +41,7 @@ class HistoryPengiriman extends Component
                         'work_orders.tanggal_packing',
                         'proyek_quotations.no_quotation',
                         'fppps.fppp_no',  
-                        'master_aplikators.aplikator', 
+                        DB::raw('group_concat(master_aplikators.aplikator SEPARATOR  ", ") as aplikator'), 
                         'proyek_quotations.nama_proyek', 
                         'proyek_quotations.alamat_proyek',
                         'fppps.acc_pengiriman',
