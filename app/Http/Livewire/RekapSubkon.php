@@ -74,8 +74,8 @@ class RekapSubkon extends Component
                     ->join('assemblies', 'rekap_subkons.assembly_id','=','assemblies.id')
                     ->join('fppps', 'work_orders.fppp_id','=','fppps.id')
                     // ->join('detail_quotations', 'detail_quotations.quotation_id','=','fppps.quotation_id')
-                    ->join('quotations', 'fppps.quotation_id','=','quotations.id')
-                    ->join('proyek_quotations','proyek_quotations.id','=','quotations.proyek_quotation_id' )
+                    ->join('proyek_quotations', 'fppps.quotation_id','=','proyek_quotations.id')
+                    // ->join('proyek_quotations','proyek_quotations.id','=','quotations.proyek_quotation_id' )
                     ->orderBy($this->sortBy, $this->sortDirection)
                     ->where('rekap_subkons.status_tagih',0)
                     ->when($this->col_selected,function($q){
