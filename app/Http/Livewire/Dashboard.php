@@ -13,8 +13,8 @@ class Dashboard extends Component
     {
         $pengiriman = Wo::select(['fppps.id','fppps.acc_pengiriman'])->join('fppps','fppps.id','=','work_orders.fppp_id')->groupby('fppp_id') -> get();
         $acc_pengiriman = Wo::select(['fppps.id','fppps.acc_pengiriman'])->join('fppps','fppps.id','=','work_orders.fppp_id')->groupby('fppp_id')->where('fppps.acc_pengiriman','=', 1)->get();
-        $pending_pengiriman = Wo::select(['fppps.id','fppps.acc_pengiriman'])->join('fppps','fppps.id','=','work_orders.fppp_id')->groupby('fppp_id')->where('fppps.acc_pengiriman','=', 3)->get();
-        $acc_withnote = Wo::select(['fppps.id','fppps.acc_pengiriman'])->join('fppps','fppps.id','=','work_orders.fppp_id')->groupby('fppp_id')->where('fppps.acc_pengiriman','=', 2)->get();
+        $pending_pengiriman = Wo::select(['fppps.id','fppps.acc_pengiriman'])->join('fppps','fppps.id','=','work_orders.fppp_id')->groupby('fppp_id')->where('fppps.acc_pengiriman','=', 2)->get();
+        $acc_withnote = Wo::select(['fppps.id','fppps.acc_pengiriman'])->join('fppps','fppps.id','=','work_orders.fppp_id')->groupby('fppp_id')->where('fppps.acc_pengiriman','=', 3)->get();
         $produksi = Fppp::get();
         $acc_produksi = Fppp::where('acc_produksi', 1)->get();
         $pending_produksi = Fppp::where('acc_produksi', 2)->get();

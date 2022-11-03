@@ -14,7 +14,6 @@ class TableProduksi extends Component
 
     public $sortBy = 'proyek_quotations.date';
     public $sortDirection = 'desc';
-    // public $searchColumnsKode, $searchColumnsNama, $searchColumnsPriceMin, $searchColumnsPriceMax, $searchColumnsCategoryId;
     public $status_id ;
     public $selectedStatus =null;
     public $date_from =null;

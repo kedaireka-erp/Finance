@@ -73,7 +73,7 @@
           <th scope="col" >
             <span>
               Tanggal Pengerjaan
-              <i wire:click="sortBy('tanggal_assembly1')" style="cursor: pointer" class="material-icons-round {{ $sortBy === 'tanggal_assembly1' && $sortDirection === 'desc' ? '' : 'no-use' }}">arrow_drop_down</i>
+              <i wire:click="sortBy('tanggal_assembly2')" style="cursor: pointer" class="material-icons-round {{ $sortBy === 'tanggal_assembly1' && $sortDirection === 'desc' ? '' : 'no-use' }}">arrow_drop_down</i>
             </span>
           </th>
           <th  scope="col" >
@@ -97,7 +97,7 @@
           <th  scope="col">
             <span>
               Nama Projek
-              <i wire:click="sortBy('project_name')" style="cursor: pointer" class="material-icons-round {{ $sortBy === 'project_name' && $sortDirection === 'desc' ? '' : 'no-use' }}">arrow_drop_down</i>
+              <i wire:click="sortBy('nama_proyek')" style="cursor: pointer" class="material-icons-round {{ $sortBy === 'nama_proyek' && $sortDirection === 'desc' ? '' : 'no-use' }}">arrow_drop_down</i>
             </span>
           </th>
           <th  scope="col">
@@ -155,17 +155,17 @@
                 @endif
                   <td>
                     @if ($tgl_assembly == 1)
-                    {{ $item -> tanggal_assembly1 }}
+                    {{ $item -> assembly_date_1 }}
                     @elseif ($tgl_assembly == 2)
-                    {{ $item -> tanggal_assembly2 }}
+                    {{ $item -> assembly_date_2 }}
                     @else
-                    {{ $item -> tanggal_assembly3 }}
+                    {{ $item -> assembly_date_3 }}
                     @endif
                   </td>
-                  <td>{{ $item -> tgl_tagih }}</td>
+                  <td>{{ $item -> assembly_tagih_date }}</td>
                   <td>{{ $item -> name }}</td>
                   <td>{{ $item -> fppp_no }}</td>
-                  <td>{{ $item -> project_name }}</td>
+                  <td>{{ $item -> nama_proyek }}</td>
                   <td>{{ $item -> nama_item }}</td>
                   <td>{{ $item -> color }}</td>
                   <td>{{ $item -> kode_unit }}</td>

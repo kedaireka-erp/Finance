@@ -41,7 +41,7 @@ class RekapSubkon extends Component
         $job = ['Assembly','Las','Cek Opening','Pasang Kaca','Sealant Kaca'];
         $columns = [
             'fppp_no' => 'No FPPP',
-            'nama_proyek' => ' Nama Projek',
+            'nama_proyek' => 'Nama Projek',
             'nama_item' => 'Tipe Barang',
             'color' => 'Warna',
             'kode_unit' => 'Kode Unit',

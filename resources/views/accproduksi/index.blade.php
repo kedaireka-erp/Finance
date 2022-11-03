@@ -64,13 +64,13 @@
             <th scope="col" >
               <span class='d-flex justify-content-center'>
                 Tanggal
-                <i wire:click="sortBy('created_at')" style="cursor: pointer" class="material-icons-round {{ $sortBy === 'created_at' && $sortDirection === 'desc' ? '' : 'no-use' }}">arrow_drop_down</i>
+                <i wire:click="sortBy('date')" style="cursor: pointer" class="material-icons-round {{ $sortBy === 'date' && $sortDirection === 'desc' ? '' : 'no-use' }}">arrow_drop_down</i>
               </span> 
             </th> 
             <th  scope="col" >
               <span class='d-flex justify-content-center'>
                 No Quotation
-                <i wire:click="sortBy('quotation_no')" style="cursor: pointer" class="material-icons-round {{ $sortBy === 'quotation_no' && $sortDirection === 'desc' ? '' : 'no-use' }}">arrow_drop_down</i>
+                <i wire:click="sortBy('no_quotation')" style="cursor: pointer" class="material-icons-round {{ $sortBy === 'no_quotation' && $sortDirection === 'desc' ? '' : 'no-use' }}">arrow_drop_down</i>
               </span> 
             </th>               
             <th  scope="col" >
@@ -82,13 +82,13 @@
             <th  scope="col" >
               <span class='d-flex justify-content-center'>
                 Aplikator
-                <i wire:click="sortBy('applicator_name')" style="cursor: pointer" class="material-icons-round {{ $sortBy === 'applicator_name' && $sortDirection === 'desc' ? '' : 'no-use' }}">arrow_drop_down</i>
+                <i wire:click="sortBy('aplikator')" style="cursor: pointer" class="material-icons-round {{ $sortBy === 'aplikator' && $sortDirection === 'desc' ? '' : 'no-use' }}">arrow_drop_down</i>
               </span>
             </th>
             <th  scope="col">
               <span class='d-flex justify-content-center'>
                 Nama Projek
-                <i wire:click="sortBy('project_name')" style="cursor: pointer" class="material-icons-round {{ $sortBy === 'project_name' && $sortDirection === 'desc' ? '' : 'no-use' }}">arrow_drop_down</i>
+                <i wire:click="sortBy('nama_proyek')" style="cursor: pointer" class="material-icons-round {{ $sortBy === 'nama_proyek' && $sortDirection === 'desc' ? '' : 'no-use' }}">arrow_drop_down</i>
               </span>
             </th>
             <th scope="col">Status</th>

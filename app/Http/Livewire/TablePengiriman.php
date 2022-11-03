@@ -45,11 +45,11 @@ class TablePengiriman extends Component
                                         'work_orders.tanggal_packing',
                                         'proyek_quotations.no_quotation',
                                         'fppps.fppp_no',  
-                                        DB::raw('group_concat(master_aplikators.aplikator SEPARATOR  ", ") as aplikator'), 
+                                        // DB::raw('group_concat(master_aplikators.aplikator SEPARATOR  ", ") as aplikator'), 
+                                        'master_aplikators.aplikator',
                                         'proyek_quotations.nama_proyek', 
                                         'proyek_quotations.alamat_proyek',
                                         'fppps.acc_pengiriman',
-                                        // 'detail_quotations.qty',
                                         DB::raw( 'COUNT(work_orders.kode_unit) as jumlah_total'),
                                         DB::raw( 'COUNT(CASE WHEN tanggal_packing IS NOT NULL THEN 1 ELSE NULL END) as jumlah_jadi')
                                         ])
@@ -59,7 +59,7 @@ class TablePengiriman extends Component
                     // ->join('proyek_quotations','proyek_quotations.id','=','quotations.id')
                     ->join('master_aplikators', 'master_aplikators.kode','=','proyek_quotations.kode_aplikator')
                     // ->whereNotNull('work_orders.tanggal_packing') 
-                    ->groupBy('work_orders.fppp_id')
+                    ->groupBy('work_orders.fppp_id', 'master_aplikators.aplikator')
                     ->when($this->col_selected,function($q){
                         $q->where($this->col_selected,"like","%". $this->search ."%");
                     }) 

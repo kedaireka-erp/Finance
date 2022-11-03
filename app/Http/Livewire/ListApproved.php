@@ -77,6 +77,7 @@ class ListApproved extends Component
                     ->join('proyek_quotations', 'fppps.quotation_id','=','proyek_quotations.id')
                     // ->join('proyek_quotations','proyek_quotations.id','=','quotations.proyek_quotation_id' )
                     ->where('rekap_subkons.status_tagih',1)
+                    ->orderBy($this->sortBy, $this->sortDirection)
                     ->when($this->col_selected,function($q){
                         $q->where($this->col_selected,"like","%". $this->search ."%");
                     })
